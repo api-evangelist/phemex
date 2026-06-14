@@ -1,0 +1,138 @@
+name: Phemex
+description: Phemex is a cryptocurrency derivatives exchange offering REST and WebSocket APIs for spot trading, perpetual contracts, futures, hedged perpetual contracts, asset transfers, and real-time market data. The platform provides low-latency trading infrastructure with HMAC SHA256 authentication and tiered rate limiting for institutional and retail traders.
+image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/apis.yml
+created: '2026-06-13'
+modified: '2026-06-13'
+specificationVersion: '0.19'
+tags:
+  - Cryptocurrency
+  - Derivatives
+  - Spot Trading
+  - Perpetual Contracts
+  - Futures
+  - WebSocket
+  - Market Data
+apis:
+  - name: Phemex Contract Trading API
+    description: REST and WebSocket API for trading perpetual contracts on Phemex, including order placement, position management, account queries, and real-time market data subscriptions.
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://github.com/phemex/phemex-api-docs/blob/master/Public-Contract-API-en.md
+    baseURL: https://api.phemex.com
+    tags:
+      - Cryptocurrency
+      - Perpetual Contracts
+      - Derivatives
+      - Trading
+      - WebSocket
+    properties:
+      - type: Documentation
+        url: https://github.com/phemex/phemex-api-docs/blob/master/Public-Contract-API-en.md
+      - type: RateLimits
+        url: https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/rate-limits/contract.yml
+      - type: Plans
+        url: https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/plans/plans.yml
+    contact:
+      - FN: Phemex Support
+        url: https://phemex.com/help-center
+    overlays: []
+    aid: phemex:phemex-contract-trading-api
+
+  - name: Phemex Spot Trading API
+    description: REST and WebSocket API for spot trading on Phemex, supporting order placement, wallet queries, market data subscriptions, and 24-hour ticker streams.
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://github.com/phemex/phemex-api-docs/blob/master/Public-Spot-API-en.md
+    baseURL: https://api.phemex.com
+    tags:
+      - Cryptocurrency
+      - Spot Trading
+      - WebSocket
+      - Market Data
+    properties:
+      - type: Documentation
+        url: https://github.com/phemex/phemex-api-docs/blob/master/Public-Spot-API-en.md
+      - type: RateLimits
+        url: https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/rate-limits/spot.yml
+      - type: Plans
+        url: https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/plans/plans.yml
+    contact:
+      - FN: Phemex Support
+        url: https://phemex.com/help-center
+    overlays: []
+    aid: phemex:phemex-spot-trading-api
+
+  - name: Phemex Hedged Perpetual API
+    description: REST and WebSocket API for hedged perpetual contract trading on Phemex, enabling both long and short positions simultaneously with independent leverage settings per side.
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://github.com/phemex/phemex-api-docs/blob/master/Public-Hedged-Perpetual-API.md
+    baseURL: https://api.phemex.com
+    tags:
+      - Cryptocurrency
+      - Hedged Perpetual
+      - Derivatives
+      - Trading
+    properties:
+      - type: Documentation
+        url: https://github.com/phemex/phemex-api-docs/blob/master/Public-Hedged-Perpetual-API.md
+      - type: RateLimits
+        url: https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/rate-limits/hedged-perpetual.yml
+      - type: Plans
+        url: https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/plans/plans.yml
+    contact:
+      - FN: Phemex Support
+        url: https://phemex.com/help-center
+    overlays: []
+    aid: phemex:phemex-hedged-perpetual-api
+
+  - name: Phemex Asset Transfer API
+    description: REST API for transferring assets between spot and futures accounts, managing sub-account fund movements, and performing universal transfers between main and sub-accounts on Phemex.
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://github.com/phemex/phemex-api-docs/blob/master/Public-Transfer-API-en.md
+    baseURL: https://api.phemex.com
+    tags:
+      - Cryptocurrency
+      - Asset Transfer
+      - Account Management
+      - Sub-Accounts
+    properties:
+      - type: Documentation
+        url: https://github.com/phemex/phemex-api-docs/blob/master/Public-Transfer-API-en.md
+      - type: RateLimits
+        url: https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/rate-limits/transfer.yml
+      - type: Plans
+        url: https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/plans/plans.yml
+    contact:
+      - FN: Phemex Support
+        url: https://phemex.com/help-center
+    overlays: []
+    aid: phemex:phemex-asset-transfer-api
+
+common:
+  - type: GitHubRepository
+    url: https://github.com/phemex/phemex-api-docs
+  - type: Documentation
+    url: https://github.com/phemex/phemex-api-docs
+  - type: Authentication
+    url: https://github.com/phemex/phemex-api-docs/blob/master/Generic-API-Info.en.md
+  - type: RateLimits
+    url: https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/rate-limits/overview.yml
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/plans/plans.yml
+  - type: FinOps
+    url: https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/finops/finops.yml
+  - type: HelpCenter
+    url: https://phemex.com/help-center
+  - type: SDK
+    url: https://github.com/ccxt/ccxt
+  - type: JavaClient
+    url: https://github.com/phemex/java-client
+  - type: ErrorCodes
+    url: https://github.com/phemex/phemex-api-docs/blob/master/TradingErrorCode.md
+  - type: StatusPage
+    url: https://status.phemex.com
+  - type: Testnet
+    url: https://testnet.phemex.com
+maintainers:
+  - FN: API Evangelist
+    url: https://apievangelist.com
+    email: info@apievangelist.com

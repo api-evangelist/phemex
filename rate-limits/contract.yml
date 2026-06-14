@@ -1,0 +1,68 @@
+name: Phemex Contract Trading API Rate Limits
+description: Rate limits specific to Phemex contract (perpetual) trading endpoints. Standard users get 500 requests/minute; VIP/VAPI users get 5000 requests/minute with additional per-symbol granularity.
+created: '2026-06-13'
+modified: '2026-06-13'
+source: https://github.com/phemex/phemex-api-docs/blob/master/Public-Contract-API-en.md
+
+group: Contract
+standardLimit: 500
+standardWindow: 1 minute
+vipLimit: 5000
+vipWindow: 1 minute
+perSymbolLimit: 500
+perSymbolWindow: 1 minute
+
+endpoints:
+  - path: /orders
+    method: POST
+    weight: 1
+    description: Place order via JSON body
+  - path: /orders/create
+    method: PUT
+    weight: 1
+    description: Place order via query parameters
+  - path: /orders/replace
+    method: PUT
+    weight: 1
+    description: Amend existing order
+  - path: /orders/cancel
+    method: DELETE
+    weight: 1
+    description: Cancel single order
+  - path: /orders
+    method: DELETE
+    weight: 1
+    description: Bulk cancel orders
+  - path: /orders/activeList
+    method: GET
+    weight: 1
+    description: Query open orders
+  - path: /exchange/order/list
+    method: GET
+    weight: 1
+    description: Query closed orders
+  - path: /accounts/accountPositions
+    method: GET
+    weight: 1
+    description: Account and position data
+  - path: /accounts/positions
+    method: GET
+    weight: 1
+    description: Positions with unrealized PnL
+  - path: /positions/leverage
+    method: PUT
+    weight: 1
+    description: Set leverage
+
+webSocket:
+  url: wss://phemex.com/ws
+  vipUrl: wss://vapi.phemex.com/ws
+  maxConnections: 5
+  maxSubscriptions: 20
+  throttle: 20 requests/second
+  subscriptions:
+    - orderbook.subscribe
+    - trade.subscribe
+    - aop.subscribe
+    - market24h.subscribe
+    - kline.subscribe

@@ -1,0 +1,39 @@
+name: Phemex Asset Transfer API Rate Limits
+description: Rate limits for Phemex asset transfer endpoints between spot and futures accounts, and sub-account transfers. These fall under the Others group at 100 requests/minute.
+created: '2026-06-13'
+modified: '2026-06-13'
+source: https://github.com/phemex/phemex-api-docs/blob/master/Public-Transfer-API-en.md
+
+group: Others
+standardLimit: 100
+standardWindow: 1 minute
+
+endpoints:
+  - path: /assets/transfer
+    method: POST
+    weight: 1
+    description: Transfer assets between spot and futures accounts (moveOp 1=futures→spot, 2=spot→futures)
+  - path: /assets/transfer
+    method: GET
+    weight: 1
+    description: Query transfer history
+  - path: /assets/spots/sub-accounts/transfer
+    method: POST
+    weight: 1
+    description: Transfer spot assets from sub-account to main account
+  - path: /assets/spots/sub-accounts/transfer
+    method: GET
+    weight: 1
+    description: Query spot sub-account transfer history
+  - path: /assets/futures/sub-accounts/transfer
+    method: POST
+    weight: 1
+    description: Transfer futures assets from sub-account to main account
+  - path: /assets/futures/sub-accounts/transfer
+    method: GET
+    weight: 1
+    description: Query futures sub-account transfer history
+  - path: /assets/universal-transfer
+    method: POST
+    weight: 1
+    description: Universal transfer between main and sub-accounts (SPOT or PERPETUAL bizType)

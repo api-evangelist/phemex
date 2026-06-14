@@ -1,0 +1,49 @@
+name: Phemex Hedged Perpetual API Rate Limits
+description: Rate limits for Phemex hedged perpetual contract endpoints. These endpoints fall under the Contract group, sharing the 500 requests/minute standard limit and 5000 requests/minute VIP limit.
+created: '2026-06-13'
+modified: '2026-06-13'
+source: https://github.com/phemex/phemex-api-docs/blob/master/Public-Hedged-Perpetual-API.md
+
+group: Contract
+standardLimit: 500
+standardWindow: 1 minute
+vipLimit: 5000
+vipWindow: 1 minute
+
+endpoints:
+  - path: /g-orders
+    method: POST
+    weight: 1
+    description: Place hedged perpetual order via JSON body
+  - path: /g-orders/create
+    method: PUT
+    weight: 1
+    description: Place hedged perpetual order via query parameters
+  - path: /g-orders/replace
+    method: PUT
+    weight: 1
+    description: Amend hedged perpetual order
+  - path: /g-orders/cancel
+    method: DELETE
+    weight: 1
+    description: Cancel single hedged perpetual order
+  - path: /g-orders
+    method: DELETE
+    weight: 1
+    description: Bulk cancel hedged perpetual orders
+  - path: /g-orders/activeList
+    method: GET
+    weight: 1
+    description: Query open hedged perpetual orders
+  - path: /g-accounts/positions
+    method: GET
+    weight: 1
+    description: Query hedged positions with unrealized PnL
+  - path: /g-positions/leverage
+    method: PUT
+    weight: 1
+    description: Set leverage for long/short sides independently
+  - path: /g-positions/switch-pos-mode-sync
+    method: PUT
+    weight: 1
+    description: Toggle between OneWay and Hedged position modes

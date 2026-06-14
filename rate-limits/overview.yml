@@ -1,0 +1,83 @@
+name: Phemex API Rate Limits Overview
+description: Phemex enforces two layers of rate limiting - IP-level limits and per-user API group limits. Rate limit status is communicated via response headers. Exceeding limits returns HTTP 429. VIP and VAPI tiers unlock higher limits for contract trading.
+created: '2026-06-13'
+modified: '2026-06-13'
+source: https://github.com/phemex/phemex-api-docs/blob/master/Generic-API-Info.en.md
+
+layers:
+  - name: IP Rate Limit
+    description: Applied globally per IP address across all API endpoints.
+    limit: 5000
+    window: 5 minutes
+    enforcement: Block for 5 minutes if exceeded
+    scope: per-IP
+
+  - name: API User Rate Limit
+    description: Applied per authenticated user per minute, segmented by API group.
+    window: 1 minute
+    httpStatus: 429
+    scope: per-user
+    groups:
+      - name: Contract
+        description: Endpoints related to contract (perpetual) trading.
+        limit: 500
+        vipLimit: 5000
+        sampleEndpoints:
+          - POST /orders
+          - PUT /orders/create
+          - GET /orders/activeList
+          - DELETE /orders/cancel
+          - GET /accounts/accountPositions
+
+      - name: SpotOrder
+        description: Endpoints related to spot order management.
+        limit: 500
+        vipLimit: 500
+        sampleEndpoints:
+          - POST /spot/orders
+          - PUT /spot/orders/create
+          - DELETE /spot/orders
+          - GET /spot/orders/active
+          - GET /spot/wallets
+
+      - name: Others
+        description: All other endpoints including public market data.
+        limit: 100
+        vipLimit: 100
+        sampleEndpoints:
+          - GET /exchange/public/md/kline
+          - GET /md/orderbook
+          - GET /md/trade
+          - GET /md/spot/ticker/24hr
+
+vipRateLimits:
+  description: VIP and VAPI tier accounts get enhanced contract group limits with per-symbol tracking.
+  contractOverall: 5000/minute
+  perSymbol: 500/minute
+  allSymbolsGroup: 500/minute
+  baseURL: https://vapi.phemex.com
+
+headers:
+  description: Rate limit status returned in HTTP response headers.
+  standard:
+    - name: x-ratelimit-remaining-{groupName}
+      description: Remaining requests in current window for the named group.
+    - name: x-ratelimit-capacity-{groupName}
+      description: Total capacity for the named group in current window.
+    - name: x-ratelimit-retry-after-{groupName}
+      description: Seconds to wait before retrying after limit exceeded.
+  vip:
+    - name: x-ratelimit-remaining-{groupName}_{symbol}
+      description: Remaining requests for the named group per symbol.
+    - name: x-ratelimit-capacity-{groupName}_{symbol}
+      description: Total capacity for the named group per symbol.
+    - name: x-ratelimit-retry-after-{groupName}_{symbol}
+      description: Seconds to wait before retrying per symbol.
+
+webSocket:
+  maxConnections: 5
+  maxSubscriptionsPerConnection: 20
+  requestThrottle: 20 requests/second
+  heartbeatRequired: true
+  heartbeatInterval: every 30 seconds (recommended every 5 seconds)
+  heartbeatMethod: server.ping

@@ -1,0 +1,69 @@
+name: Phemex Spot Trading API Rate Limits
+description: Rate limits specific to Phemex spot trading endpoints. The SpotOrder group is capped at 500 requests/minute for all users. Public market data endpoints fall under the Others group at 100 requests/minute.
+created: '2026-06-13'
+modified: '2026-06-13'
+source: https://github.com/phemex/phemex-api-docs/blob/master/Public-Spot-API-en.md
+
+groups:
+  - name: SpotOrder
+    limit: 500
+    window: 1 minute
+    endpoints:
+      - path: /spot/orders
+        method: POST
+        weight: 1
+        description: Place spot order via JSON body
+      - path: /spot/orders/create
+        method: PUT
+        weight: 1
+        description: Place spot order via query parameters
+      - path: /spot/orders
+        method: PUT
+        weight: 1
+        description: Amend spot order
+      - path: /spot/orders
+        method: DELETE
+        weight: 1
+        description: Cancel spot order
+      - path: /spot/orders/active
+        method: GET
+        weight: 1
+        description: Query open spot orders
+      - path: /spot/wallets
+        method: GET
+        weight: 1
+        description: Query spot wallets
+
+  - name: Others
+    limit: 100
+    window: 1 minute
+    endpoints:
+      - path: /md/orderbook
+        method: GET
+        weight: 1
+        description: Order book snapshot
+      - path: /md/trade
+        method: GET
+        weight: 1
+        description: Recent trades
+      - path: /md/spot/ticker/24hr
+        method: GET
+        weight: 1
+        description: 24-hour ticker data
+      - path: /exchange/public/md/v2/kline
+        method: GET
+        weight: 10
+        description: Kline/candlestick data (high weight endpoint)
+
+webSocket:
+  url: wss://phemex.com/ws
+  vipUrl: wss://vapi.phemex.com/ws
+  maxConnections: 5
+  maxSubscriptions: 20
+  throttle: 20 requests/second
+  subscriptions:
+    - orderbook.subscribe
+    - trade.subscribe
+    - kline.subscribe
+    - wo.subscribe
+    - spot_market24h.subscribe

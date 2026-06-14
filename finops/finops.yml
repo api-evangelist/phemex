@@ -1,0 +1,51 @@
+name: Phemex API FinOps
+description: Financial operations considerations for Phemex API users. Phemex does not charge for API access itself; costs arise from trading fees on executed orders. Fee rates vary by product type and user VIP tier, which is determined by 30-day trading volume, average asset balance, and vePT holdings.
+created: '2026-06-13'
+modified: '2026-06-13'
+source: https://phemex.com/fees-conditions
+
+apiAccessCost:
+  model: free
+  notes: There is no subscription or per-call fee for Phemex API access. All registered users receive API keys at no cost.
+
+tradingFees:
+  model: maker-taker
+  notes: Trading fees are charged on executed orders. Specific rates depend on VIP tier and product type. Authenticated users can view their personalized rates at phemex.com/fees-conditions.
+  products:
+    - name: Spot Trading
+      feeType: maker-taker
+      vipDiscount: Up to 20% discount for VIP users
+      notes: Fees vary by market pair and volume tier.
+    - name: Futures / Perpetual Contracts
+      feeType: maker-taker
+      vipDiscount: Up to 10% discount for VIP users
+      notes: Perpetual and futures contracts use separate fee schedules.
+    - name: Hedged Perpetual Contracts
+      feeType: maker-taker
+      notes: Same fee structure as standard perpetual contracts.
+
+vipFeeProgram:
+  description: VIP tiers reduce trading fees and unlock higher API rate limits at no extra subscription cost.
+  qualificationMetrics:
+    - metric: 30-day trading volume
+      scope: Spot and futures calculated separately
+    - metric: Average asset balance
+      scope: 30-day rolling average
+    - metric: vePT balance
+      scope: Vote-escrowed PT token holdings
+  updateSchedule: Daily at 00:00 UTC (actual update may be several hours later)
+  subAccountNote: Main and sub-accounts share trading volume and fee rates. New sub-accounts receive updated rates after the following day's refresh.
+  institutionalNote: Institutional clients have separate fee structures not covered by Standard through Star VIP tiers.
+
+costOptimization:
+  - tip: Use maker orders where possible to benefit from lower maker fees.
+  - tip: Accumulate vePT tokens to qualify for higher VIP tiers without purely volume-based requirements.
+  - tip: Use the testnet environment (testnet-api.phemex.com) for development and testing to avoid incurring real trading fees.
+  - tip: Batch order cancellations using bulk cancel endpoints to reduce API call count within rate limit windows.
+  - tip: Use WebSocket subscriptions for market data instead of polling REST endpoints to avoid burning through the Others group rate limit (100/min).
+  - tip: Monitor x-ratelimit-remaining response headers to stay within limits and avoid 429 errors and associated trading disruption.
+
+testnet:
+  url: https://testnet-api.phemex.com
+  webSocket: wss://testnet.phemex.com/ws
+  notes: Free testnet environment available for API development and testing. No real funds or fees involved.

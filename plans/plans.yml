@@ -1,0 +1,86 @@
+name: Phemex API Plans
+description: Phemex provides tiered API access through standard and VIP/VAPI tiers. Standard access is available to all registered users. VIP and VAPI tiers unlock higher rate limits, particularly for contract trading, based on 30-day trading volume and average asset balances.
+created: '2026-06-13'
+modified: '2026-06-13'
+plans:
+  - name: Standard
+    description: Default API access for all registered Phemex users. Includes REST and WebSocket access for spot and contract trading, market data, and asset transfers.
+    url: https://github.com/phemex/phemex-api-docs/blob/master/Generic-API-Info.en.md
+    rateLimits:
+      - name: IP Rate Limit
+        description: Maximum requests per IP across all endpoints.
+        limit: 5000
+        window: 5 minutes
+        lockout: 5 minutes
+      - name: Contract API Group
+        description: Rate limit for contract trading endpoints.
+        limit: 500
+        window: 1 minute
+      - name: SpotOrder API Group
+        description: Rate limit for spot order endpoints.
+        limit: 500
+        window: 1 minute
+      - name: Others API Group
+        description: Rate limit for all other endpoints including market data.
+        limit: 100
+        window: 1 minute
+    features:
+      - REST API access (https://api.phemex.com)
+      - WebSocket API access (wss://phemex.com/ws)
+      - Spot trading
+      - Contract (perpetual) trading
+      - Hedged perpetual trading
+      - Asset transfers
+      - Market data subscriptions
+      - Up to 5 concurrent WebSocket connections
+      - Up to 20 subscriptions per WebSocket connection
+    pricing:
+      model: free
+      notes: No charge for API access; trading fees apply per transaction.
+
+  - name: VIP / VAPI
+    description: Enhanced API access for high-volume traders and institutions. Unlocks higher contract rate limits and symbol-level rate limit granularity. Eligibility based on 30-day trading volume, average asset balance, and/or vePT holdings.
+    url: https://phemex.com/fees-conditions
+    rateLimits:
+      - name: IP Rate Limit
+        description: Maximum requests per IP across all endpoints.
+        limit: 5000
+        window: 5 minutes
+        lockout: 5 minutes
+      - name: Contract API Group (VIP)
+        description: Enhanced rate limit for contract trading endpoints at VIP tier.
+        limit: 5000
+        window: 1 minute
+      - name: Per-Symbol Contract Limit
+        description: Rate limit per individual trading symbol for contract endpoints.
+        limit: 500
+        window: 1 minute
+      - name: CONTACT_ALL_SYM Group
+        description: Rate limit for contract operations affecting all symbols simultaneously.
+        limit: 500
+        window: 1 minute
+      - name: SpotOrder API Group
+        description: Rate limit for spot order endpoints (unchanged from standard).
+        limit: 500
+        window: 1 minute
+      - name: Others API Group
+        description: Rate limit for all other endpoints (unchanged from standard).
+        limit: 100
+        window: 1 minute
+    baseURL: https://vapi.phemex.com
+    webSocketURL: wss://vapi.phemex.com/ws
+    features:
+      - All Standard plan features
+      - High rate limit REST endpoint (https://vapi.phemex.com)
+      - High rate limit WebSocket (wss://vapi.phemex.com/ws)
+      - 10x contract trading rate limit (5000/min vs 500/min)
+      - Symbol-level rate limit tracking
+      - Reduced trading fees (maker/taker discounts)
+      - Dedicated institutional support
+    qualification:
+      - 30-day spot or futures trading volume thresholds
+      - Average asset balance over preceding 30 days
+      - vePT (vote-escrowed PT) token holdings
+    pricing:
+      model: volume-based
+      notes: VIP tier is earned through trading activity and asset holdings, not a subscription fee. Fee discounts include up to 20% on spot and 10% on futures trading fees.
