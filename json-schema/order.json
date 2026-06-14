@@ -1,0 +1,125 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/phemex/main/json-schema/order.json",
+  "title": "Phemex Order",
+  "description": "Schema for a Phemex trading order across contract, spot, and hedged perpetual markets.",
+  "type": "object",
+  "properties": {
+    "orderID": {
+      "type": "string",
+      "description": "Unique system-generated order identifier"
+    },
+    "clOrdID": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Client-supplied order identifier"
+    },
+    "symbol": {
+      "type": "string",
+      "description": "Trading pair symbol (e.g. BTCUSD, sBTCUSDT)"
+    },
+    "side": {
+      "type": "string",
+      "enum": ["Buy", "Sell"],
+      "description": "Order side"
+    },
+    "posSide": {
+      "type": "string",
+      "enum": ["Long", "Short"],
+      "description": "Position side for hedged perpetual orders"
+    },
+    "ordType": {
+      "type": "string",
+      "enum": ["Limit", "Market", "Stop", "StopLimit"],
+      "description": "Order type"
+    },
+    "timeInForce": {
+      "type": "string",
+      "enum": ["GoodTillCancel", "ImmediateOrCancel", "FillOrKill", "PostOnly"],
+      "description": "Time in force policy"
+    },
+    "ordStatus": {
+      "type": "string",
+      "enum": ["New", "PartiallyFilled", "Filled", "Canceled", "Rejected", "Triggered", "Untriggered"],
+      "description": "Current order status"
+    },
+    "priceEp": {
+      "type": "integer",
+      "description": "Order price scaled by priceScale (contract API)"
+    },
+    "priceRp": {
+      "type": "string",
+      "description": "Order price as real number string (hedged perpetual API)"
+    },
+    "orderQty": {
+      "type": "integer",
+      "description": "Order quantity in contracts (contract API)"
+    },
+    "orderQtyRq": {
+      "type": "string",
+      "description": "Order quantity as real number string (hedged perpetual API)"
+    },
+    "baseQtyEv": {
+      "type": "integer",
+      "description": "Base asset quantity scaled by valueScale (spot API)"
+    },
+    "quoteQtyEv": {
+      "type": "integer",
+      "description": "Quote asset quantity scaled by valueScale (spot API)"
+    },
+    "qtyType": {
+      "type": "string",
+      "enum": ["ByBase", "ByQuote"],
+      "description": "Quantity type for spot orders"
+    },
+    "reduceOnly": {
+      "type": "boolean",
+      "description": "If true, order can only reduce an existing position"
+    },
+    "closeOnTrigger": {
+      "type": "boolean",
+      "description": "If true, close position on trigger"
+    },
+    "stopPxEp": {
+      "type": "integer",
+      "description": "Stop price scaled (contract API)"
+    },
+    "stopPxRp": {
+      "type": "string",
+      "description": "Stop price as real number (hedged perpetual API)"
+    },
+    "takeProfitEp": {
+      "type": "integer",
+      "description": "Take profit price scaled (contract API)"
+    },
+    "takeProfitRp": {
+      "type": "string",
+      "description": "Take profit price as real number (hedged perpetual API)"
+    },
+    "stopLossEp": {
+      "type": "integer",
+      "description": "Stop loss price scaled (contract API)"
+    },
+    "stopLossRp": {
+      "type": "string",
+      "description": "Stop loss price as real number (hedged perpetual API)"
+    },
+    "cumQty": {
+      "type": "integer",
+      "description": "Cumulative filled quantity"
+    },
+    "leavesQty": {
+      "type": "integer",
+      "description": "Remaining unfilled quantity"
+    },
+    "transactTimeNs": {
+      "type": "integer",
+      "description": "Transaction time in nanoseconds"
+    },
+    "createTimeNs": {
+      "type": "integer",
+      "description": "Order creation time in nanoseconds"
+    }
+  },
+  "required": ["symbol", "side", "ordType"]
+}

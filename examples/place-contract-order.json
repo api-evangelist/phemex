@@ -1,0 +1,44 @@
+{
+  "title": "Place a Limit Order on BTCUSD Perpetual Contract",
+  "description": "Example request and response for placing a BUY limit order on the BTCUSD perpetual contract.",
+  "request": {
+    "method": "POST",
+    "url": "https://api.phemex.com/orders",
+    "headers": {
+      "Content-Type": "application/json",
+      "x-phemex-access-token": "<your-api-key>",
+      "x-phemex-request-expiry": "1704067200",
+      "x-phemex-request-signature": "<hmac-sha256-signature>"
+    },
+    "body": {
+      "clOrdID": "my-order-001",
+      "symbol": "BTCUSD",
+      "side": "Buy",
+      "ordType": "Limit",
+      "priceEp": 2999000000000,
+      "orderQty": 100,
+      "timeInForce": "GoodTillCancel"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "code": 0,
+      "msg": "",
+      "data": {
+        "orderID": "7d1fb7eb-ec5b-4f9e-9e56-bc5f6ccb9eb6",
+        "clOrdID": "my-order-001",
+        "symbol": "BTCUSD",
+        "side": "Buy",
+        "ordType": "Limit",
+        "ordStatus": "New",
+        "priceEp": 2999000000000,
+        "orderQty": 100,
+        "cumQty": 0,
+        "leavesQty": 100,
+        "transactTimeNs": 1704067200000000000
+      }
+    }
+  },
+  "notes": "priceEp=2999000000000 represents $29,990.00 with priceScale=8. orderQty=100 means 100 USD contracts."
+}

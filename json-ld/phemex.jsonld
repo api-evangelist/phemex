@@ -1,0 +1,108 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "phemex": "https://phemex.com/vocab#",
+    "openapi": "https://openapis.org/schema#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@type": "WebAPI",
+  "@id": "https://api.phemex.com",
+  "name": "Phemex API",
+  "description": "Phemex is a cryptocurrency derivatives exchange offering REST and WebSocket APIs for spot trading, perpetual contracts, futures, hedged perpetual contracts, asset transfers, and real-time market data.",
+  "url": "https://phemex.com",
+  "provider": {
+    "@type": "Organization",
+    "name": "Phemex",
+    "url": "https://phemex.com",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "url": "https://phemex.com/help-center",
+      "contactType": "customer support"
+    }
+  },
+  "documentation": "https://github.com/phemex/phemex-api-docs",
+  "termsOfService": "https://phemex.com/terms-conditions",
+  "potentialAction": [
+    {
+      "@type": "SearchAction",
+      "name": "placeOrder",
+      "description": "Place a trading order on Phemex",
+      "target": "https://api.phemex.com/orders"
+    },
+    {
+      "@type": "SearchAction",
+      "name": "getOrderBook",
+      "description": "Retrieve current order book",
+      "target": "https://api.phemex.com/md/orderbook"
+    },
+    {
+      "@type": "SearchAction",
+      "name": "getPositions",
+      "description": "Retrieve account positions",
+      "target": "https://api.phemex.com/accounts/accountPositions"
+    }
+  ],
+  "availableChannel": [
+    {
+      "@type": "ServiceChannel",
+      "name": "REST API",
+      "serviceUrl": "https://api.phemex.com"
+    },
+    {
+      "@type": "ServiceChannel",
+      "name": "WebSocket API",
+      "serviceUrl": "wss://phemex.com/ws"
+    },
+    {
+      "@type": "ServiceChannel",
+      "name": "Testnet REST API",
+      "serviceUrl": "https://testnet-api.phemex.com"
+    }
+  ],
+  "keywords": [
+    "cryptocurrency",
+    "derivatives",
+    "spot trading",
+    "perpetual contracts",
+    "futures",
+    "websocket",
+    "market data",
+    "hedged perpetual"
+  ],
+  "hasCredential": {
+    "@type": "DigitalDocument",
+    "name": "HMAC SHA256 Authentication",
+    "description": "API requests are authenticated using HMAC SHA256 signatures. Required headers: x-phemex-access-token, x-phemex-request-expiry, x-phemex-request-signature.",
+    "url": "https://github.com/phemex/phemex-api-docs/blob/master/Generic-API-Info.en.md"
+  },
+  "subjectOf": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "Phemex Contract Trading API",
+      "applicationCategory": "Financial Trading",
+      "description": "REST and WebSocket API for trading perpetual contracts, position management, and market data.",
+      "url": "https://github.com/phemex/phemex-api-docs/blob/master/Public-Contract-API-en.md"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "Phemex Spot Trading API",
+      "applicationCategory": "Financial Trading",
+      "description": "REST and WebSocket API for spot trading, wallet queries, and market data.",
+      "url": "https://github.com/phemex/phemex-api-docs/blob/master/Public-Spot-API-en.md"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "Phemex Hedged Perpetual API",
+      "applicationCategory": "Financial Trading",
+      "description": "REST and WebSocket API for hedged perpetual contract trading with independent long/short leverage.",
+      "url": "https://github.com/phemex/phemex-api-docs/blob/master/Public-Hedged-Perpetual-API.md"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "Phemex Asset Transfer API",
+      "applicationCategory": "Financial Services",
+      "description": "REST API for asset transfers between account types and sub-account management.",
+      "url": "https://github.com/phemex/phemex-api-docs/blob/master/Public-Transfer-API-en.md"
+    }
+  ]
+}

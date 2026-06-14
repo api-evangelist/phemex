@@ -1,0 +1,176 @@
+name: Phemex API Vocabulary
+description: Domain vocabulary for the Phemex cryptocurrency derivatives exchange APIs.
+version: 1.0.0
+url: https://raw.githubusercontent.com/api-evangelist/phemex/main/vocabulary/phemex-vocabulary.yml
+
+terms:
+
+  # Scaling conventions
+  - term: priceEp
+    label: Scaled Price (Ep)
+    description: A price value multiplied by 10^priceScale (usually 10^8 for BTC pairs). Used in contract API responses to avoid floating point precision issues.
+    type: integer
+    example: 2999000000000 represents $29,990 when priceScale=8
+
+  - term: priceRp
+    label: Real Price (Rp)
+    description: A price value as a string representing the actual decimal number. Used in hedged perpetual API to avoid scaling confusion.
+    type: string
+    example: "29990.00"
+
+  - term: valueEv
+    label: Scaled Value (Ev)
+    description: A value in the settlement currency multiplied by 10^valueScale. Used for balance and PNL amounts.
+    type: integer
+
+  - term: valueRv
+    label: Real Value (Rv)
+    description: A value in the settlement currency as a string representing the actual decimal. Used in hedged perpetual API.
+    type: string
+
+  - term: ratioEr
+    label: Scaled Ratio (Er)
+    description: A ratio multiplied by 10^ratioScale (usually 10^8). Used for leverage, funding rates, and fee rates.
+    type: integer
+
+  - term: ratioRr
+    label: Real Ratio (Rr)
+    description: A ratio as a string representing the actual decimal. Used in hedged perpetual API.
+    type: string
+
+  # Order fields
+  - term: clOrdID
+    label: Client Order ID
+    description: A unique identifier assigned by the client to track an order. Maximum 40 characters.
+    type: string
+
+  - term: orderID
+    label: System Order ID
+    description: A unique order identifier assigned by the Phemex system.
+    type: string
+
+  - term: ordType
+    label: Order Type
+    description: The type of order being placed.
+    type: string
+    values:
+      - Limit
+      - Market
+      - Stop
+      - StopLimit
+
+  - term: timeInForce
+    label: Time In Force
+    description: Defines how long an order remains active before it is executed or expires.
+    type: string
+    values:
+      - GoodTillCancel
+      - ImmediateOrCancel
+      - FillOrKill
+      - PostOnly
+
+  - term: ordStatus
+    label: Order Status
+    description: The current state of an order in its lifecycle.
+    type: string
+    values:
+      - New
+      - PartiallyFilled
+      - Filled
+      - Canceled
+      - Rejected
+      - Triggered
+      - Untriggered
+
+  # Position fields
+  - term: posSide
+    label: Position Side
+    description: Indicates whether a position is long or short in hedged perpetual mode.
+    type: string
+    values:
+      - Long
+      - Short
+      - Merged
+
+  - term: reduceOnly
+    label: Reduce Only
+    description: When true, an order can only reduce an existing position, not open a new one.
+    type: boolean
+
+  - term: closeOnTrigger
+    label: Close On Trigger
+    description: When true, the position will be fully closed when the stop condition is triggered.
+    type: boolean
+
+  # Market data
+  - term: fundingRateEr
+    label: Funding Rate (Scaled)
+    description: The periodic funding rate charged between long and short holders. Scaled by ratioScale.
+    type: integer
+
+  - term: fundingRateRr
+    label: Funding Rate (Real)
+    description: The periodic funding rate as a decimal string.
+    type: string
+
+  - term: markPriceEp
+    label: Mark Price (Scaled)
+    description: The current mark price used for PNL calculation and liquidation. Scaled by priceScale.
+    type: integer
+
+  - term: indexPriceEp
+    label: Index Price (Scaled)
+    description: The spot index price used as a reference for perpetual contracts. Scaled by priceScale.
+    type: integer
+
+  # Authentication
+  - term: x-phemex-access-token
+    label: API Access Token
+    description: The API key identifier provided when creating an API key on Phemex.
+    type: string
+    in: header
+
+  - term: x-phemex-request-expiry
+    label: Request Expiry
+    description: Unix timestamp in seconds indicating when the request signature expires.
+    type: integer
+    in: header
+
+  - term: x-phemex-request-signature
+    label: Request Signature
+    description: HMAC SHA256 signature of the request path, query string, body, and expiry timestamp using the API secret.
+    type: string
+    in: header
+
+  # Transfer fields
+  - term: moveOp
+    label: Move Operation
+    description: Direction indicator for asset transfers between account types.
+    type: integer
+    values:
+      - 1: Futures to Spot
+      - 2: Spot to Futures
+
+  - term: bizType
+    label: Business Type
+    description: Indicates the type of business operation for asset transfers.
+    type: string
+    values:
+      - SPOT: Spot account transfer
+      - PERPETUAL: Perpetual/futures account transfer
+
+  # Account types
+  - term: accountBalanceEv
+    label: Account Balance (Scaled)
+    description: Total account balance in the settlement currency, scaled by valueScale.
+    type: integer
+
+  - term: totalUsedBalanceEv
+    label: Total Used Balance (Scaled)
+    description: Total balance currently used as margin across all positions, scaled by valueScale.
+    type: integer
+
+  - term: execFeeEv
+    label: Execution Fee (Scaled)
+    description: Fee charged for a trade execution, scaled by valueScale.
+    type: integer

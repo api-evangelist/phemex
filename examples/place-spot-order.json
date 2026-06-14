@@ -1,0 +1,42 @@
+{
+  "title": "Place a Spot Buy Order for BTC/USDT",
+  "description": "Example request and response for placing a spot BUY limit order for sBTCUSDT.",
+  "request": {
+    "method": "PUT",
+    "url": "https://api.phemex.com/spot/orders/create",
+    "headers": {
+      "x-phemex-access-token": "<your-api-key>",
+      "x-phemex-request-expiry": "1704067200",
+      "x-phemex-request-signature": "<hmac-sha256-signature>"
+    },
+    "queryParameters": {
+      "symbol": "sBTCUSDT",
+      "side": "Buy",
+      "qtyType": "ByBase",
+      "baseQtyEv": 100000,
+      "priceEp": 2999000000000,
+      "ordType": "Limit",
+      "timeInForce": "GoodTillCancel",
+      "clOrdID": "spot-buy-001"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "code": 0,
+      "msg": "",
+      "data": {
+        "orderID": "f1a2b3c4-d5e6-7f8a-9b0c-1d2e3f4a5b6c",
+        "clOrdID": "spot-buy-001",
+        "symbol": "sBTCUSDT",
+        "side": "Buy",
+        "ordType": "Limit",
+        "ordStatus": "New",
+        "priceEp": 2999000000000,
+        "baseQtyEv": 100000,
+        "timeInForce": "GoodTillCancel"
+      }
+    }
+  },
+  "notes": "baseQtyEv=100000 with valueScale=8 represents 0.001 BTC. priceEp=2999000000000 with priceScale=8 represents $29,990.00 USDT per BTC."
+}

@@ -28,6 +28,8 @@ apis:
     properties:
       - type: Documentation
         url: https://github.com/phemex/phemex-api-docs/blob/master/Public-Contract-API-en.md
+      - type: OpenAPI
+        url: https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/openapi/contract.yml
       - type: RateLimits
         url: https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/rate-limits/contract.yml
       - type: Plans
@@ -51,6 +53,8 @@ apis:
     properties:
       - type: Documentation
         url: https://github.com/phemex/phemex-api-docs/blob/master/Public-Spot-API-en.md
+      - type: OpenAPI
+        url: https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/openapi/spot.yml
       - type: RateLimits
         url: https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/rate-limits/spot.yml
       - type: Plans
@@ -74,6 +78,8 @@ apis:
     properties:
       - type: Documentation
         url: https://github.com/phemex/phemex-api-docs/blob/master/Public-Hedged-Perpetual-API.md
+      - type: OpenAPI
+        url: https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/openapi/hedged-perpetual.yml
       - type: RateLimits
         url: https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/rate-limits/hedged-perpetual.yml
       - type: Plans
@@ -97,6 +103,8 @@ apis:
     properties:
       - type: Documentation
         url: https://github.com/phemex/phemex-api-docs/blob/master/Public-Transfer-API-en.md
+      - type: OpenAPI
+        url: https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/openapi/transfer.yml
       - type: RateLimits
         url: https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/rate-limits/transfer.yml
       - type: Plans
@@ -110,6 +118,10 @@ apis:
 common:
   - type: GitHubRepository
     url: https://github.com/phemex/phemex-api-docs
+  - type: JSONLd
+    url: https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/json-ld/phemex.jsonld
+  - type: Vocabulary
+    url: https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/vocabulary/phemex-vocabulary.yml
   - type: Documentation
     url: https://github.com/phemex/phemex-api-docs
   - type: Authentication

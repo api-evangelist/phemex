@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/phemex/main/json-schema/position.json",
+  "title": "Phemex Position",
+  "description": "Schema for a Phemex trading position for perpetual contracts or hedged perpetuals.",
+  "type": "object",
+  "properties": {
+    "symbol": {
+      "type": "string",
+      "description": "Trading pair symbol"
+    },
+    "side": {
+      "type": "string",
+      "enum": ["Buy", "Sell", "None"],
+      "description": "Position side for one-way mode"
+    },
+    "posSide": {
+      "type": "string",
+      "enum": ["Long", "Short", "Merged"],
+      "description": "Position side for hedged mode"
+    },
+    "size": {
+      "type": "integer",
+      "description": "Position size in contracts"
+    },
+    "sizeRq": {
+      "type": "string",
+      "description": "Position size as real number (hedged perpetual)"
+    },
+    "avgEntryPriceEp": {
+      "type": "integer",
+      "description": "Average entry price scaled (contract)"
+    },
+    "avgEntryPriceRp": {
+      "type": "string",
+      "description": "Average entry price as real number (hedged perpetual)"
+    },
+    "leverageEr": {
+      "type": "integer",
+      "description": "Effective leverage scaled (contract)"
+    },
+    "leverageRr": {
+      "type": "string",
+      "description": "Effective leverage as real number (hedged perpetual)"
+    },
+    "liquidationPriceEp": {
+      "type": "integer",
+      "description": "Liquidation price scaled (contract)"
+    },
+    "liquidationPriceRp": {
+      "type": "string",
+      "description": "Liquidation price as real number (hedged perpetual)"
+    },
+    "unRealisedPnlEv": {
+      "type": "integer",
+      "description": "Unrealized PNL scaled (contract)"
+    },
+    "unRealisedPnlRv": {
+      "type": "string",
+      "description": "Unrealized PNL as real number (hedged perpetual)"
+    },
+    "markPriceEp": {
+      "type": "integer",
+      "description": "Current mark price scaled (contract)"
+    },
+    "markPriceRp": {
+      "type": "string",
+      "description": "Current mark price as real number (hedged perpetual)"
+    },
+    "cumRealisedPnlEv": {
+      "type": "integer",
+      "description": "Cumulative realized PNL scaled"
+    },
+    "cumFundingFeeEv": {
+      "type": "integer",
+      "description": "Cumulative funding fees paid scaled"
+    },
+    "posBalanceEv": {
+      "type": "integer",
+      "description": "Isolated margin balance scaled"
+    },
+    "riskLimitEv": {
+      "type": "integer",
+      "description": "Current risk limit scaled"
+    }
+  },
+  "required": ["symbol"]
+}
