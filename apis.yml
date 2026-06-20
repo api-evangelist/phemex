@@ -1,6 +1,6 @@
 name: Phemex
 description: Phemex is a cryptocurrency derivatives exchange offering REST and WebSocket APIs for spot trading, perpetual contracts, futures, hedged perpetual contracts, asset transfers, and real-time market data. The platform provides low-latency trading infrastructure with HMAC SHA256 authentication and tiered rate limiting for institutional and retail traders.
-image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 url: https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/apis.yml
 created: '2026-06-13'
 modified: '2026-06-13'
@@ -16,7 +16,7 @@ tags:
 apis:
   - name: Phemex Contract Trading API
     description: REST and WebSocket API for trading perpetual contracts on Phemex, including order placement, position management, account queries, and real-time market data subscriptions.
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://github.com/phemex/phemex-api-docs/blob/master/Public-Contract-API-en.md
     baseURL: https://api.phemex.com
     tags:
@@ -42,7 +42,7 @@ apis:
 
   - name: Phemex Spot Trading API
     description: REST and WebSocket API for spot trading on Phemex, supporting order placement, wallet queries, market data subscriptions, and 24-hour ticker streams.
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://github.com/phemex/phemex-api-docs/blob/master/Public-Spot-API-en.md
     baseURL: https://api.phemex.com
     tags:
@@ -67,7 +67,7 @@ apis:
 
   - name: Phemex Hedged Perpetual API
     description: REST and WebSocket API for hedged perpetual contract trading on Phemex, enabling both long and short positions simultaneously with independent leverage settings per side.
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://github.com/phemex/phemex-api-docs/blob/master/Public-Hedged-Perpetual-API.md
     baseURL: https://api.phemex.com
     tags:
@@ -92,7 +92,7 @@ apis:
 
   - name: Phemex Asset Transfer API
     description: REST API for transferring assets between spot and futures accounts, managing sub-account fund movements, and performing universal transfers between main and sub-accounts on Phemex.
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://github.com/phemex/phemex-api-docs/blob/master/Public-Transfer-API-en.md
     baseURL: https://api.phemex.com
     tags:
