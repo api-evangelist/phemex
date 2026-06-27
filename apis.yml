@@ -118,7 +118,7 @@ apis:
 common:
   - type: GitHubRepository
     url: https://github.com/phemex/phemex-api-docs
-  - type: JSONLd
+  - type: JSONLD
     url: https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/json-ld/phemex.jsonld
   - type: Vocabulary
     url: https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/vocabulary/phemex-vocabulary.yml
@@ -134,7 +134,7 @@ common:
     url: https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/finops/finops.yml
   - type: HelpCenter
     url: https://phemex.com/help-center
-  - type: SDK
+  - type: SDKs
     url: https://github.com/ccxt/ccxt
   - type: JavaClient
     url: https://github.com/phemex/java-client
