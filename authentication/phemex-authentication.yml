@@ -1,0 +1,20 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/contract.yml, openapi/hedged-perpetual.yml, openapi/spot.yml, openapi/transfer.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: HmacAuth
+  type: apiKey
+  in: header
+  parameter: x-phemex-access-token
+  description: HMAC SHA256 signed request. Also requires x-phemex-request-expiry and x-phemex-request-signature
+    headers.
+  sources:
+  - openapi/contract.yml
+  - openapi/hedged-perpetual.yml
+  - openapi/spot.yml
+  - openapi/transfer.yml

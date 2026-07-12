@@ -116,6 +116,10 @@ apis:
     aid: phemex:phemex-asset-transfer-api
 
 common:
+  - type: DomainSecurity
+    url: security/phemex-domain-security.yml
+  - type: Authentication
+    url: authentication/phemex-authentication.yml
   - type: GitHubRepository
     url: https://github.com/phemex/phemex-api-docs
   - type: JSONLD
