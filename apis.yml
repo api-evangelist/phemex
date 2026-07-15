@@ -116,6 +116,8 @@ apis:
     aid: phemex:phemex-asset-transfer-api
 
 common:
+  - type: AgenticAccess
+    url: agentic-access/phemex-agentic-access.yml
   - type: DomainSecurity
     url: security/phemex-domain-security.yml
   - type: Authentication
