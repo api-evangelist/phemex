@@ -1,0 +1,512 @@
+openapi: 3.0.3
+info:
+  title: Phemex Contract Trading Account Market Data API
+  description: REST API for trading perpetual contracts on Phemex, including order placement, position management, account queries, and market data.
+  version: 1.0.0
+  contact:
+    name: Phemex Support
+    url: https://phemex.com/help-center
+servers:
+- url: https://api.phemex.com
+  description: Production
+- url: https://testnet-api.phemex.com
+  description: Testnet
+security:
+- HmacAuth: []
+tags:
+- name: Market Data
+paths:
+  /public/products:
+    get:
+      summary: Get product information
+      description: Retrieve product information including symbols and scaling factors for contract trading.
+      operationId: getContractProducts
+      tags:
+      - Market Data
+      security: []
+      responses:
+        '200':
+          description: Product list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductsResponse'
+  /md/orderbook:
+    get:
+      summary: Get order book
+      description: Fetch current order book snapshot.
+      operationId: getContractOrderBook
+      tags:
+      - Market Data
+      security: []
+      parameters:
+      - name: symbol
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Order book
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderBookResponse'
+  /md/trade:
+    get:
+      summary: Get recent trades
+      description: Get recent trades for a symbol.
+      operationId: getContractRecentTrades
+      tags:
+      - Market Data
+      security: []
+      parameters:
+      - name: symbol
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Recent trades
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TradeListResponse'
+  /exchange/public/md/v2/kline:
+    get:
+      summary: Get kline data
+      description: Retrieve kline/candlestick data.
+      operationId: getContractKlines
+      tags:
+      - Market Data
+      security: []
+      parameters:
+      - name: symbol
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: resolution
+        in: query
+        required: true
+        schema:
+          type: integer
+        description: Kline resolution in seconds
+      - name: limit
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Kline data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KlineResponse'
+  /v1/md/ticker/24hr:
+    get:
+      summary: Get 24hr ticker
+      description: Query 24-hour ticker data.
+      operationId: getContractTicker24hr
+      tags:
+      - Market Data
+      security: []
+      parameters:
+      - name: symbol
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Ticker data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TickerResponse'
+  /md/v2/orderbook:
+    get:
+      summary: Get hedged order book
+      description: Query current order book snapshot for hedged perpetuals.
+      operationId: getHedgedOrderBook
+      tags:
+      - Market Data
+      security: []
+      parameters:
+      - name: symbol
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Order book
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderBookResponse_2'
+  /md/v2/trade:
+    get:
+      summary: Get recent hedged trades
+      description: Query recent trades for a hedged perpetual symbol.
+      operationId: getHedgedRecentTrades
+      tags:
+      - Market Data
+      security: []
+      parameters:
+      - name: symbol
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Recent trades
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+  /md/v2/ticker/24hr:
+    get:
+      summary: Get 24hr hedged ticker
+      description: Query 24-hour ticker statistics for hedged perpetuals.
+      operationId: getHedgedTicker24hr
+      tags:
+      - Market Data
+      security: []
+      parameters:
+      - name: symbol
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: 24hr ticker
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TickerResponse_2'
+  /exchange/public/md/v2/kline/last:
+    get:
+      summary: Get latest klines
+      description: Query latest klines with specified resolution.
+      operationId: getHedgedKlineLast
+      tags:
+      - Market Data
+      security: []
+      parameters:
+      - name: symbol
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: resolution
+        in: query
+        required: true
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Kline data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+  /exchange/public/md/v2/kline/list:
+    get:
+      summary: Get klines by time range
+      description: Query klines between from and to timestamps.
+      operationId: getHedgedKlineList
+      tags:
+      - Market Data
+      security: []
+      parameters:
+      - name: symbol
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: from
+        in: query
+        required: true
+        schema:
+          type: integer
+      - name: to
+        in: query
+        required: true
+        schema:
+          type: integer
+      - name: resolution
+        in: query
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Kline list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+  /md/spot/ticker/24hr:
+    get:
+      summary: Get 24hr ticker
+      description: Query 24-hour ticker metrics for a spot symbol.
+      operationId: getSpotTicker24hr
+      tags:
+      - Market Data
+      security: []
+      parameters:
+      - name: symbol
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: 24hr ticker
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SpotTickerResponse'
+  /v1/md/orderbook:
+    get:
+      summary: Get order book (v1)
+      description: Retrieve order book snapshot using v1 endpoint.
+      operationId: getSpotOrderBookV1
+      tags:
+      - Market Data
+      security: []
+      parameters:
+      - name: symbol
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Order book
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderBookResponse'
+components:
+  schemas:
+    OrderBookResponse_2:
+      type: object
+      properties:
+        code:
+          type: integer
+        data:
+          type: object
+          properties:
+            asks:
+              type: array
+              items:
+                type: array
+                items:
+                  type: string
+            bids:
+              type: array
+              items:
+                type: array
+                items:
+                  type: string
+            symbol:
+              type: string
+            timestamp:
+              type: integer
+            sequence:
+              type: integer
+    TradeListResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        data:
+          type: object
+          properties:
+            total:
+              type: integer
+            rows:
+              type: array
+              items:
+                type: object
+                properties:
+                  execID:
+                    type: string
+                  execQty:
+                    type: integer
+                  execPriceEp:
+                    type: integer
+                  tradeType:
+                    type: string
+                  execFeeEv:
+                    type: integer
+    ApiResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        msg:
+          type: string
+        data:
+          type: object
+    KlineResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        data:
+          type: object
+          properties:
+            rows:
+              type: array
+              items:
+                type: array
+                items:
+                  type: number
+    ProductsResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        data:
+          type: object
+          properties:
+            products:
+              type: array
+              items:
+                type: object
+                properties:
+                  symbol:
+                    type: string
+                  priceScale:
+                    type: integer
+                  ratioScale:
+                    type: integer
+                  valueScale:
+                    type: integer
+                  settleCurrency:
+                    type: string
+    OrderBookResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        data:
+          type: object
+          properties:
+            book:
+              type: object
+              properties:
+                asks:
+                  type: array
+                  items:
+                    type: array
+                    items:
+                      type: integer
+                bids:
+                  type: array
+                  items:
+                    type: array
+                    items:
+                      type: integer
+            sequence:
+              type: integer
+            timestamp:
+              type: integer
+            symbol:
+              type: string
+    TickerResponse_2:
+      type: object
+      properties:
+        code:
+          type: integer
+        data:
+          type: object
+          properties:
+            symbol:
+              type: string
+            openRp:
+              type: string
+            highRp:
+              type: string
+            lowRp:
+              type: string
+            closeRp:
+              type: string
+            volumeRq:
+              type: string
+            markPriceRp:
+              type: string
+            indexPriceRp:
+              type: string
+            fundingRateRr:
+              type: string
+    TickerResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        data:
+          type: object
+          properties:
+            openEp:
+              type: integer
+            highEp:
+              type: integer
+            lowEp:
+              type: integer
+            closeEp:
+              type: integer
+            volumeEv:
+              type: integer
+            fundingRateEr:
+              type: integer
+            markEp:
+              type: integer
+            indexEp:
+              type: integer
+            symbol:
+              type: string
+    SpotTickerResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        data:
+          type: object
+          properties:
+            openEp:
+              type: integer
+            highEp:
+              type: integer
+            lowEp:
+              type: integer
+            lastEp:
+              type: integer
+            bidEp:
+              type: integer
+            askEp:
+              type: integer
+            symbol:
+              type: string
+            volumeEv:
+              type: integer
+            turnoverEv:
+              type: integer
+            timestamp:
+              type: integer
+  securitySchemes:
+    HmacAuth:
+      type: apiKey
+      in: header
+      name: x-phemex-access-token
+      description: HMAC SHA256 signed request. Also requires x-phemex-request-expiry and x-phemex-request-signature headers.

@@ -1,0 +1,308 @@
+openapi: 3.0.3
+info:
+  title: Phemex Contract Trading Account Trades API
+  description: REST API for trading perpetual contracts on Phemex, including order placement, position management, account queries, and market data.
+  version: 1.0.0
+  contact:
+    name: Phemex Support
+    url: https://phemex.com/help-center
+servers:
+- url: https://api.phemex.com
+  description: Production
+- url: https://testnet-api.phemex.com
+  description: Testnet
+security:
+- HmacAuth: []
+tags:
+- name: Trades
+paths:
+  /exchange/order/trade:
+    get:
+      summary: Get trade history
+      description: Query user trade execution history.
+      operationId: getContractTradeHistory
+      tags:
+      - Trades
+      parameters:
+      - name: symbol
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: tradeType
+        in: query
+        schema:
+          type: string
+      - name: start
+        in: query
+        schema:
+          type: integer
+      - name: end
+        in: query
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        schema:
+          type: integer
+      - name: offset
+        in: query
+        schema:
+          type: integer
+      - name: withCount
+        in: query
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Trade history
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TradeListResponse'
+  /api-data/futures/trades:
+    get:
+      summary: Get futures trade history
+      description: Query trade execution history.
+      operationId: getFuturesTradeHistory
+      tags:
+      - Trades
+      parameters:
+      - name: symbol
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: start
+        in: query
+        schema:
+          type: integer
+      - name: end
+        in: query
+        schema:
+          type: integer
+      - name: offset
+        in: query
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Trade history
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TradeListResponse'
+  /exchange/order/v2/tradingList:
+    get:
+      summary: Get user trades
+      description: Query user trades by hedged perpetual symbol.
+      operationId: getHedgedTrades
+      tags:
+      - Trades
+      parameters:
+      - name: symbol
+        in: query
+        schema:
+          type: string
+      - name: currency
+        in: query
+        schema:
+          type: string
+      - name: execType
+        in: query
+        schema:
+          type: string
+      - name: offset
+        in: query
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        schema:
+          type: integer
+      - name: withCount
+        in: query
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Trade list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+  /api-data/g-futures/trades:
+    get:
+      summary: Get hedged trade history
+      description: Query trade history for hedged perpetuals.
+      operationId: getHedgedTradeHistory
+      tags:
+      - Trades
+      parameters:
+      - name: symbol
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: start
+        in: query
+        schema:
+          type: integer
+      - name: end
+        in: query
+        schema:
+          type: integer
+      - name: offset
+        in: query
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Trade history
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+  /exchange/spot/order/trades:
+    get:
+      summary: Query trade history (deprecated)
+      description: Query spot trade history. This endpoint is deprecated.
+      operationId: getSpotTradeHistory
+      deprecated: true
+      tags:
+      - Trades
+      parameters:
+      - name: symbol
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: start
+        in: query
+        schema:
+          type: integer
+      - name: end
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Trade history
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+  /api-data/spots/trades:
+    get:
+      summary: Get spot trade history
+      description: Query trade history by symbol.
+      operationId: getSpotTradesHistory
+      tags:
+      - Trades
+      parameters:
+      - name: symbol
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: start
+        in: query
+        schema:
+          type: integer
+      - name: end
+        in: query
+        schema:
+          type: integer
+      - name: offset
+        in: query
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Trade history
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+  /api-data/spots/trades/by-order-id:
+    get:
+      summary: Get spot trades by order ID
+      description: Query trades by order IDs.
+      operationId: getSpotTradesByOrderId
+      tags:
+      - Trades
+      parameters:
+      - name: symbol
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: orderID
+        in: query
+        schema:
+          type: string
+      - name: clOrdID
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Trade records
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+components:
+  schemas:
+    TradeListResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        data:
+          type: object
+          properties:
+            total:
+              type: integer
+            rows:
+              type: array
+              items:
+                type: object
+                properties:
+                  execID:
+                    type: string
+                  execQty:
+                    type: integer
+                  execPriceEp:
+                    type: integer
+                  tradeType:
+                    type: string
+                  execFeeEv:
+                    type: integer
+    ApiResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        msg:
+          type: string
+        data:
+          type: object
+  securitySchemes:
+    HmacAuth:
+      type: apiKey
+      in: header
+      name: x-phemex-access-token
+      description: HMAC SHA256 signed request. Also requires x-phemex-request-expiry and x-phemex-request-signature headers.

@@ -1,0 +1,1428 @@
+openapi: 3.0.3
+info:
+  title: Phemex Contract Trading Account Orders API
+  description: REST API for trading perpetual contracts on Phemex, including order placement, position management, account queries, and market data.
+  version: 1.0.0
+  contact:
+    name: Phemex Support
+    url: https://phemex.com/help-center
+servers:
+- url: https://api.phemex.com
+  description: Production
+- url: https://testnet-api.phemex.com
+  description: Testnet
+security:
+- HmacAuth: []
+tags:
+- name: Orders
+paths:
+  /orders:
+    post:
+      summary: Place order
+      description: Place a new contract order with JSON body.
+      operationId: placeContractOrder
+      tags:
+      - Orders
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContractOrderRequest'
+      responses:
+        '200':
+          description: Order placed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderResponse'
+    delete:
+      summary: Bulk cancel orders
+      description: Cancel multiple orders by orderID list.
+      operationId: bulkCancelContractOrders
+      tags:
+      - Orders
+      parameters:
+      - name: symbol
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Trading symbol
+      - name: orderID
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Comma-separated order IDs
+      responses:
+        '200':
+          description: Orders cancelled
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+  /orders/create:
+    put:
+      summary: Place order via query string
+      description: Create order via URL query string parameters (preferred method).
+      operationId: createContractOrderQueryString
+      tags:
+      - Orders
+      parameters:
+      - name: clOrdID
+        in: query
+        schema:
+          type: string
+        description: Client order ID
+      - name: symbol
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Trading symbol
+      - name: side
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - Buy
+          - Sell
+        description: Order side
+      - name: orderQty
+        in: query
+        required: true
+        schema:
+          type: integer
+        description: Order quantity
+      - name: ordType
+        in: query
+        schema:
+          type: string
+          enum:
+          - Limit
+          - Market
+          - Stop
+          - StopLimit
+        description: Order type
+      - name: priceEp
+        in: query
+        schema:
+          type: integer
+        description: Scaled price
+      - name: timeInForce
+        in: query
+        schema:
+          type: string
+          enum:
+          - GoodTillCancel
+          - ImmediateOrCancel
+          - FillOrKill
+          - PostOnly
+        description: Time in force
+      - name: reduceOnly
+        in: query
+        schema:
+          type: boolean
+        description: Reduce-only flag
+      - name: closeOnTrigger
+        in: query
+        schema:
+          type: boolean
+        description: Close on trigger flag
+      - name: stopPxEp
+        in: query
+        schema:
+          type: integer
+        description: Scaled stop price
+      - name: takeProfitEp
+        in: query
+        schema:
+          type: integer
+        description: Scaled take profit price
+      - name: stopLossEp
+        in: query
+        schema:
+          type: integer
+        description: Scaled stop loss price
+      responses:
+        '200':
+          description: Order created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderResponse'
+  /orders/replace:
+    put:
+      summary: Modify order
+      description: Modify an existing order by orderID or clOrdID.
+      operationId: modifyContractOrder
+      tags:
+      - Orders
+      parameters:
+      - name: symbol
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: orderID
+        in: query
+        schema:
+          type: string
+      - name: origClOrdID
+        in: query
+        schema:
+          type: string
+      - name: clOrdID
+        in: query
+        schema:
+          type: string
+      - name: priceEp
+        in: query
+        schema:
+          type: integer
+      - name: orderQty
+        in: query
+        schema:
+          type: integer
+      - name: stopPxEp
+        in: query
+        schema:
+          type: integer
+      - name: takeProfitEp
+        in: query
+        schema:
+          type: integer
+      - name: stopLossEp
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Order modified
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderResponse'
+  /orders/cancel:
+    delete:
+      summary: Cancel order
+      description: Cancel a single order by orderID or clOrdID.
+      operationId: cancelContractOrder
+      tags:
+      - Orders
+      parameters:
+      - name: symbol
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: orderID
+        in: query
+        schema:
+          type: string
+      - name: clOrdID
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Order cancelled
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderResponse'
+  /orders/all:
+    delete:
+      summary: Cancel all orders
+      description: Cancel all orders for a symbol.
+      operationId: cancelAllContractOrders
+      tags:
+      - Orders
+      parameters:
+      - name: symbol
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: untriggered
+        in: query
+        schema:
+          type: boolean
+      - name: text
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: All orders cancelled
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+  /orders/activeList:
+    get:
+      summary: Get active orders
+      description: Retrieve open orders for a symbol.
+      operationId: getActiveContractOrders
+      tags:
+      - Orders
+      parameters:
+      - name: symbol
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Active orders list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderListResponse'
+  /exchange/order/list:
+    get:
+      summary: Get order history
+      description: Query closed order history.
+      operationId: getContractOrderHistory
+      tags:
+      - Orders
+      parameters:
+      - name: symbol
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: start
+        in: query
+        schema:
+          type: integer
+        description: Start time in milliseconds
+      - name: end
+        in: query
+        schema:
+          type: integer
+        description: End time in milliseconds
+      - name: offset
+        in: query
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        schema:
+          type: integer
+      - name: ordStatus
+        in: query
+        schema:
+          type: string
+      - name: withCount
+        in: query
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Order history
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderListResponse'
+  /exchange/order:
+    get:
+      summary: Get order by ID
+      description: Fetch orders by orderID or clOrdID.
+      operationId: getContractOrderById
+      tags:
+      - Orders
+      parameters:
+      - name: symbol
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: orderID
+        in: query
+        schema:
+          type: string
+      - name: clOrdID
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Order details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderResponse'
+  /api-data/futures/orders:
+    get:
+      summary: Get futures order history
+      description: Fetch order history with optional time range.
+      operationId: getFuturesOrderHistory
+      tags:
+      - Orders
+      parameters:
+      - name: symbol
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: start
+        in: query
+        schema:
+          type: integer
+      - name: end
+        in: query
+        schema:
+          type: integer
+      - name: offset
+        in: query
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Order history
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderListResponse'
+  /api-data/futures/orders/by-order-id:
+    get:
+      summary: Get futures orders by ID
+      description: Retrieve orders by orderID or clOrdID.
+      operationId: getFuturesOrderById
+      tags:
+      - Orders
+      parameters:
+      - name: symbol
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: orderID
+        in: query
+        schema:
+          type: string
+      - name: clOrdID
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Order details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderResponse'
+  /g-orders:
+    post:
+      summary: Place hedged order
+      description: Place order with JSON body for hedged perpetual trading.
+      operationId: placeHedgedOrder
+      tags:
+      - Orders
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HedgedOrderRequest'
+      responses:
+        '200':
+          description: Order placed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderResponse_2'
+    delete:
+      summary: Bulk cancel hedged orders
+      description: Cancel multiple hedged orders at once.
+      operationId: bulkCancelHedgedOrders
+      tags:
+      - Orders
+      parameters:
+      - name: symbol
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: orderID
+        in: query
+        schema:
+          type: string
+      - name: posSide
+        in: query
+        schema:
+          type: string
+          enum:
+          - Long
+          - Short
+      responses:
+        '200':
+          description: Orders cancelled
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+  /g-orders/create:
+    put:
+      summary: Place hedged order via query string
+      description: Place order with arguments in URL query string (preferred method).
+      operationId: createHedgedOrderQueryString
+      tags:
+      - Orders
+      parameters:
+      - name: clOrdID
+        in: query
+        schema:
+          type: string
+      - name: symbol
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: side
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - Buy
+          - Sell
+      - name: posSide
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - Long
+          - Short
+      - name: orderQtyRq
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Real quantity (not scaled)
+      - name: ordType
+        in: query
+        schema:
+          type: string
+          enum:
+          - Limit
+          - Market
+          - Stop
+          - StopLimit
+      - name: priceRp
+        in: query
+        schema:
+          type: string
+        description: Real price (not scaled)
+      - name: timeInForce
+        in: query
+        schema:
+          type: string
+          enum:
+          - GoodTillCancel
+          - ImmediateOrCancel
+          - FillOrKill
+          - PostOnly
+      - name: reduceOnly
+        in: query
+        schema:
+          type: boolean
+      - name: closeOnTrigger
+        in: query
+        schema:
+          type: boolean
+      - name: stopPxRp
+        in: query
+        schema:
+          type: string
+      - name: takeProfitRp
+        in: query
+        schema:
+          type: string
+      - name: stopLossRp
+        in: query
+        schema:
+          type: string
+      - name: triggerType
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Order created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderResponse_2'
+  /g-orders/replace:
+    put:
+      summary: Modify hedged order
+      description: Modify an existing hedged order by orderID.
+      operationId: modifyHedgedOrder
+      tags:
+      - Orders
+      parameters:
+      - name: symbol
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: orderID
+        in: query
+        schema:
+          type: string
+      - name: origClOrdID
+        in: query
+        schema:
+          type: string
+      - name: clOrdID
+        in: query
+        schema:
+          type: string
+      - name: priceRp
+        in: query
+        schema:
+          type: string
+      - name: orderQtyRq
+        in: query
+        schema:
+          type: string
+      - name: stopPxRp
+        in: query
+        schema:
+          type: string
+      - name: takeProfitRp
+        in: query
+        schema:
+          type: string
+      - name: stopLossRp
+        in: query
+        schema:
+          type: string
+      - name: posSide
+        in: query
+        schema:
+          type: string
+          enum:
+          - Long
+          - Short
+      responses:
+        '200':
+          description: Order modified
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderResponse_2'
+  /g-orders/cancel:
+    delete:
+      summary: Cancel hedged order
+      description: Cancel a single hedged order by orderID.
+      operationId: cancelHedgedOrder
+      tags:
+      - Orders
+      parameters:
+      - name: orderID
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: symbol
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: posSide
+        in: query
+        schema:
+          type: string
+          enum:
+          - Long
+          - Short
+      responses:
+        '200':
+          description: Order cancelled
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderResponse_2'
+  /g-orders/all:
+    delete:
+      summary: Cancel all hedged orders
+      description: Cancel all orders for a hedged perpetual symbol.
+      operationId: cancelAllHedgedOrders
+      tags:
+      - Orders
+      parameters:
+      - name: symbol
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: untriggered
+        in: query
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: All orders cancelled
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+  /g-orders/activeList:
+    get:
+      summary: Get active hedged orders
+      description: Query open orders for a hedged perpetual symbol.
+      operationId: getActiveHedgedOrders
+      tags:
+      - Orders
+      parameters:
+      - name: symbol
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Active orders
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderListResponse_2'
+  /exchange/order/v2/orderList:
+    get:
+      summary: Get closed orders
+      description: Query closed hedged orders with filters.
+      operationId: getHedgedClosedOrders
+      tags:
+      - Orders
+      parameters:
+      - name: symbol
+        in: query
+        schema:
+          type: string
+      - name: currency
+        in: query
+        schema:
+          type: string
+      - name: ordStatus
+        in: query
+        schema:
+          type: string
+      - name: ordType
+        in: query
+        schema:
+          type: string
+      - name: start
+        in: query
+        schema:
+          type: integer
+      - name: end
+        in: query
+        schema:
+          type: integer
+      - name: offset
+        in: query
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        schema:
+          type: integer
+      - name: withCount
+        in: query
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Closed orders
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderListResponse_2'
+  /api-data/g-futures/orders:
+    get:
+      summary: Get hedged order history
+      description: Query order history for hedged perpetuals.
+      operationId: getHedgedOrderHistory
+      tags:
+      - Orders
+      parameters:
+      - name: symbol
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: start
+        in: query
+        schema:
+          type: integer
+      - name: end
+        in: query
+        schema:
+          type: integer
+      - name: offset
+        in: query
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Order history
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderListResponse_2'
+  /api-data/g-futures/orders/by-order-id:
+    get:
+      summary: Get hedged orders by ID
+      description: Query orders by orderID or clOrdID for hedged perpetuals.
+      operationId: getHedgedOrderById
+      tags:
+      - Orders
+      parameters:
+      - name: symbol
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: orderID
+        in: query
+        schema:
+          type: string
+      - name: clOrdID
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Order details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderResponse_2'
+  /spot/orders:
+    post:
+      summary: Place spot order
+      description: Place a new spot order with JSON body.
+      operationId: placeSpotOrder
+      tags:
+      - Orders
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SpotOrderRequest'
+      responses:
+        '200':
+          description: Order placed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderResponse_3'
+    put:
+      summary: Modify spot order
+      description: Modify an existing spot order.
+      operationId: modifySpotOrder
+      tags:
+      - Orders
+      parameters:
+      - name: symbol
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: orderID
+        in: query
+        schema:
+          type: string
+      - name: clOrdID
+        in: query
+        schema:
+          type: string
+      - name: priceEp
+        in: query
+        schema:
+          type: integer
+      - name: baseQtyEv
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Order modified
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderResponse_3'
+    delete:
+      summary: Cancel spot order
+      description: Cancel a specific spot order.
+      operationId: cancelSpotOrder
+      tags:
+      - Orders
+      parameters:
+      - name: symbol
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: orderID
+        in: query
+        schema:
+          type: string
+      - name: clOrdID
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Order cancelled
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderResponse_3'
+    get:
+      summary: List active orders
+      description: List all open orders for a symbol.
+      operationId: listSpotActiveOrders
+      tags:
+      - Orders
+      parameters:
+      - name: symbol
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Active orders
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderListResponse_3'
+  /spot/orders/create:
+    put:
+      summary: Place spot order via query string
+      description: Place a new spot order (preferred method) using URL query string.
+      operationId: createSpotOrderQueryString
+      tags:
+      - Orders
+      parameters:
+      - name: symbol
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: side
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - Buy
+          - Sell
+      - name: qtyType
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - ByBase
+          - ByQuote
+      - name: baseQtyEv
+        in: query
+        schema:
+          type: integer
+      - name: quoteQtyEv
+        in: query
+        schema:
+          type: integer
+      - name: priceEp
+        in: query
+        schema:
+          type: integer
+      - name: ordType
+        in: query
+        schema:
+          type: string
+          enum:
+          - Limit
+          - Market
+          - Stop
+          - StopLimit
+      - name: timeInForce
+        in: query
+        schema:
+          type: string
+          enum:
+          - GoodTillCancel
+          - PostOnly
+          - ImmediateOrCancel
+          - FillOrKill
+      - name: clOrdID
+        in: query
+        schema:
+          type: string
+      - name: stopPxEp
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Order placed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderResponse_3'
+  /spot/orders/all:
+    delete:
+      summary: Cancel all spot orders
+      description: Cancel all orders for a spot symbol.
+      operationId: cancelAllSpotOrders
+      tags:
+      - Orders
+      parameters:
+      - name: symbol
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: untriggered
+        in: query
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: All orders cancelled
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+  /spot/orders/active:
+    get:
+      summary: Query specific active order
+      description: Query open orders by clOrdID or orderID.
+      operationId: getSpotActiveOrder
+      tags:
+      - Orders
+      parameters:
+      - name: symbol
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: orderID
+        in: query
+        schema:
+          type: string
+      - name: clOrdID
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Active order
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderResponse_3'
+  /exchange/spot/order:
+    get:
+      summary: Query closed orders (deprecated)
+      description: Query closed spot orders. This endpoint is deprecated.
+      operationId: getSpotClosedOrders
+      deprecated: true
+      tags:
+      - Orders
+      parameters:
+      - name: symbol
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: ordStatus
+        in: query
+        schema:
+          type: string
+      - name: ordType
+        in: query
+        schema:
+          type: string
+      - name: start
+        in: query
+        schema:
+          type: integer
+      - name: end
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Closed orders
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderListResponse_3'
+  /api-data/spots/orders:
+    get:
+      summary: Get spot order history
+      description: Query order history by symbol.
+      operationId: getSpotOrderHistory
+      tags:
+      - Orders
+      parameters:
+      - name: symbol
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: start
+        in: query
+        schema:
+          type: integer
+      - name: end
+        in: query
+        schema:
+          type: integer
+      - name: offset
+        in: query
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Order history
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderListResponse_3'
+  /api-data/spots/orders/by-order-id:
+    get:
+      summary: Get spot orders by ID
+      description: Query orders by specific order IDs.
+      operationId: getSpotOrdersByOrderId
+      tags:
+      - Orders
+      parameters:
+      - name: symbol
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: orderID
+        in: query
+        schema:
+          type: string
+      - name: clOrdID
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Order details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderResponse_3'
+components:
+  schemas:
+    OrderListResponse_2:
+      type: object
+      properties:
+        code:
+          type: integer
+        data:
+          type: object
+          properties:
+            total:
+              type: integer
+            rows:
+              type: array
+              items:
+                $ref: '#/components/schemas/OrderResponse_2'
+    ApiResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        msg:
+          type: string
+        data:
+          type: object
+    SpotOrderRequest:
+      type: object
+      required:
+      - symbol
+      - side
+      - qtyType
+      - ordType
+      properties:
+        symbol:
+          type: string
+        clOrdID:
+          type: string
+        side:
+          type: string
+          enum:
+          - Buy
+          - Sell
+        qtyType:
+          type: string
+          enum:
+          - ByBase
+          - ByQuote
+        quoteQtyEv:
+          type: integer
+        baseQtyEv:
+          type: integer
+        priceEp:
+          type: integer
+        stopPxEp:
+          type: integer
+        trigger:
+          type: string
+        ordType:
+          type: string
+          enum:
+          - Limit
+          - Market
+          - Stop
+          - StopLimit
+        timeInForce:
+          type: string
+          enum:
+          - GoodTillCancel
+          - PostOnly
+          - ImmediateOrCancel
+          - FillOrKill
+    OrderListResponse_3:
+      type: object
+      properties:
+        code:
+          type: integer
+        data:
+          type: object
+          properties:
+            total:
+              type: integer
+            rows:
+              type: array
+              items:
+                $ref: '#/components/schemas/OrderResponse_3'
+    ContractOrderRequest:
+      type: object
+      required:
+      - symbol
+      - side
+      - orderQty
+      - ordType
+      properties:
+        symbol:
+          type: string
+        clOrdID:
+          type: string
+        side:
+          type: string
+          enum:
+          - Buy
+          - Sell
+        priceEp:
+          type: integer
+          description: Scaled price (price * 10^priceScale)
+        orderQty:
+          type: integer
+        ordType:
+          type: string
+          enum:
+          - Limit
+          - Market
+          - Stop
+          - StopLimit
+        timeInForce:
+          type: string
+          enum:
+          - GoodTillCancel
+          - ImmediateOrCancel
+          - FillOrKill
+          - PostOnly
+        reduceOnly:
+          type: boolean
+        closeOnTrigger:
+          type: boolean
+        stopPxEp:
+          type: integer
+        takeProfitEp:
+          type: integer
+        stopLossEp:
+          type: integer
+    OrderResponse_2:
+      type: object
+      properties:
+        code:
+          type: integer
+        msg:
+          type: string
+        data:
+          type: object
+          properties:
+            orderID:
+              type: string
+            clOrdID:
+              type: string
+            symbol:
+              type: string
+            side:
+              type: string
+            posSide:
+              type: string
+            ordStatus:
+              type: string
+            ordType:
+              type: string
+            priceRp:
+              type: string
+            orderQtyRq:
+              type: string
+    OrderResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        msg:
+          type: string
+        data:
+          type: object
+          properties:
+            orderID:
+              type: string
+            clOrdID:
+              type: string
+            symbol:
+              type: string
+            side:
+              type: string
+            ordStatus:
+              type: string
+            cumQty:
+              type: integer
+            leavesQty:
+              type: integer
+            priceEp:
+              type: integer
+            ordType:
+              type: string
+    OrderResponse_3:
+      type: object
+      properties:
+        code:
+          type: integer
+        msg:
+          type: string
+        data:
+          type: object
+          properties:
+            orderID:
+              type: string
+            clOrdID:
+              type: string
+            symbol:
+              type: string
+            side:
+              type: string
+            ordStatus:
+              type: string
+            baseQtyEv:
+              type: integer
+            priceEp:
+              type: integer
+    OrderListResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        msg:
+          type: string
+        data:
+          type: object
+          properties:
+            total:
+              type: integer
+            rows:
+              type: array
+              items:
+                $ref: '#/components/schemas/OrderResponse'
+    HedgedOrderRequest:
+      type: object
+      required:
+      - symbol
+      - side
+      - posSide
+      - orderQtyRq
+      - ordType
+      properties:
+        clOrdID:
+          type: string
+        symbol:
+          type: string
+        orderQtyRq:
+          type: string
+          description: Real quantity (not scaled)
+        ordType:
+          type: string
+          enum:
+          - Limit
+          - Market
+          - Stop
+          - StopLimit
+        priceRp:
+          type: string
+          description: Real price (not scaled)
+        side:
+          type: string
+          enum:
+          - Buy
+          - Sell
+        posSide:
+          type: string
+          enum:
+          - Long
+          - Short
+        timeInForce:
+          type: string
+          enum:
+          - GoodTillCancel
+          - ImmediateOrCancel
+          - FillOrKill
+          - PostOnly
+        reduceOnly:
+          type: boolean
+        stopPxRp:
+          type: string
+        takeProfitRp:
+          type: string
+        stopLossRp:
+          type: string
+        triggerType:
+          type: string
+  securitySchemes:
+    HmacAuth:
+      type: apiKey
+      in: header
+      name: x-phemex-access-token
+      description: HMAC SHA256 signed request. Also requires x-phemex-request-expiry and x-phemex-request-signature headers.

@@ -1,0 +1,188 @@
+openapi: 3.0.3
+info:
+  title: Phemex Contract Trading Account Conversion API
+  description: REST API for trading perpetual contracts on Phemex, including order placement, position management, account queries, and market data.
+  version: 1.0.0
+  contact:
+    name: Phemex Support
+    url: https://phemex.com/help-center
+servers:
+- url: https://api.phemex.com
+  description: Production
+- url: https://testnet-api.phemex.com
+  description: Testnet
+security:
+- HmacAuth: []
+tags:
+- name: Conversion
+paths:
+  /assets/quote:
+    get:
+      summary: Get conversion quote
+      description: Get a conversion rate quote for currency exchange.
+      operationId: getConversionQuote
+      tags:
+      - Conversion
+      parameters:
+      - name: fromCurrency
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Source currency
+      - name: toCurrency
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Target currency
+      - name: fromAmountEv
+        in: query
+        required: true
+        schema:
+          type: integer
+        description: Amount to convert (scaled)
+      responses:
+        '200':
+          description: Conversion quote
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuoteResponse'
+  /assets/convert:
+    post:
+      summary: Execute currency conversion
+      description: Execute a currency conversion using a previously obtained quote.
+      operationId: executeConversion
+      tags:
+      - Conversion
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConvertRequest'
+      responses:
+        '200':
+          description: Conversion result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConvertResponse'
+    get:
+      summary: Get conversion history
+      description: Query currency conversion history.
+      operationId: getConversionHistory
+      tags:
+      - Conversion
+      parameters:
+      - name: fromCurrency
+        in: query
+        schema:
+          type: string
+      - name: toCurrency
+        in: query
+        schema:
+          type: string
+      - name: startTime
+        in: query
+        schema:
+          type: integer
+      - name: endTime
+        in: query
+        schema:
+          type: integer
+      - name: offset
+        in: query
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Conversion history
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+components:
+  schemas:
+    ConvertRequest:
+      type: object
+      required:
+      - toCurrency
+      - fromCurrency
+      - code
+      properties:
+        toCurrency:
+          type: string
+          description: Target currency
+        fromCurrency:
+          type: string
+          description: Source currency
+        fromAmountEv:
+          type: integer
+          description: Amount to convert (scaled, optional)
+        code:
+          type: string
+          description: Encrypted conversion parameters from quote
+    ConvertResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        data:
+          type: object
+          properties:
+            fromAmountEv:
+              type: integer
+            fromCurrency:
+              type: string
+            linkKey:
+              type: string
+            status:
+              type: integer
+            toAmountEv:
+              type: integer
+            toCurrency:
+              type: string
+    ApiResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        msg:
+          type: string
+        data:
+          type: object
+    QuoteResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        data:
+          type: object
+          properties:
+            code:
+              type: string
+            quoteArgs:
+              type: object
+              properties:
+                expireAt:
+                  type: integer
+                price:
+                  type: string
+                proceeds:
+                  type: string
+                quoteAt:
+                  type: integer
+                ttlMs:
+                  type: integer
+  securitySchemes:
+    HmacAuth:
+      type: apiKey
+      in: header
+      name: x-phemex-access-token
+      description: HMAC SHA256 signed request. Also requires x-phemex-request-expiry and x-phemex-request-signature headers.

@@ -1,0 +1,178 @@
+openapi: 3.0.3
+info:
+  title: Phemex Contract Trading Account Sub-Account Transfers API
+  description: REST API for trading perpetual contracts on Phemex, including order placement, position management, account queries, and market data.
+  version: 1.0.0
+  contact:
+    name: Phemex Support
+    url: https://phemex.com/help-center
+servers:
+- url: https://api.phemex.com
+  description: Production
+- url: https://testnet-api.phemex.com
+  description: Testnet
+security:
+- HmacAuth: []
+tags:
+- name: Sub-Account Transfers
+paths:
+  /assets/spots/sub-accounts/transfer:
+    post:
+      summary: Transfer from spot sub-account
+      description: Transfer assets from a sub-account to the main account (spot).
+      operationId: transferSpotSubAccount
+      tags:
+      - Sub-Account Transfers
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubAccountTransferRequest'
+      responses:
+        '200':
+          description: Transfer result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubAccountTransferResponse'
+    get:
+      summary: Get spot sub-account transfer history
+      description: Query spot sub-account to main account transfer history.
+      operationId: getSpotSubAccountTransferHistory
+      tags:
+      - Sub-Account Transfers
+      parameters:
+      - name: currency
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: start
+        in: query
+        schema:
+          type: integer
+      - name: end
+        in: query
+        schema:
+          type: integer
+      - name: offset
+        in: query
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Sub-account transfer history
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+  /assets/futures/sub-accounts/transfer:
+    post:
+      summary: Transfer from futures sub-account
+      description: Transfer assets from a sub-account to the main account (futures).
+      operationId: transferFuturesSubAccount
+      tags:
+      - Sub-Account Transfers
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubAccountTransferRequest'
+      responses:
+        '200':
+          description: Transfer result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+    get:
+      summary: Get futures sub-account transfer history
+      description: Query futures sub-account to main account transfer history.
+      operationId: getFuturesSubAccountTransferHistory
+      tags:
+      - Sub-Account Transfers
+      parameters:
+      - name: currency
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: start
+        in: query
+        schema:
+          type: integer
+      - name: end
+        in: query
+        schema:
+          type: integer
+      - name: offset
+        in: query
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Sub-account transfer history
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+components:
+  schemas:
+    SubAccountTransferResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        data:
+          type: object
+          properties:
+            amountEv:
+              type: integer
+            currency:
+              type: string
+            fromUserId:
+              type: integer
+            requestKey:
+              type: string
+            toUserId:
+              type: integer
+    SubAccountTransferRequest:
+      type: object
+      required:
+      - amountEv
+      - currency
+      properties:
+        amountEv:
+          type: integer
+          description: Amount to transfer (scaled)
+        currency:
+          type: string
+          description: Currency code
+        requestKey:
+          type: string
+          description: Optional unique request identifier
+    ApiResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        msg:
+          type: string
+        data:
+          type: object
+  securitySchemes:
+    HmacAuth:
+      type: apiKey
+      in: header
+      name: x-phemex-access-token
+      description: HMAC SHA256 signed request. Also requires x-phemex-request-expiry and x-phemex-request-signature headers.

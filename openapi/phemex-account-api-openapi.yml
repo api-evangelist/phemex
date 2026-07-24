@@ -1,0 +1,382 @@
+openapi: 3.0.3
+info:
+  title: Phemex Contract Trading Account API
+  description: REST API for trading perpetual contracts on Phemex, including order placement, position management, account queries, and market data.
+  version: 1.0.0
+  contact:
+    name: Phemex Support
+    url: https://phemex.com/help-center
+servers:
+- url: https://api.phemex.com
+  description: Production
+- url: https://testnet-api.phemex.com
+  description: Testnet
+security:
+- HmacAuth: []
+tags:
+- name: Account
+paths:
+  /accounts/accountPositions:
+    get:
+      summary: Get account and positions
+      description: Query trading account and positions.
+      operationId: getContractAccountPositions
+      tags:
+      - Account
+      parameters:
+      - name: currency
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Settlement currency (e.g. BTC, USD)
+      responses:
+        '200':
+          description: Account and positions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountPositionsResponse'
+  /accounts/positions:
+    get:
+      summary: Get positions with PNL
+      description: Query positions with unrealized PNL at mark price.
+      operationId: getContractPositions
+      tags:
+      - Account
+      parameters:
+      - name: currency
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Positions with PNL
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PositionsResponse'
+  /api-data/futures/funding-fees:
+    get:
+      summary: Get funding fee history
+      description: Query historical funding fee records.
+      operationId: getContractFundingFees
+      tags:
+      - Account
+      parameters:
+      - name: symbol
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: offset
+        in: query
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Funding fee history
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+  /api-data/futures/trading-fees:
+    get:
+      summary: Get trading fee history
+      description: Retrieve trading fee history.
+      operationId: getFuturesTradingFees
+      tags:
+      - Account
+      parameters:
+      - name: symbol
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: offset
+        in: query
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Trading fee history
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+  /g-accounts/accountPositions:
+    get:
+      summary: Get hedged account positions
+      description: Query account positions and balances for hedged perpetuals.
+      operationId: getHedgedAccountPositions
+      tags:
+      - Account
+      parameters:
+      - name: currency
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: symbol
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Account and positions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountPositionsResponse_2'
+  /g-accounts/positions:
+    get:
+      summary: Get hedged positions with PNL
+      description: Query positions with unrealized PNL at mark price.
+      operationId: getHedgedPositions
+      tags:
+      - Account
+      parameters:
+      - name: currency
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Positions with PNL
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+  /api-data/g-futures/funding-fees:
+    get:
+      summary: Get funding fee history
+      description: Query historical funding fees for hedged perpetuals.
+      operationId: getHedgedFundingFees
+      tags:
+      - Account
+      parameters:
+      - name: symbol
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: offset
+        in: query
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Funding fee history
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+  /api-data/g-futures/trading-fees:
+    get:
+      summary: Get trading fee history
+      description: Query trading fees history for hedged perpetuals.
+      operationId: getHedgedTradingFees
+      tags:
+      - Account
+      parameters:
+      - name: symbol
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: offset
+        in: query
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Trading fees
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+  /api-data/spots/funds:
+    get:
+      summary: Get funds history
+      description: Query funds history for a currency.
+      operationId: getSpotFundsHistory
+      tags:
+      - Account
+      parameters:
+      - name: currency
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: start
+        in: query
+        schema:
+          type: integer
+      - name: end
+        in: query
+        schema:
+          type: integer
+      - name: offset
+        in: query
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Funds history
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+  /api-data/spots/pnls:
+    get:
+      summary: Get profit and loss records
+      description: Query spot profit/loss records.
+      operationId: getSpotPnls
+      tags:
+      - Account
+      parameters:
+      - name: start
+        in: query
+        schema:
+          type: integer
+      - name: end
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: PNL records
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+components:
+  schemas:
+    PositionsResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        data:
+          type: object
+          properties:
+            positions:
+              type: array
+              items:
+                type: object
+                properties:
+                  symbol:
+                    type: string
+                  side:
+                    type: string
+                  size:
+                    type: integer
+                  unRealisedPnlEv:
+                    type: integer
+                  markPriceEp:
+                    type: integer
+    AccountPositionsResponse_2:
+      type: object
+      properties:
+        code:
+          type: integer
+        data:
+          type: object
+          properties:
+            account:
+              type: object
+              properties:
+                accountBalanceRv:
+                  type: string
+                totalUsedBalanceRv:
+                  type: string
+            positions:
+              type: array
+              items:
+                type: object
+                properties:
+                  symbol:
+                    type: string
+                  posSide:
+                    type: string
+                  size:
+                    type: string
+                  avgEntryPriceRp:
+                    type: string
+                  leverageRr:
+                    type: string
+                  unRealisedPnlRv:
+                    type: string
+    ApiResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        msg:
+          type: string
+        data:
+          type: object
+    AccountPositionsResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        msg:
+          type: string
+        data:
+          type: object
+          properties:
+            account:
+              type: object
+              properties:
+                accountId:
+                  type: integer
+                accountBalanceEv:
+                  type: integer
+                totalUsedBalanceEv:
+                  type: integer
+            positions:
+              type: array
+              items:
+                type: object
+                properties:
+                  symbol:
+                    type: string
+                  side:
+                    type: string
+                  size:
+                    type: integer
+                  avgEntryPriceEp:
+                    type: integer
+                  leverageEr:
+                    type: integer
+                  liquidationPriceEp:
+                    type: integer
+  securitySchemes:
+    HmacAuth:
+      type: apiKey
+      in: header
+      name: x-phemex-access-token
+      description: HMAC SHA256 signed request. Also requires x-phemex-request-expiry and x-phemex-request-signature headers.

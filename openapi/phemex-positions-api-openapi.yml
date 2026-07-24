@@ -1,0 +1,211 @@
+openapi: 3.0.3
+info:
+  title: Phemex Contract Trading Account Positions API
+  description: REST API for trading perpetual contracts on Phemex, including order placement, position management, account queries, and market data.
+  version: 1.0.0
+  contact:
+    name: Phemex Support
+    url: https://phemex.com/help-center
+servers:
+- url: https://api.phemex.com
+  description: Production
+- url: https://testnet-api.phemex.com
+  description: Testnet
+security:
+- HmacAuth: []
+tags:
+- name: Positions
+paths:
+  /positions/leverage:
+    put:
+      summary: Set leverage
+      description: Modify position leverage for a symbol.
+      operationId: setContractLeverage
+      tags:
+      - Positions
+      parameters:
+      - name: symbol
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: leverage
+        in: query
+        schema:
+          type: number
+      - name: leverageEr
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Leverage set
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+  /positions/riskLimit:
+    put:
+      summary: Set risk limit
+      description: Adjust position risk limit.
+      operationId: setContractRiskLimit
+      tags:
+      - Positions
+      parameters:
+      - name: symbol
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: riskLimit
+        in: query
+        schema:
+          type: integer
+      - name: riskLimitEv
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Risk limit set
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+  /positions/assign:
+    post:
+      summary: Assign margin
+      description: Allocate balance to isolated margin position.
+      operationId: assignContractMargin
+      tags:
+      - Positions
+      parameters:
+      - name: symbol
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: posBalanceEv
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Margin assigned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+  /g-positions/switch-pos-mode-sync:
+    put:
+      summary: Switch position mode
+      description: Switch between OneWay and Hedged position modes.
+      operationId: switchPositionMode
+      tags:
+      - Positions
+      parameters:
+      - name: symbol
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: targetPosMode
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - OneWay
+          - Hedged
+      responses:
+        '200':
+          description: Mode switched
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+  /g-positions/leverage:
+    put:
+      summary: Set hedged leverage
+      description: Set leverage for hedged positions — supports separate long/short leverage.
+      operationId: setHedgedLeverage
+      tags:
+      - Positions
+      parameters:
+      - name: symbol
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: leverageRr
+        in: query
+        schema:
+          type: string
+        description: Leverage for one-way mode
+      - name: longLeverageRr
+        in: query
+        schema:
+          type: string
+        description: Leverage for long positions
+      - name: shortLeverageRr
+        in: query
+        schema:
+          type: string
+        description: Leverage for short positions
+      responses:
+        '200':
+          description: Leverage set
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+  /g-positions/assign:
+    post:
+      summary: Assign balance to position
+      description: Assign balance to a specific hedged position side.
+      operationId: assignHedgedMargin
+      tags:
+      - Positions
+      parameters:
+      - name: symbol
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: posSide
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - Long
+          - Short
+      - name: posBalanceRv
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Balance assigned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+components:
+  schemas:
+    ApiResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        msg:
+          type: string
+        data:
+          type: object
+  securitySchemes:
+    HmacAuth:
+      type: apiKey
+      in: header
+      name: x-phemex-access-token
+      description: HMAC SHA256 signed request. Also requires x-phemex-request-expiry and x-phemex-request-signature headers.

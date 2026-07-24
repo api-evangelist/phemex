@@ -1,0 +1,233 @@
+openapi: 3.0.3
+info:
+  title: Phemex Contract Trading Account Transfers API
+  description: REST API for trading perpetual contracts on Phemex, including order placement, position management, account queries, and market data.
+  version: 1.0.0
+  contact:
+    name: Phemex Support
+    url: https://phemex.com/help-center
+servers:
+- url: https://api.phemex.com
+  description: Production
+- url: https://testnet-api.phemex.com
+  description: Testnet
+security:
+- HmacAuth: []
+tags:
+- name: Transfers
+paths:
+  /assets/transfer:
+    post:
+      summary: Transfer between spot and futures
+      description: Transfer assets between spot and futures accounts.
+      operationId: transferBetweenAccountTypes
+      tags:
+      - Transfers
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransferRequest'
+      responses:
+        '200':
+          description: Transfer result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransferResponse'
+    get:
+      summary: Get transfer history
+      description: Retrieve transfer history between spot and futures accounts.
+      operationId: getTransferHistory
+      tags:
+      - Transfers
+      parameters:
+      - name: currency
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Currency to query
+      - name: start
+        in: query
+        schema:
+          type: integer
+        description: Start time in milliseconds
+      - name: end
+        in: query
+        schema:
+          type: integer
+        description: End time in milliseconds
+      - name: offset
+        in: query
+        schema:
+          type: integer
+        description: Pagination offset (default 0)
+      - name: limit
+        in: query
+        schema:
+          type: integer
+        description: Page size (default 20, max 200)
+      - name: side
+        in: query
+        required: true
+        schema:
+          type: integer
+          enum:
+          - 1
+          - 2
+        description: Direction (1=futures to spot, 2=spot to futures)
+      - name: bizType
+        in: query
+        required: true
+        schema:
+          type: integer
+          enum:
+          - 10
+          - 11
+        description: Business type
+      responses:
+        '200':
+          description: Transfer history
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransferListResponse'
+  /assets/universal-transfer:
+    post:
+      summary: Universal transfer
+      description: Transfer between main/sub accounts across spot and futures account types.
+      operationId: universalTransfer
+      tags:
+      - Transfers
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UniversalTransferRequest'
+      responses:
+        '200':
+          description: Transfer initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+components:
+  schemas:
+    TransferRequest:
+      type: object
+      required:
+      - amountEv
+      - currency
+      - moveOp
+      properties:
+        amountEv:
+          type: integer
+          description: Amount to transfer (scaled)
+        currency:
+          type: string
+          description: Currency code (e.g. BTC, ETH, USD)
+        moveOp:
+          type: integer
+          enum:
+          - 1
+          - 2
+          description: Direction (1=futures to spot, 2=spot to futures)
+    TransferListResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        data:
+          type: object
+          properties:
+            total:
+              type: integer
+            rows:
+              type: array
+              items:
+                type: object
+                properties:
+                  amountEv:
+                    type: integer
+                  bizType:
+                    type: integer
+                  createTime:
+                    type: integer
+                  currency:
+                    type: string
+                  linkKey:
+                    type: string
+                  side:
+                    type: integer
+                  status:
+                    type: integer
+                  userId:
+                    type: integer
+    ApiResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        msg:
+          type: string
+        data:
+          type: object
+    TransferResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        data:
+          type: object
+          properties:
+            amountEv:
+              type: integer
+            currency:
+              type: string
+            linkKey:
+              type: string
+            side:
+              type: integer
+            status:
+              type: integer
+            userId:
+              type: integer
+    UniversalTransferRequest:
+      type: object
+      required:
+      - fromUserId
+      - toUserId
+      - amountEv
+      - bizType
+      - currency
+      properties:
+        fromUserId:
+          type: integer
+          description: Source user ID
+        toUserId:
+          type: integer
+          description: Destination user ID
+        amountEv:
+          type: integer
+          description: Amount to transfer (scaled)
+        bizType:
+          type: string
+          enum:
+          - SPOT
+          - PERPETUAL
+          description: Business type indicating account type
+        currency:
+          type: string
+          description: Currency code
+        requestKey:
+          type: string
+          description: Optional unique request identifier
+  securitySchemes:
+    HmacAuth:
+      type: apiKey
+      in: header
+      name: x-phemex-access-token
+      description: HMAC SHA256 signed request. Also requires x-phemex-request-expiry and x-phemex-request-signature headers.

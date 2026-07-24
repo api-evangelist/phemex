@@ -1,0 +1,275 @@
+openapi: 3.0.3
+info:
+  title: Phemex Contract Trading Account Wallets API
+  description: REST API for trading perpetual contracts on Phemex, including order placement, position management, account queries, and market data.
+  version: 1.0.0
+  contact:
+    name: Phemex Support
+    url: https://phemex.com/help-center
+servers:
+- url: https://api.phemex.com
+  description: Production
+- url: https://testnet-api.phemex.com
+  description: Testnet
+security:
+- HmacAuth: []
+tags:
+- name: Wallets
+paths:
+  /exchange/wallets/transferOut:
+    post:
+      summary: Transfer to sub-client
+      description: Transfer wallet balance to sub-client.
+      operationId: contractTransferOut
+      tags:
+      - Wallets
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                amountEv:
+                  type: integer
+                currency:
+                  type: string
+                clientCnt:
+                  type: integer
+      responses:
+        '200':
+          description: Transfer result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+  /exchange/wallets/transferIn:
+    post:
+      summary: Transfer from sub-client
+      description: Withdraw balance from sub-client wallet.
+      operationId: contractTransferIn
+      tags:
+      - Wallets
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                amountEv:
+                  type: integer
+                currency:
+                  type: string
+                clientCnt:
+                  type: integer
+      responses:
+        '200':
+          description: Transfer result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+  /exchange/wallets/createWithdraw:
+    post:
+      summary: Create withdrawal
+      description: Initiate a withdrawal request.
+      operationId: createWithdraw
+      tags:
+      - Wallets
+      parameters:
+      - name: otpCode
+        in: query
+        schema:
+          type: string
+        description: One-time password
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - address
+              - amountEv
+              - currency
+              properties:
+                address:
+                  type: string
+                amountEv:
+                  type: integer
+                currency:
+                  type: string
+      responses:
+        '200':
+          description: Withdrawal created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+  /exchange/wallets/cancelWithdraw:
+    post:
+      summary: Cancel withdrawal
+      description: Cancel a pending withdrawal request.
+      operationId: cancelWithdraw
+      tags:
+      - Wallets
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - id
+              properties:
+                id:
+                  type: integer
+      responses:
+        '200':
+          description: Withdrawal cancelled
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+  /exchange/wallets/withdrawList:
+    get:
+      summary: Get withdrawal history
+      description: List withdrawal history.
+      operationId: getWithdrawHistory
+      tags:
+      - Wallets
+      parameters:
+      - name: currency
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: limit
+        in: query
+        schema:
+          type: integer
+      - name: offset
+        in: query
+        schema:
+          type: integer
+      - name: withCount
+        in: query
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Withdrawal list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+  /spot/wallets:
+    get:
+      summary: Get spot wallet balances
+      description: Query spot wallet balances.
+      operationId: getSpotWallets
+      tags:
+      - Wallets
+      parameters:
+      - name: currency
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Wallet balances
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WalletResponse'
+  /exchange/wallets/v2/depositAddress:
+    get:
+      summary: Get deposit address
+      description: Query deposit address by currency and chain.
+      operationId: getSpotDepositAddress
+      tags:
+      - Wallets
+      parameters:
+      - name: currency
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: chainName
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Deposit address
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+  /exchange/wallets/depositList:
+    get:
+      summary: Get deposit history
+      description: Query recent deposit history.
+      operationId: getSpotDepositHistory
+      tags:
+      - Wallets
+      parameters:
+      - name: currency
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: offset
+        in: query
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Deposit list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+components:
+  schemas:
+    WalletResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              currency:
+                type: string
+              balanceEv:
+                type: integer
+              lockedTradingBalanceEv:
+                type: integer
+              lockedWithdrawEv:
+                type: integer
+              lastUpdateTimeNs:
+                type: integer
+    ApiResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        msg:
+          type: string
+        data:
+          type: object
+  securitySchemes:
+    HmacAuth:
+      type: apiKey
+      in: header
+      name: x-phemex-access-token
+      description: HMAC SHA256 signed request. Also requires x-phemex-request-expiry and x-phemex-request-signature headers.
