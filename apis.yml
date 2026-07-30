@@ -1,6 +1,19 @@
 name: Phemex
 description: Phemex is a cryptocurrency derivatives exchange offering REST and WebSocket APIs for spot trading, perpetual contracts, futures, hedged perpetual contracts, asset transfers, and real-time market data. The platform provides low-latency trading infrastructure with HMAC SHA256 authentication and tiered rate limiting for institutional and retail traders.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/phemex.png
 url: https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/apis.yml
 created: '2026-06-13'
 modified: '2026-06-13'
@@ -14,107 +27,294 @@ tags:
   - WebSocket
   - Market Data
 apis:
-  - name: Phemex Contract Trading API
-    description: REST and WebSocket API for trading perpetual contracts on Phemex, including order placement, position management, account queries, and real-time market data subscriptions.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://github.com/phemex/phemex-api-docs/blob/master/Public-Contract-API-en.md
-    baseURL: https://api.phemex.com
-    tags:
-      - Cryptocurrency
-      - Perpetual Contracts
-      - Derivatives
-      - Trading
-      - WebSocket
-    properties:
-      - type: Documentation
-        url: https://github.com/phemex/phemex-api-docs/blob/master/Public-Contract-API-en.md
-      - type: OpenAPI
-        url: https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/openapi/contract.yml
-      - type: RateLimits
-        url: https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/rate-limits/contract.yml
-      - type: Plans
-        url: https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/plans/plans.yml
-    contact:
-      - FN: Phemex Support
-        url: https://phemex.com/help-center
-    overlays: []
-    aid: phemex:phemex-contract-trading-api
-
-  - name: Phemex Spot Trading API
-    description: REST and WebSocket API for spot trading on Phemex, supporting order placement, wallet queries, market data subscriptions, and 24-hour ticker streams.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://github.com/phemex/phemex-api-docs/blob/master/Public-Spot-API-en.md
-    baseURL: https://api.phemex.com
-    tags:
-      - Cryptocurrency
-      - Spot Trading
-      - WebSocket
-      - Market Data
-    properties:
-      - type: Documentation
-        url: https://github.com/phemex/phemex-api-docs/blob/master/Public-Spot-API-en.md
-      - type: OpenAPI
-        url: https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/openapi/spot.yml
-      - type: RateLimits
-        url: https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/rate-limits/spot.yml
-      - type: Plans
-        url: https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/plans/plans.yml
-    contact:
-      - FN: Phemex Support
-        url: https://phemex.com/help-center
-    overlays: []
-    aid: phemex:phemex-spot-trading-api
-
-  - name: Phemex Hedged Perpetual API
-    description: REST and WebSocket API for hedged perpetual contract trading on Phemex, enabling both long and short positions simultaneously with independent leverage settings per side.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://github.com/phemex/phemex-api-docs/blob/master/Public-Hedged-Perpetual-API.md
-    baseURL: https://api.phemex.com
-    tags:
-      - Cryptocurrency
-      - Hedged Perpetual
-      - Derivatives
-      - Trading
-    properties:
-      - type: Documentation
-        url: https://github.com/phemex/phemex-api-docs/blob/master/Public-Hedged-Perpetual-API.md
-      - type: OpenAPI
-        url: https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/openapi/hedged-perpetual.yml
-      - type: RateLimits
-        url: https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/rate-limits/hedged-perpetual.yml
-      - type: Plans
-        url: https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/plans/plans.yml
-    contact:
-      - FN: Phemex Support
-        url: https://phemex.com/help-center
-    overlays: []
-    aid: phemex:phemex-hedged-perpetual-api
-
-  - name: Phemex Asset Transfer API
-    description: REST API for transferring assets between spot and futures accounts, managing sub-account fund movements, and performing universal transfers between main and sub-accounts on Phemex.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://github.com/phemex/phemex-api-docs/blob/master/Public-Transfer-API-en.md
-    baseURL: https://api.phemex.com
-    tags:
-      - Cryptocurrency
-      - Asset Transfer
-      - Account Management
-      - Sub-Accounts
-    properties:
-      - type: Documentation
-        url: https://github.com/phemex/phemex-api-docs/blob/master/Public-Transfer-API-en.md
-      - type: OpenAPI
-        url: https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/openapi/transfer.yml
-      - type: RateLimits
-        url: https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/rate-limits/transfer.yml
-      - type: Plans
-        url: https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/plans/plans.yml
-    contact:
-      - FN: Phemex Support
-        url: https://phemex.com/help-center
-    overlays: []
-    aid: phemex:phemex-asset-transfer-api
-
+- aid: phemex:phemex-account-api
+  name: Phemex Account API
+  description: The Account API from Phemex — 10 operation(s) for account.
+  humanURL: https://github.com/phemex/phemex-api-docs/blob/master/Public-Contract-API-en.md
+  baseURL: https://api.phemex.com
+  tags:
+  - Account
+  properties:
+  - type: OpenAPI
+    url: openapi/phemex-account-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/phemex/phemex-api-docs/blob/master/Public-Contract-API-en.md
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/rate-limits/contract.yml
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/plans/plans.yml
+  - type: Documentation
+    url: https://github.com/phemex/phemex-api-docs/blob/master/Public-Spot-API-en.md
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/rate-limits/spot.yml
+  - type: Documentation
+    url: https://github.com/phemex/phemex-api-docs/blob/master/Public-Hedged-Perpetual-API.md
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/rate-limits/hedged-perpetual.yml
+  - type: Documentation
+    url: https://github.com/phemex/phemex-api-docs/blob/master/Public-Transfer-API-en.md
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/rate-limits/transfer.yml
+- aid: phemex:phemex-conversion-api
+  name: Phemex Conversion API
+  description: The Conversion API from Phemex — 2 operation(s) for conversion.
+  humanURL: https://github.com/phemex/phemex-api-docs/blob/master/Public-Contract-API-en.md
+  baseURL: https://api.phemex.com
+  tags:
+  - Conversion
+  properties:
+  - type: OpenAPI
+    url: openapi/phemex-conversion-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/phemex/phemex-api-docs/blob/master/Public-Contract-API-en.md
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/rate-limits/contract.yml
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/plans/plans.yml
+  - type: Documentation
+    url: https://github.com/phemex/phemex-api-docs/blob/master/Public-Spot-API-en.md
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/rate-limits/spot.yml
+  - type: Documentation
+    url: https://github.com/phemex/phemex-api-docs/blob/master/Public-Hedged-Perpetual-API.md
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/rate-limits/hedged-perpetual.yml
+  - type: Documentation
+    url: https://github.com/phemex/phemex-api-docs/blob/master/Public-Transfer-API-en.md
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/rate-limits/transfer.yml
+- aid: phemex:phemex-market-data-api
+  name: Phemex Market Data API
+  description: The Market Data API from Phemex — 12 operation(s) for market data.
+  humanURL: https://github.com/phemex/phemex-api-docs/blob/master/Public-Contract-API-en.md
+  baseURL: https://api.phemex.com
+  tags:
+  - Market Data
+  properties:
+  - type: OpenAPI
+    url: openapi/phemex-market-data-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/phemex/phemex-api-docs/blob/master/Public-Contract-API-en.md
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/rate-limits/contract.yml
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/plans/plans.yml
+  - type: Documentation
+    url: https://github.com/phemex/phemex-api-docs/blob/master/Public-Spot-API-en.md
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/rate-limits/spot.yml
+  - type: Documentation
+    url: https://github.com/phemex/phemex-api-docs/blob/master/Public-Hedged-Perpetual-API.md
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/rate-limits/hedged-perpetual.yml
+  - type: Documentation
+    url: https://github.com/phemex/phemex-api-docs/blob/master/Public-Transfer-API-en.md
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/rate-limits/transfer.yml
+- aid: phemex:phemex-orders-api
+  name: Phemex Orders API
+  description: The Orders API from Phemex — 26 operation(s) for orders.
+  humanURL: https://github.com/phemex/phemex-api-docs/blob/master/Public-Contract-API-en.md
+  baseURL: https://api.phemex.com
+  tags:
+  - Orders
+  properties:
+  - type: OpenAPI
+    url: openapi/phemex-orders-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/phemex/phemex-api-docs/blob/master/Public-Contract-API-en.md
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/rate-limits/contract.yml
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/plans/plans.yml
+  - type: Documentation
+    url: https://github.com/phemex/phemex-api-docs/blob/master/Public-Spot-API-en.md
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/rate-limits/spot.yml
+  - type: Documentation
+    url: https://github.com/phemex/phemex-api-docs/blob/master/Public-Hedged-Perpetual-API.md
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/rate-limits/hedged-perpetual.yml
+  - type: Documentation
+    url: https://github.com/phemex/phemex-api-docs/blob/master/Public-Transfer-API-en.md
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/rate-limits/transfer.yml
+- aid: phemex:phemex-positions-api
+  name: Phemex Positions API
+  description: The Positions API from Phemex — 6 operation(s) for positions.
+  humanURL: https://github.com/phemex/phemex-api-docs/blob/master/Public-Contract-API-en.md
+  baseURL: https://api.phemex.com
+  tags:
+  - Positions
+  properties:
+  - type: OpenAPI
+    url: openapi/phemex-positions-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/phemex/phemex-api-docs/blob/master/Public-Contract-API-en.md
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/rate-limits/contract.yml
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/plans/plans.yml
+  - type: Documentation
+    url: https://github.com/phemex/phemex-api-docs/blob/master/Public-Spot-API-en.md
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/rate-limits/spot.yml
+  - type: Documentation
+    url: https://github.com/phemex/phemex-api-docs/blob/master/Public-Hedged-Perpetual-API.md
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/rate-limits/hedged-perpetual.yml
+  - type: Documentation
+    url: https://github.com/phemex/phemex-api-docs/blob/master/Public-Transfer-API-en.md
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/rate-limits/transfer.yml
+- aid: phemex:phemex-sub-account-transfers-api
+  name: Phemex Sub-Account Transfers API
+  description: The Sub-Account Transfers API from Phemex — 2 operation(s) for sub-account transfers.
+  humanURL: https://github.com/phemex/phemex-api-docs/blob/master/Public-Contract-API-en.md
+  baseURL: https://api.phemex.com
+  tags:
+  - Sub-Account Transfers
+  properties:
+  - type: OpenAPI
+    url: openapi/phemex-sub-account-transfers-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/phemex/phemex-api-docs/blob/master/Public-Contract-API-en.md
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/rate-limits/contract.yml
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/plans/plans.yml
+  - type: Documentation
+    url: https://github.com/phemex/phemex-api-docs/blob/master/Public-Spot-API-en.md
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/rate-limits/spot.yml
+  - type: Documentation
+    url: https://github.com/phemex/phemex-api-docs/blob/master/Public-Hedged-Perpetual-API.md
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/rate-limits/hedged-perpetual.yml
+  - type: Documentation
+    url: https://github.com/phemex/phemex-api-docs/blob/master/Public-Transfer-API-en.md
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/rate-limits/transfer.yml
+- aid: phemex:phemex-trades-api
+  name: Phemex Trades API
+  description: The Trades API from Phemex — 7 operation(s) for trades.
+  humanURL: https://github.com/phemex/phemex-api-docs/blob/master/Public-Contract-API-en.md
+  baseURL: https://api.phemex.com
+  tags:
+  - Trades
+  properties:
+  - type: OpenAPI
+    url: openapi/phemex-trades-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/phemex/phemex-api-docs/blob/master/Public-Contract-API-en.md
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/rate-limits/contract.yml
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/plans/plans.yml
+  - type: Documentation
+    url: https://github.com/phemex/phemex-api-docs/blob/master/Public-Spot-API-en.md
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/rate-limits/spot.yml
+  - type: Documentation
+    url: https://github.com/phemex/phemex-api-docs/blob/master/Public-Hedged-Perpetual-API.md
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/rate-limits/hedged-perpetual.yml
+  - type: Documentation
+    url: https://github.com/phemex/phemex-api-docs/blob/master/Public-Transfer-API-en.md
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/rate-limits/transfer.yml
+- aid: phemex:phemex-transfers-api
+  name: Phemex Transfers API
+  description: The Transfers API from Phemex — 2 operation(s) for transfers.
+  humanURL: https://github.com/phemex/phemex-api-docs/blob/master/Public-Contract-API-en.md
+  baseURL: https://api.phemex.com
+  tags:
+  - Transfers
+  properties:
+  - type: OpenAPI
+    url: openapi/phemex-transfers-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/phemex/phemex-api-docs/blob/master/Public-Contract-API-en.md
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/rate-limits/contract.yml
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/plans/plans.yml
+  - type: Documentation
+    url: https://github.com/phemex/phemex-api-docs/blob/master/Public-Spot-API-en.md
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/rate-limits/spot.yml
+  - type: Documentation
+    url: https://github.com/phemex/phemex-api-docs/blob/master/Public-Hedged-Perpetual-API.md
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/rate-limits/hedged-perpetual.yml
+  - type: Documentation
+    url: https://github.com/phemex/phemex-api-docs/blob/master/Public-Transfer-API-en.md
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/rate-limits/transfer.yml
+- aid: phemex:phemex-wallets-api
+  name: Phemex Wallets API
+  description: The Wallets API from Phemex — 8 operation(s) for wallets.
+  humanURL: https://github.com/phemex/phemex-api-docs/blob/master/Public-Contract-API-en.md
+  baseURL: https://api.phemex.com
+  tags:
+  - Wallets
+  properties:
+  - type: OpenAPI
+    url: openapi/phemex-wallets-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/phemex/phemex-api-docs/blob/master/Public-Contract-API-en.md
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/rate-limits/contract.yml
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/plans/plans.yml
+  - type: Documentation
+    url: https://github.com/phemex/phemex-api-docs/blob/master/Public-Spot-API-en.md
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/rate-limits/spot.yml
+  - type: Documentation
+    url: https://github.com/phemex/phemex-api-docs/blob/master/Public-Hedged-Perpetual-API.md
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/rate-limits/hedged-perpetual.yml
+  - type: Documentation
+    url: https://github.com/phemex/phemex-api-docs/blob/master/Public-Transfer-API-en.md
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/rate-limits/transfer.yml
 common:
   - type: AgenticAccess
     url: agentic-access/phemex-agentic-access.yml
