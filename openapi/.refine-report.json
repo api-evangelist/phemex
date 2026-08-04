@@ -1,0 +1,30 @@
+{
+  "provider": "phemex",
+  "sources": [
+    "phemex-account-api-openapi.yml",
+    "phemex-conversion-api-openapi.yml",
+    "phemex-market-data-api-openapi.yml",
+    "phemex-orders-api-openapi.yml",
+    "phemex-positions-api-openapi.yml",
+    "phemex-sub-account-transfers-api-openapi.yml",
+    "phemex-trades-api-openapi.yml",
+    "phemex-transfers-api-openapi.yml",
+    "phemex-wallets-api-openapi.yml"
+  ],
+  "outputs": [
+    "phemex-account-api-openapi.yml",
+    "phemex-conversion-api-openapi.yml",
+    "phemex-market-data-api-openapi.yml",
+    "phemex-orders-api-openapi.yml",
+    "phemex-positions-api-openapi.yml",
+    "phemex-sub-account-transfers-api-openapi.yml",
+    "phemex-trades-api-openapi.yml",
+    "phemex-transfers-api-openapi.yml",
+    "phemex-wallets-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
