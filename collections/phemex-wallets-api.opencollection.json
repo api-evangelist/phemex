@@ -1,0 +1,196 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Phemex Contract Trading Account Wallets API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-phemex-access-token",
+      "value": "{{x-phemex-access-token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Wallets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Transfer to sub-client",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.phemex.com/exchange/wallets/transferOut",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Transfer wallet balance to sub-client."
+        },
+        {
+          "info": {
+            "name": "Transfer from sub-client",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.phemex.com/exchange/wallets/transferIn",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Withdraw balance from sub-client wallet."
+        },
+        {
+          "info": {
+            "name": "Create withdrawal",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.phemex.com/exchange/wallets/createWithdraw",
+            "params": [
+              {
+                "name": "otpCode",
+                "value": "",
+                "type": "query",
+                "description": "One-time password"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initiate a withdrawal request."
+        },
+        {
+          "info": {
+            "name": "Cancel withdrawal",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.phemex.com/exchange/wallets/cancelWithdraw",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Cancel a pending withdrawal request."
+        },
+        {
+          "info": {
+            "name": "Get withdrawal history",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.phemex.com/exchange/wallets/withdrawList",
+            "params": [
+              {
+                "name": "currency",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "withCount",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List withdrawal history."
+        },
+        {
+          "info": {
+            "name": "Get spot wallet balances",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.phemex.com/spot/wallets",
+            "params": [
+              {
+                "name": "currency",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Query spot wallet balances."
+        },
+        {
+          "info": {
+            "name": "Get deposit address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.phemex.com/exchange/wallets/v2/depositAddress",
+            "params": [
+              {
+                "name": "currency",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "chainName",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Query deposit address by currency and chain."
+        },
+        {
+          "info": {
+            "name": "Get deposit history",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.phemex.com/exchange/wallets/depositList",
+            "params": [
+              {
+                "name": "currency",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Query recent deposit history."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

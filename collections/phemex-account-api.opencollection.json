@@ -1,0 +1,277 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Phemex Contract Trading Account API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-phemex-access-token",
+      "value": "{{x-phemex-access-token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Account",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get account and positions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.phemex.com/accounts/accountPositions",
+            "params": [
+              {
+                "name": "currency",
+                "value": "",
+                "type": "query",
+                "description": "Settlement currency (e.g. BTC, USD)"
+              }
+            ]
+          },
+          "docs": "Query trading account and positions."
+        },
+        {
+          "info": {
+            "name": "Get positions with PNL",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.phemex.com/accounts/positions",
+            "params": [
+              {
+                "name": "currency",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Query positions with unrealized PNL at mark price."
+        },
+        {
+          "info": {
+            "name": "Get funding fee history",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.phemex.com/api-data/futures/funding-fees",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Query historical funding fee records."
+        },
+        {
+          "info": {
+            "name": "Get trading fee history",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.phemex.com/api-data/futures/trading-fees",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve trading fee history."
+        },
+        {
+          "info": {
+            "name": "Get hedged account positions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.phemex.com/g-accounts/accountPositions",
+            "params": [
+              {
+                "name": "currency",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Query account positions and balances for hedged perpetuals."
+        },
+        {
+          "info": {
+            "name": "Get hedged positions with PNL",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.phemex.com/g-accounts/positions",
+            "params": [
+              {
+                "name": "currency",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Query positions with unrealized PNL at mark price."
+        },
+        {
+          "info": {
+            "name": "Get funding fee history",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.phemex.com/api-data/g-futures/funding-fees",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Query historical funding fees for hedged perpetuals."
+        },
+        {
+          "info": {
+            "name": "Get trading fee history",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.phemex.com/api-data/g-futures/trading-fees",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Query trading fees history for hedged perpetuals."
+        },
+        {
+          "info": {
+            "name": "Get funds history",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.phemex.com/api-data/spots/funds",
+            "params": [
+              {
+                "name": "currency",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Query funds history for a currency."
+        },
+        {
+          "info": {
+            "name": "Get profit and loss records",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.phemex.com/api-data/spots/pnls",
+            "params": [
+              {
+                "name": "start",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Query spot profit/loss records."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,115 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Phemex Contract Trading Account Conversion API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-phemex-access-token",
+      "value": "{{x-phemex-access-token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Conversion",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get conversion quote",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.phemex.com/assets/quote",
+            "params": [
+              {
+                "name": "fromCurrency",
+                "value": "",
+                "type": "query",
+                "description": "Source currency"
+              },
+              {
+                "name": "toCurrency",
+                "value": "",
+                "type": "query",
+                "description": "Target currency"
+              },
+              {
+                "name": "fromAmountEv",
+                "value": "",
+                "type": "query",
+                "description": "Amount to convert (scaled)"
+              }
+            ]
+          },
+          "docs": "Get a conversion rate quote for currency exchange."
+        },
+        {
+          "info": {
+            "name": "Get conversion history",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.phemex.com/assets/convert",
+            "params": [
+              {
+                "name": "fromCurrency",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "toCurrency",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Query currency conversion history."
+        },
+        {
+          "info": {
+            "name": "Execute currency conversion",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.phemex.com/assets/convert",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Execute a currency conversion using a previously obtained quote."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

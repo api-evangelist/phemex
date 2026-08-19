@@ -1,0 +1,1128 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Phemex Contract Trading Account Orders API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-phemex-access-token",
+      "value": "{{x-phemex-access-token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Orders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Place order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.phemex.com/orders",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Place a new contract order with JSON body."
+        },
+        {
+          "info": {
+            "name": "Bulk cancel orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.phemex.com/orders",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query",
+                "description": "Trading symbol"
+              },
+              {
+                "name": "orderID",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated order IDs"
+              }
+            ]
+          },
+          "docs": "Cancel multiple orders by orderID list."
+        },
+        {
+          "info": {
+            "name": "Place order via query string",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.phemex.com/orders/create",
+            "params": [
+              {
+                "name": "clOrdID",
+                "value": "",
+                "type": "query",
+                "description": "Client order ID"
+              },
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query",
+                "description": "Trading symbol"
+              },
+              {
+                "name": "side",
+                "value": "",
+                "type": "query",
+                "description": "Order side"
+              },
+              {
+                "name": "orderQty",
+                "value": "",
+                "type": "query",
+                "description": "Order quantity"
+              },
+              {
+                "name": "ordType",
+                "value": "",
+                "type": "query",
+                "description": "Order type"
+              },
+              {
+                "name": "priceEp",
+                "value": "",
+                "type": "query",
+                "description": "Scaled price"
+              },
+              {
+                "name": "timeInForce",
+                "value": "",
+                "type": "query",
+                "description": "Time in force"
+              },
+              {
+                "name": "reduceOnly",
+                "value": "",
+                "type": "query",
+                "description": "Reduce-only flag"
+              },
+              {
+                "name": "closeOnTrigger",
+                "value": "",
+                "type": "query",
+                "description": "Close on trigger flag"
+              },
+              {
+                "name": "stopPxEp",
+                "value": "",
+                "type": "query",
+                "description": "Scaled stop price"
+              },
+              {
+                "name": "takeProfitEp",
+                "value": "",
+                "type": "query",
+                "description": "Scaled take profit price"
+              },
+              {
+                "name": "stopLossEp",
+                "value": "",
+                "type": "query",
+                "description": "Scaled stop loss price"
+              }
+            ]
+          },
+          "docs": "Create order via URL query string parameters (preferred method)."
+        },
+        {
+          "info": {
+            "name": "Modify order",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.phemex.com/orders/replace",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "orderID",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "origClOrdID",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "clOrdID",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "priceEp",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "orderQty",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "stopPxEp",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "takeProfitEp",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "stopLossEp",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Modify an existing order by orderID or clOrdID."
+        },
+        {
+          "info": {
+            "name": "Cancel order",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.phemex.com/orders/cancel",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "orderID",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "clOrdID",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Cancel a single order by orderID or clOrdID."
+        },
+        {
+          "info": {
+            "name": "Cancel all orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.phemex.com/orders/all",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "untriggered",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "text",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Cancel all orders for a symbol."
+        },
+        {
+          "info": {
+            "name": "Get active orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.phemex.com/orders/activeList",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve open orders for a symbol."
+        },
+        {
+          "info": {
+            "name": "Get order history",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.phemex.com/exchange/order/list",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Start time in milliseconds"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query",
+                "description": "End time in milliseconds"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ordStatus",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "withCount",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Query closed order history."
+        },
+        {
+          "info": {
+            "name": "Get order by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.phemex.com/exchange/order",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "orderID",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "clOrdID",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Fetch orders by orderID or clOrdID."
+        },
+        {
+          "info": {
+            "name": "Get futures order history",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.phemex.com/api-data/futures/orders",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Fetch order history with optional time range."
+        },
+        {
+          "info": {
+            "name": "Get futures orders by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.phemex.com/api-data/futures/orders/by-order-id",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "orderID",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "clOrdID",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve orders by orderID or clOrdID."
+        },
+        {
+          "info": {
+            "name": "Place hedged order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.phemex.com/g-orders",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Place order with JSON body for hedged perpetual trading."
+        },
+        {
+          "info": {
+            "name": "Bulk cancel hedged orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.phemex.com/g-orders",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "orderID",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "posSide",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Cancel multiple hedged orders at once."
+        },
+        {
+          "info": {
+            "name": "Place hedged order via query string",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.phemex.com/g-orders/create",
+            "params": [
+              {
+                "name": "clOrdID",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "side",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "posSide",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "orderQtyRq",
+                "value": "",
+                "type": "query",
+                "description": "Real quantity (not scaled)"
+              },
+              {
+                "name": "ordType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "priceRp",
+                "value": "",
+                "type": "query",
+                "description": "Real price (not scaled)"
+              },
+              {
+                "name": "timeInForce",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "reduceOnly",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "closeOnTrigger",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "stopPxRp",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "takeProfitRp",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "stopLossRp",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "triggerType",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Place order with arguments in URL query string (preferred method)."
+        },
+        {
+          "info": {
+            "name": "Modify hedged order",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.phemex.com/g-orders/replace",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "orderID",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "origClOrdID",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "clOrdID",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "priceRp",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "orderQtyRq",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "stopPxRp",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "takeProfitRp",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "stopLossRp",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "posSide",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Modify an existing hedged order by orderID."
+        },
+        {
+          "info": {
+            "name": "Cancel hedged order",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.phemex.com/g-orders/cancel",
+            "params": [
+              {
+                "name": "orderID",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "posSide",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Cancel a single hedged order by orderID."
+        },
+        {
+          "info": {
+            "name": "Cancel all hedged orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.phemex.com/g-orders/all",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "untriggered",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Cancel all orders for a hedged perpetual symbol."
+        },
+        {
+          "info": {
+            "name": "Get active hedged orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.phemex.com/g-orders/activeList",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Query open orders for a hedged perpetual symbol."
+        },
+        {
+          "info": {
+            "name": "Get closed orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.phemex.com/exchange/order/v2/orderList",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "currency",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ordStatus",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ordType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "withCount",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Query closed hedged orders with filters."
+        },
+        {
+          "info": {
+            "name": "Get hedged order history",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.phemex.com/api-data/g-futures/orders",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Query order history for hedged perpetuals."
+        },
+        {
+          "info": {
+            "name": "Get hedged orders by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.phemex.com/api-data/g-futures/orders/by-order-id",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "orderID",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "clOrdID",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Query orders by orderID or clOrdID for hedged perpetuals."
+        },
+        {
+          "info": {
+            "name": "List active orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.phemex.com/spot/orders",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List all open orders for a symbol."
+        },
+        {
+          "info": {
+            "name": "Place spot order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.phemex.com/spot/orders",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Place a new spot order with JSON body."
+        },
+        {
+          "info": {
+            "name": "Modify spot order",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.phemex.com/spot/orders",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "orderID",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "clOrdID",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "priceEp",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "baseQtyEv",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Modify an existing spot order."
+        },
+        {
+          "info": {
+            "name": "Cancel spot order",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.phemex.com/spot/orders",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "orderID",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "clOrdID",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Cancel a specific spot order."
+        },
+        {
+          "info": {
+            "name": "Place spot order via query string",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.phemex.com/spot/orders/create",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "side",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "qtyType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "baseQtyEv",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "quoteQtyEv",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "priceEp",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ordType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "timeInForce",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "clOrdID",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "stopPxEp",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Place a new spot order (preferred method) using URL query string."
+        },
+        {
+          "info": {
+            "name": "Cancel all spot orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.phemex.com/spot/orders/all",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "untriggered",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Cancel all orders for a spot symbol."
+        },
+        {
+          "info": {
+            "name": "Query specific active order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.phemex.com/spot/orders/active",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "orderID",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "clOrdID",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Query open orders by clOrdID or orderID."
+        },
+        {
+          "info": {
+            "name": "Query closed orders (deprecated)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.phemex.com/exchange/spot/order",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ordStatus",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ordType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Query closed spot orders. This endpoint is deprecated."
+        },
+        {
+          "info": {
+            "name": "Get spot order history",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.phemex.com/api-data/spots/orders",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Query order history by symbol."
+        },
+        {
+          "info": {
+            "name": "Get spot orders by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.phemex.com/api-data/spots/orders/by-order-id",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "orderID",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "clOrdID",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Query orders by specific order IDs."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

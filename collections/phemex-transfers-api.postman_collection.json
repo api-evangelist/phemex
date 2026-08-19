@@ -1,0 +1,403 @@
+{
+  "item": [
+    {
+      "id": "2ff29f6c-a7c8-4f2c-82a4-896c70e5dc5e",
+      "name": "Transfers",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "93dfc350-9efb-45ea-a4e9-e911bf7c8d61",
+          "name": "Transfer between spot and futures",
+          "request": {
+            "name": "Transfer between spot and futures",
+            "description": {
+              "content": "Transfer assets between spot and futures accounts.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assets",
+                "transfer"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amountEv\": \"<integer>\",\n  \"currency\": \"<string>\",\n  \"moveOp\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "95e10098-45ba-4490-b303-13b43f4f9a70",
+              "name": "Transfer result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    "transfer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-phemex-access-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amountEv\": \"<integer>\",\n  \"currency\": \"<string>\",\n  \"moveOp\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1230,\n  \"data\": {\n    \"amountEv\": 8221,\n    \"currency\": \"string\",\n    \"linkKey\": \"string\",\n    \"side\": 4507,\n    \"status\": 3730,\n    \"userId\": 9823\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0aa66389-e75e-4bfd-abaa-b01234afd715",
+          "name": "Get transfer history",
+          "request": {
+            "name": "Get transfer history",
+            "description": {
+              "content": "Retrieve transfer history between spot and futures accounts.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assets",
+                "transfer"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "currency",
+                  "value": "<string>",
+                  "description": "(Required) Currency to query"
+                },
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<integer>",
+                  "description": "Start time in milliseconds"
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<integer>",
+                  "description": "End time in milliseconds"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "Pagination offset (default 0)"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Page size (default 20, max 200)"
+                },
+                {
+                  "disabled": false,
+                  "key": "side",
+                  "value": "<integer>",
+                  "description": "(Required) Direction (1=futures to spot, 2=spot to futures)"
+                },
+                {
+                  "disabled": false,
+                  "key": "bizType",
+                  "value": "<integer>",
+                  "description": "(Required) Business type"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "869f6a78-5971-4235-aa59-304af2a55823",
+              "name": "Transfer history",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    "transfer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "currency",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "side",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "bizType",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-phemex-access-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8792,\n  \"data\": {\n    \"total\": 1017,\n    \"rows\": [\n      {\n        \"amountEv\": 4465,\n        \"bizType\": 173,\n        \"createTime\": 7439,\n        \"currency\": \"string\",\n        \"linkKey\": \"string\",\n        \"side\": 4389,\n        \"status\": 86,\n        \"userId\": 6237\n      },\n      {\n        \"amountEv\": 7022,\n        \"bizType\": 9620,\n        \"createTime\": 6699,\n        \"currency\": \"string\",\n        \"linkKey\": \"string\",\n        \"side\": 5718,\n        \"status\": 8000,\n        \"userId\": 1812\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c6ec2028-339a-46f6-9e28-c3e1e5baab52",
+          "name": "Universal transfer",
+          "request": {
+            "name": "Universal transfer",
+            "description": {
+              "content": "Transfer between main/sub accounts across spot and futures account types.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assets",
+                "universal-transfer"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fromUserId\": \"<integer>\",\n  \"toUserId\": \"<integer>\",\n  \"amountEv\": \"<integer>\",\n  \"bizType\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"requestKey\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4c94369c-63b5-4cdd-8144-1556d54af0b0",
+              "name": "Transfer initiated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    "universal-transfer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-phemex-access-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fromUserId\": \"<integer>\",\n  \"toUserId\": \"<integer>\",\n  \"amountEv\": \"<integer>\",\n  \"bizType\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"requestKey\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8347,\n  \"msg\": \"string\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.phemex.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-phemex-access-token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ff435da5-97dc-4abc-b966-66bb38453f54",
+    "name": "Phemex Contract Trading Account Transfers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for trading perpetual contracts on Phemex, including order placement, position management, account queries, and market data.\n\nContact Support:\n Name: Phemex Support",
+      "type": "text/plain"
+    }
+  }
+}

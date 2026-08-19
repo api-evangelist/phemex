@@ -1,0 +1,1106 @@
+{
+  "item": [
+    {
+      "id": "b682c5bb-9a6b-480e-b156-5e8a7972f0eb",
+      "name": "Account",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f3476a11-7d72-404b-be3b-0dbe9ecab254",
+          "name": "Get account and positions",
+          "request": {
+            "name": "Get account and positions",
+            "description": {
+              "content": "Query trading account and positions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accounts",
+                "accountPositions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "currency",
+                  "value": "<string>",
+                  "description": "(Required) Settlement currency (e.g. BTC, USD)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "81f3388f-0b9f-4b1f-a25f-333eb3a5e6cc",
+              "name": "Account and positions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    "accountPositions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "currency",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-phemex-access-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1758,\n  \"msg\": \"string\",\n  \"data\": {\n    \"account\": {\n      \"accountId\": 1395,\n      \"accountBalanceEv\": 5744,\n      \"totalUsedBalanceEv\": 6239\n    },\n    \"positions\": [\n      {\n        \"symbol\": \"string\",\n        \"side\": \"string\",\n        \"size\": 1288,\n        \"avgEntryPriceEp\": 8994,\n        \"leverageEr\": 5722,\n        \"liquidationPriceEp\": 3634\n      },\n      {\n        \"symbol\": \"string\",\n        \"side\": \"string\",\n        \"size\": 5388,\n        \"avgEntryPriceEp\": 1508,\n        \"leverageEr\": 9416,\n        \"liquidationPriceEp\": 7934\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e105b22b-65bf-498b-bfb3-10dae401e973",
+          "name": "Get positions with PNL",
+          "request": {
+            "name": "Get positions with PNL",
+            "description": {
+              "content": "Query positions with unrealized PNL at mark price.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accounts",
+                "positions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "currency",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "84bbe552-da51-4156-a528-77645c068c0c",
+              "name": "Positions with PNL",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    "positions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "currency",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-phemex-access-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5939,\n  \"data\": {\n    \"positions\": [\n      {\n        \"symbol\": \"string\",\n        \"side\": \"string\",\n        \"size\": 4477,\n        \"unRealisedPnlEv\": 3624,\n        \"markPriceEp\": 9869\n      },\n      {\n        \"symbol\": \"string\",\n        \"side\": \"string\",\n        \"size\": 9643,\n        \"unRealisedPnlEv\": 5247,\n        \"markPriceEp\": 3558\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1543759c-25eb-4236-a500-5b30f09797b8",
+          "name": "Get funding fee history",
+          "request": {
+            "name": "Get funding fee history",
+            "description": {
+              "content": "Query historical funding fee records.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api-data",
+                "futures",
+                "funding-fees"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "symbol",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "51e5162f-3354-4667-a8a3-1f6db8fff1f4",
+              "name": "Funding fee history",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api-data",
+                    "futures",
+                    "funding-fees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-phemex-access-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8518,\n  \"msg\": \"string\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "619043c1-41b2-426d-b61d-9651c29eba75",
+          "name": "Get trading fee history",
+          "request": {
+            "name": "Get trading fee history",
+            "description": {
+              "content": "Retrieve trading fee history.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api-data",
+                "futures",
+                "trading-fees"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "symbol",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ad49061c-fbf1-4560-a611-d57cc57fb4d4",
+              "name": "Trading fee history",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api-data",
+                    "futures",
+                    "trading-fees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-phemex-access-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8518,\n  \"msg\": \"string\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bd58b352-8026-4c39-9429-033d3459b0f2",
+          "name": "Get hedged account positions",
+          "request": {
+            "name": "Get hedged account positions",
+            "description": {
+              "content": "Query account positions and balances for hedged perpetuals.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "g-accounts",
+                "accountPositions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "currency",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "symbol",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e377509f-c02a-4a43-b833-4204244b0e38",
+              "name": "Account and positions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "g-accounts",
+                    "accountPositions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "currency",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-phemex-access-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 3426,\n  \"data\": {\n    \"account\": {\n      \"accountBalanceRv\": \"string\",\n      \"totalUsedBalanceRv\": \"string\"\n    },\n    \"positions\": [\n      {\n        \"symbol\": \"string\",\n        \"posSide\": \"string\",\n        \"size\": \"string\",\n        \"avgEntryPriceRp\": \"string\",\n        \"leverageRr\": \"string\",\n        \"unRealisedPnlRv\": \"string\"\n      },\n      {\n        \"symbol\": \"string\",\n        \"posSide\": \"string\",\n        \"size\": \"string\",\n        \"avgEntryPriceRp\": \"string\",\n        \"leverageRr\": \"string\",\n        \"unRealisedPnlRv\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d8aeb305-817b-42ba-9da3-c9b4400e2af2",
+          "name": "Get hedged positions with PNL",
+          "request": {
+            "name": "Get hedged positions with PNL",
+            "description": {
+              "content": "Query positions with unrealized PNL at mark price.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "g-accounts",
+                "positions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "currency",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cdb4a927-643a-4c1b-ac5e-8fb7e376d982",
+              "name": "Positions with PNL",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "g-accounts",
+                    "positions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "currency",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-phemex-access-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8518,\n  \"msg\": \"string\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "35d0f6eb-810f-43dd-9abb-a0233b6b6714",
+          "name": "Get funding fee history",
+          "request": {
+            "name": "Get funding fee history",
+            "description": {
+              "content": "Query historical funding fees for hedged perpetuals.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api-data",
+                "g-futures",
+                "funding-fees"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "symbol",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "846a541e-45ca-49b0-a6a8-f02ca4fe05c1",
+              "name": "Funding fee history",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api-data",
+                    "g-futures",
+                    "funding-fees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-phemex-access-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8518,\n  \"msg\": \"string\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f69d6a60-ea51-47a2-b1be-a0829c2b5602",
+          "name": "Get trading fee history",
+          "request": {
+            "name": "Get trading fee history",
+            "description": {
+              "content": "Query trading fees history for hedged perpetuals.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api-data",
+                "g-futures",
+                "trading-fees"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "symbol",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7ba3873f-a47a-48f6-b593-32d1bfb233f2",
+              "name": "Trading fees",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api-data",
+                    "g-futures",
+                    "trading-fees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-phemex-access-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8518,\n  \"msg\": \"string\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "16aa8767-0a3f-4f41-afbf-84fd59e28e4d",
+          "name": "Get funds history",
+          "request": {
+            "name": "Get funds history",
+            "description": {
+              "content": "Query funds history for a currency.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api-data",
+                "spots",
+                "funds"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "currency",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "af8045d1-b5ef-47a5-914d-1c36681a7ab2",
+              "name": "Funds history",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api-data",
+                    "spots",
+                    "funds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "currency",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-phemex-access-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8518,\n  \"msg\": \"string\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f9894309-67fc-4834-8204-adc2510ba4d5",
+          "name": "Get profit and loss records",
+          "request": {
+            "name": "Get profit and loss records",
+            "description": {
+              "content": "Query spot profit/loss records.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api-data",
+                "spots",
+                "pnls"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c79594f0-a5c2-4d98-9c99-b9f591230f0f",
+              "name": "PNL records",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api-data",
+                    "spots",
+                    "pnls"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-phemex-access-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8518,\n  \"msg\": \"string\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.phemex.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-phemex-access-token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "35b11fa1-be22-4924-a802-9ea411b175f0",
+    "name": "Phemex Contract Trading Account API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for trading perpetual contracts on Phemex, including order placement, position management, account queries, and market data.\n\nContact Support:\n Name: Phemex Support",
+      "type": "text/plain"
+    }
+  }
+}

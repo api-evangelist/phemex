@@ -1,0 +1,271 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Phemex Contract Trading Account Market Data API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-phemex-access-token",
+      "value": "{{x-phemex-access-token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Market Data",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get product information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.phemex.com/public/products"
+          },
+          "docs": "Retrieve product information including symbols and scaling factors for contract trading."
+        },
+        {
+          "info": {
+            "name": "Get order book",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.phemex.com/md/orderbook",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Fetch current order book snapshot."
+        },
+        {
+          "info": {
+            "name": "Get recent trades",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.phemex.com/md/trade",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get recent trades for a symbol."
+        },
+        {
+          "info": {
+            "name": "Get kline data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.phemex.com/exchange/public/md/v2/kline",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "resolution",
+                "value": "",
+                "type": "query",
+                "description": "Kline resolution in seconds"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve kline/candlestick data."
+        },
+        {
+          "info": {
+            "name": "Get 24hr ticker",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.phemex.com/v1/md/ticker/24hr",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Query 24-hour ticker data."
+        },
+        {
+          "info": {
+            "name": "Get hedged order book",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.phemex.com/md/v2/orderbook",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Query current order book snapshot for hedged perpetuals."
+        },
+        {
+          "info": {
+            "name": "Get recent hedged trades",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.phemex.com/md/v2/trade",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Query recent trades for a hedged perpetual symbol."
+        },
+        {
+          "info": {
+            "name": "Get 24hr hedged ticker",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.phemex.com/md/v2/ticker/24hr",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Query 24-hour ticker statistics for hedged perpetuals."
+        },
+        {
+          "info": {
+            "name": "Get latest klines",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.phemex.com/exchange/public/md/v2/kline/last",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "resolution",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Query latest klines with specified resolution."
+        },
+        {
+          "info": {
+            "name": "Get klines by time range",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.phemex.com/exchange/public/md/v2/kline/list",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "resolution",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Query klines between from and to timestamps."
+        },
+        {
+          "info": {
+            "name": "Get 24hr ticker",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.phemex.com/md/spot/ticker/24hr",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Query 24-hour ticker metrics for a spot symbol."
+        },
+        {
+          "info": {
+            "name": "Get order book (v1)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.phemex.com/v1/md/orderbook",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve order book snapshot using v1 endpoint."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

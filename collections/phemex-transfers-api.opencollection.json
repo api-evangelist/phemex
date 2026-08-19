@@ -1,0 +1,111 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Phemex Contract Trading Account Transfers API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-phemex-access-token",
+      "value": "{{x-phemex-access-token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Transfers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get transfer history",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.phemex.com/assets/transfer",
+            "params": [
+              {
+                "name": "currency",
+                "value": "",
+                "type": "query",
+                "description": "Currency to query"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Start time in milliseconds"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query",
+                "description": "End time in milliseconds"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Pagination offset (default 0)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page size (default 20, max 200)"
+              },
+              {
+                "name": "side",
+                "value": "",
+                "type": "query",
+                "description": "Direction (1=futures to spot, 2=spot to futures)"
+              },
+              {
+                "name": "bizType",
+                "value": "",
+                "type": "query",
+                "description": "Business type"
+              }
+            ]
+          },
+          "docs": "Retrieve transfer history between spot and futures accounts."
+        },
+        {
+          "info": {
+            "name": "Transfer between spot and futures",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.phemex.com/assets/transfer",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Transfer assets between spot and futures accounts."
+        },
+        {
+          "info": {
+            "name": "Universal transfer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.phemex.com/assets/universal-transfer",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Transfer between main/sub accounts across spot and futures account types."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,398 @@
+{
+  "item": [
+    {
+      "id": "cd88e115-bfd6-4fe8-9fe2-29a4472a0e62",
+      "name": "Conversion",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "484bbafe-9fcf-454f-82e9-9aa527040d40",
+          "name": "Get conversion quote",
+          "request": {
+            "name": "Get conversion quote",
+            "description": {
+              "content": "Get a conversion rate quote for currency exchange.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assets",
+                "quote"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fromCurrency",
+                  "value": "<string>",
+                  "description": "(Required) Source currency"
+                },
+                {
+                  "disabled": false,
+                  "key": "toCurrency",
+                  "value": "<string>",
+                  "description": "(Required) Target currency"
+                },
+                {
+                  "disabled": false,
+                  "key": "fromAmountEv",
+                  "value": "<integer>",
+                  "description": "(Required) Amount to convert (scaled)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5bdaff2d-ff6b-4933-903f-5b11c10c6fd1",
+              "name": "Conversion quote",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    "quote"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fromCurrency",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "toCurrency",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fromAmountEv",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-phemex-access-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8115,\n  \"data\": {\n    \"code\": \"string\",\n    \"quoteArgs\": {\n      \"expireAt\": 192,\n      \"price\": \"string\",\n      \"proceeds\": \"string\",\n      \"quoteAt\": 9960,\n      \"ttlMs\": 7328\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "03b04e17-d54e-46b0-9039-6dd5749623a5",
+          "name": "Execute currency conversion",
+          "request": {
+            "name": "Execute currency conversion",
+            "description": {
+              "content": "Execute a currency conversion using a previously obtained quote.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assets",
+                "convert"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"toCurrency\": \"<string>\",\n  \"fromCurrency\": \"<string>\",\n  \"code\": \"<string>\",\n  \"fromAmountEv\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f362ef5c-ba35-4321-a0ac-601a91706348",
+              "name": "Conversion result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    "convert"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-phemex-access-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"toCurrency\": \"<string>\",\n  \"fromCurrency\": \"<string>\",\n  \"code\": \"<string>\",\n  \"fromAmountEv\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 2068,\n  \"data\": {\n    \"fromAmountEv\": 7813,\n    \"fromCurrency\": \"string\",\n    \"linkKey\": \"string\",\n    \"status\": 2255,\n    \"toAmountEv\": 1582,\n    \"toCurrency\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "50c42e7f-216d-4084-a235-04ca1b227900",
+          "name": "Get conversion history",
+          "request": {
+            "name": "Get conversion history",
+            "description": {
+              "content": "Query currency conversion history.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assets",
+                "convert"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fromCurrency",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "toCurrency",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "startTime",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "endTime",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "34db47eb-3fec-4095-b0d0-fab9da80770f",
+              "name": "Conversion history",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    "convert"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fromCurrency",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "toCurrency",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-phemex-access-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9141,\n  \"msg\": \"string\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.phemex.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-phemex-access-token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ec2a26e7-c49f-4b31-976d-b76eceadddd2",
+    "name": "Phemex Contract Trading Account Conversion API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for trading perpetual contracts on Phemex, including order placement, position management, account queries, and market data.\n\nContact Support:\n Name: Phemex Support",
+      "type": "text/plain"
+    }
+  }
+}

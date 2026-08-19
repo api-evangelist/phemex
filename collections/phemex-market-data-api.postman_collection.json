@@ -1,0 +1,1249 @@
+{
+  "item": [
+    {
+      "id": "5c914703-ffd7-4640-a479-c6b0e97417ce",
+      "name": "Market Data",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "eaafed4d-94fd-49b6-90ab-8ba5540fec16",
+          "name": "Get product information",
+          "request": {
+            "name": "Get product information",
+            "description": {
+              "content": "Retrieve product information including symbols and scaling factors for contract trading.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "public",
+                "products"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fab26ed6-d59d-454e-89b2-015fe7fa0080",
+              "name": "Product list",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-phemex-access-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 3694,\n  \"data\": {\n    \"products\": [\n      {\n        \"symbol\": \"string\",\n        \"priceScale\": 9478,\n        \"ratioScale\": 7742,\n        \"valueScale\": 2547,\n        \"settleCurrency\": \"string\"\n      },\n      {\n        \"symbol\": \"string\",\n        \"priceScale\": 6804,\n        \"ratioScale\": 2667,\n        \"valueScale\": 1718,\n        \"settleCurrency\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1cb87e1a-2fca-4c80-9b6d-cabb8671a8b5",
+          "name": "Get order book",
+          "request": {
+            "name": "Get order book",
+            "description": {
+              "content": "Fetch current order book snapshot.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "md",
+                "orderbook"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "symbol",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0c3ae1fc-d300-43f6-b51d-e0b4864fc3d1",
+              "name": "Order book",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "md",
+                    "orderbook"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-phemex-access-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4559,\n  \"data\": {\n    \"book\": {\n      \"asks\": [\n        [\n          948,\n          7151\n        ],\n        [\n          1937,\n          8517\n        ]\n      ],\n      \"bids\": [\n        [\n          7001,\n          4863\n        ],\n        [\n          2488,\n          1657\n        ]\n      ]\n    },\n    \"sequence\": 3620,\n    \"timestamp\": 7926,\n    \"symbol\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d1c28a15-c721-44cc-83aa-07b87a0a5ee2",
+          "name": "Get recent trades",
+          "request": {
+            "name": "Get recent trades",
+            "description": {
+              "content": "Get recent trades for a symbol.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "md",
+                "trade"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "symbol",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d1dbe5c5-0492-4c21-8ac3-8591cf001788",
+              "name": "Recent trades",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "md",
+                    "trade"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-phemex-access-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 7766,\n  \"data\": {\n    \"total\": 6309,\n    \"rows\": [\n      {\n        \"execID\": \"string\",\n        \"execQty\": 8495,\n        \"execPriceEp\": 3999,\n        \"tradeType\": \"string\",\n        \"execFeeEv\": 6671\n      },\n      {\n        \"execID\": \"string\",\n        \"execQty\": 2484,\n        \"execPriceEp\": 3767,\n        \"tradeType\": \"string\",\n        \"execFeeEv\": 8367\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "07ef82ba-9d3f-4014-b641-81cc889c432f",
+          "name": "Get kline data",
+          "request": {
+            "name": "Get kline data",
+            "description": {
+              "content": "Retrieve kline/candlestick data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "exchange",
+                "public",
+                "md",
+                "v2",
+                "kline"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "symbol",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "resolution",
+                  "value": "<integer>",
+                  "description": "(Required) Kline resolution in seconds"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e172a246-e847-4fc2-821c-df487e62c93f",
+              "name": "Kline data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "exchange",
+                    "public",
+                    "md",
+                    "v2",
+                    "kline"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "resolution",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-phemex-access-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1118,\n  \"data\": {\n    \"rows\": [\n      [\n        9463.289576311909,\n        1642.444331974403\n      ],\n      [\n        2304.314506520272,\n        6378.798996034596\n      ]\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "de2ce3b0-1baa-4145-9f4d-af3b8227fdcd",
+          "name": "Get 24hr ticker",
+          "request": {
+            "name": "Get 24hr ticker",
+            "description": {
+              "content": "Query 24-hour ticker data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "md",
+                "ticker",
+                "24hr"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "symbol",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "431eacf7-d3f1-40bb-8375-e31b14ad7d95",
+              "name": "Ticker data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "md",
+                    "ticker",
+                    "24hr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-phemex-access-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9405,\n  \"data\": {\n    \"openEp\": 5099,\n    \"highEp\": 2339,\n    \"lowEp\": 7093,\n    \"closeEp\": 593,\n    \"volumeEv\": 4156,\n    \"fundingRateEr\": 3342,\n    \"markEp\": 5757,\n    \"indexEp\": 4900,\n    \"symbol\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cf53b42c-a55b-47b0-9a1d-915951d8442a",
+          "name": "Get hedged order book",
+          "request": {
+            "name": "Get hedged order book",
+            "description": {
+              "content": "Query current order book snapshot for hedged perpetuals.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "md",
+                "v2",
+                "orderbook"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "symbol",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0915743c-6925-451a-a4ba-c71210ee5b62",
+              "name": "Order book",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "md",
+                    "v2",
+                    "orderbook"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-phemex-access-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 7688,\n  \"data\": {\n    \"asks\": [\n      [\n        \"string\",\n        \"string\"\n      ],\n      [\n        \"string\",\n        \"string\"\n      ]\n    ],\n    \"bids\": [\n      [\n        \"string\",\n        \"string\"\n      ],\n      [\n        \"string\",\n        \"string\"\n      ]\n    ],\n    \"symbol\": \"string\",\n    \"timestamp\": 8571,\n    \"sequence\": 8936\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "db7d5421-44a7-4248-8dda-d4328a0c693a",
+          "name": "Get recent hedged trades",
+          "request": {
+            "name": "Get recent hedged trades",
+            "description": {
+              "content": "Query recent trades for a hedged perpetual symbol.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "md",
+                "v2",
+                "trade"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "symbol",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a3b6790b-cfd9-4d51-8675-df7a7276f5e8",
+              "name": "Recent trades",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "md",
+                    "v2",
+                    "trade"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-phemex-access-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8741,\n  \"msg\": \"string\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "34ba222f-db12-45b7-976b-dfed59b1c541",
+          "name": "Get 24hr hedged ticker",
+          "request": {
+            "name": "Get 24hr hedged ticker",
+            "description": {
+              "content": "Query 24-hour ticker statistics for hedged perpetuals.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "md",
+                "v2",
+                "ticker",
+                "24hr"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "symbol",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "13cc8982-2177-401f-b106-2e8b3110b6e5",
+              "name": "24hr ticker",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "md",
+                    "v2",
+                    "ticker",
+                    "24hr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-phemex-access-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8023,\n  \"data\": {\n    \"symbol\": \"string\",\n    \"openRp\": \"string\",\n    \"highRp\": \"string\",\n    \"lowRp\": \"string\",\n    \"closeRp\": \"string\",\n    \"volumeRq\": \"string\",\n    \"markPriceRp\": \"string\",\n    \"indexPriceRp\": \"string\",\n    \"fundingRateRr\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "84dd5ea1-5e30-4cc4-b248-7219d490df36",
+          "name": "Get latest klines",
+          "request": {
+            "name": "Get latest klines",
+            "description": {
+              "content": "Query latest klines with specified resolution.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "exchange",
+                "public",
+                "md",
+                "v2",
+                "kline",
+                "last"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "symbol",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "resolution",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c917b8ca-c812-411a-8ed7-4eaa8a6ba06e",
+              "name": "Kline data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "exchange",
+                    "public",
+                    "md",
+                    "v2",
+                    "kline",
+                    "last"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "resolution",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-phemex-access-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8741,\n  \"msg\": \"string\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f00aca04-4f72-45eb-a69f-e6bde53ba5ea",
+          "name": "Get klines by time range",
+          "request": {
+            "name": "Get klines by time range",
+            "description": {
+              "content": "Query klines between from and to timestamps.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "exchange",
+                "public",
+                "md",
+                "v2",
+                "kline",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "symbol",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "resolution",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c3d7e27e-da95-4461-ab10-509ea5f10c9b",
+              "name": "Kline list",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "exchange",
+                    "public",
+                    "md",
+                    "v2",
+                    "kline",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "resolution",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-phemex-access-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8741,\n  \"msg\": \"string\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ebacc8e2-1744-492f-aea8-1aed53e61124",
+          "name": "Get 24hr ticker",
+          "request": {
+            "name": "Get 24hr ticker",
+            "description": {
+              "content": "Query 24-hour ticker metrics for a spot symbol.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "md",
+                "spot",
+                "ticker",
+                "24hr"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "symbol",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a4f263e0-c1d1-4db3-8605-734ea113ce61",
+              "name": "24hr ticker",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "md",
+                    "spot",
+                    "ticker",
+                    "24hr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-phemex-access-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5963,\n  \"data\": {\n    \"openEp\": 6293,\n    \"highEp\": 9095,\n    \"lowEp\": 6605,\n    \"lastEp\": 182,\n    \"bidEp\": 1605,\n    \"askEp\": 7994,\n    \"symbol\": \"string\",\n    \"volumeEv\": 4683,\n    \"turnoverEv\": 8073,\n    \"timestamp\": 1952\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c9e63c45-1183-4064-9ba3-e3f15f75981a",
+          "name": "Get order book (v1)",
+          "request": {
+            "name": "Get order book (v1)",
+            "description": {
+              "content": "Retrieve order book snapshot using v1 endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "md",
+                "orderbook"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "symbol",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4d93d0fd-efc1-4575-a1cb-a6780623722e",
+              "name": "Order book",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "md",
+                    "orderbook"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-phemex-access-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 3255,\n  \"data\": {\n    \"book\": {\n      \"asks\": [\n        [\n          4953,\n          1430\n        ],\n        [\n          4165,\n          770\n        ]\n      ],\n      \"bids\": [\n        [\n          1755,\n          4264\n        ],\n        [\n          5973,\n          1818\n        ]\n      ]\n    },\n    \"sequence\": 5557,\n    \"timestamp\": 7997,\n    \"symbol\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.phemex.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-phemex-access-token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "281737b5-08e7-40e2-9044-a3c38e53f35b",
+    "name": "Phemex Contract Trading Account Market Data API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for trading perpetual contracts on Phemex, including order placement, position management, account queries, and market data.\n\nContact Support:\n Name: Phemex Support",
+      "type": "text/plain"
+    }
+  }
+}

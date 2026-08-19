@@ -1,0 +1,192 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Phemex Contract Trading Account Positions API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-phemex-access-token",
+      "value": "{{x-phemex-access-token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Positions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Set leverage",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.phemex.com/positions/leverage",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "leverage",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "leverageEr",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Modify position leverage for a symbol."
+        },
+        {
+          "info": {
+            "name": "Set risk limit",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.phemex.com/positions/riskLimit",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "riskLimit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "riskLimitEv",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Adjust position risk limit."
+        },
+        {
+          "info": {
+            "name": "Assign margin",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.phemex.com/positions/assign",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "posBalanceEv",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Allocate balance to isolated margin position."
+        },
+        {
+          "info": {
+            "name": "Switch position mode",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.phemex.com/g-positions/switch-pos-mode-sync",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "targetPosMode",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Switch between OneWay and Hedged position modes."
+        },
+        {
+          "info": {
+            "name": "Set hedged leverage",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.phemex.com/g-positions/leverage",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "leverageRr",
+                "value": "",
+                "type": "query",
+                "description": "Leverage for one-way mode"
+              },
+              {
+                "name": "longLeverageRr",
+                "value": "",
+                "type": "query",
+                "description": "Leverage for long positions"
+              },
+              {
+                "name": "shortLeverageRr",
+                "value": "",
+                "type": "query",
+                "description": "Leverage for short positions"
+              }
+            ]
+          },
+          "docs": "Set leverage for hedged positions — supports separate long/short leverage."
+        },
+        {
+          "info": {
+            "name": "Assign balance to position",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.phemex.com/g-positions/assign",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "posSide",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "posBalanceRv",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Assign balance to a specific hedged position side."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

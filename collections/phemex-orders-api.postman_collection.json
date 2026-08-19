@@ -1,0 +1,3935 @@
+{
+  "item": [
+    {
+      "id": "ec045a25-1ade-4a51-8faa-cfbc6bfbbb81",
+      "name": "Orders",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "453631d7-6d31-47e5-9a50-bcdb8995988d",
+          "name": "Place order",
+          "request": {
+            "name": "Place order",
+            "description": {
+              "content": "Place a new contract order with JSON body.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"symbol\": \"<string>\",\n  \"side\": \"<string>\",\n  \"orderQty\": \"<integer>\",\n  \"ordType\": \"<string>\",\n  \"clOrdID\": \"<string>\",\n  \"priceEp\": \"<integer>\",\n  \"timeInForce\": \"<string>\",\n  \"reduceOnly\": \"<boolean>\",\n  \"closeOnTrigger\": \"<boolean>\",\n  \"stopPxEp\": \"<integer>\",\n  \"takeProfitEp\": \"<integer>\",\n  \"stopLossEp\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9d580803-6ec7-4d4c-a810-64b7538d88ec",
+              "name": "Order placed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-phemex-access-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"symbol\": \"<string>\",\n  \"side\": \"<string>\",\n  \"orderQty\": \"<integer>\",\n  \"ordType\": \"<string>\",\n  \"clOrdID\": \"<string>\",\n  \"priceEp\": \"<integer>\",\n  \"timeInForce\": \"<string>\",\n  \"reduceOnly\": \"<boolean>\",\n  \"closeOnTrigger\": \"<boolean>\",\n  \"stopPxEp\": \"<integer>\",\n  \"takeProfitEp\": \"<integer>\",\n  \"stopLossEp\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 7393,\n  \"msg\": \"string\",\n  \"data\": {\n    \"orderID\": \"string\",\n    \"clOrdID\": \"string\",\n    \"symbol\": \"string\",\n    \"side\": \"string\",\n    \"ordStatus\": \"string\",\n    \"cumQty\": 2557,\n    \"leavesQty\": 3598,\n    \"priceEp\": 7639,\n    \"ordType\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "914284ea-2884-4143-9c8e-6233837b010c",
+          "name": "Bulk cancel orders",
+          "request": {
+            "name": "Bulk cancel orders",
+            "description": {
+              "content": "Cancel multiple orders by orderID list.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "symbol",
+                  "value": "<string>",
+                  "description": "(Required) Trading symbol"
+                },
+                {
+                  "disabled": false,
+                  "key": "orderID",
+                  "value": "<string>",
+                  "description": "Comma-separated order IDs"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8d3dad72-a263-499e-afe6-c71541b3fa15",
+              "name": "Orders cancelled",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderID",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-phemex-access-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4656,\n  \"msg\": \"string\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7a918b74-e451-4a2d-9862-2efc2249225a",
+          "name": "Place order via query string",
+          "request": {
+            "name": "Place order via query string",
+            "description": {
+              "content": "Create order via URL query string parameters (preferred method).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orders",
+                "create"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "clOrdID",
+                  "value": "<string>",
+                  "description": "Client order ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "symbol",
+                  "value": "<string>",
+                  "description": "(Required) Trading symbol"
+                },
+                {
+                  "disabled": false,
+                  "key": "side",
+                  "value": "<string>",
+                  "description": "(Required) Order side"
+                },
+                {
+                  "disabled": false,
+                  "key": "orderQty",
+                  "value": "<integer>",
+                  "description": "(Required) Order quantity"
+                },
+                {
+                  "disabled": false,
+                  "key": "ordType",
+                  "value": "<string>",
+                  "description": "Order type"
+                },
+                {
+                  "disabled": false,
+                  "key": "priceEp",
+                  "value": "<integer>",
+                  "description": "Scaled price"
+                },
+                {
+                  "disabled": false,
+                  "key": "timeInForce",
+                  "value": "<string>",
+                  "description": "Time in force"
+                },
+                {
+                  "disabled": false,
+                  "key": "reduceOnly",
+                  "value": "<boolean>",
+                  "description": "Reduce-only flag"
+                },
+                {
+                  "disabled": false,
+                  "key": "closeOnTrigger",
+                  "value": "<boolean>",
+                  "description": "Close on trigger flag"
+                },
+                {
+                  "disabled": false,
+                  "key": "stopPxEp",
+                  "value": "<integer>",
+                  "description": "Scaled stop price"
+                },
+                {
+                  "disabled": false,
+                  "key": "takeProfitEp",
+                  "value": "<integer>",
+                  "description": "Scaled take profit price"
+                },
+                {
+                  "disabled": false,
+                  "key": "stopLossEp",
+                  "value": "<integer>",
+                  "description": "Scaled stop loss price"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6cde3a4f-0396-440f-afaf-f7298c7cbc16",
+              "name": "Order created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    "create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "clOrdID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "side",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderQty",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "ordType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "priceEp",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "timeInForce",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "reduceOnly",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "closeOnTrigger",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "stopPxEp",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "takeProfitEp",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "stopLossEp",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-phemex-access-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 7393,\n  \"msg\": \"string\",\n  \"data\": {\n    \"orderID\": \"string\",\n    \"clOrdID\": \"string\",\n    \"symbol\": \"string\",\n    \"side\": \"string\",\n    \"ordStatus\": \"string\",\n    \"cumQty\": 2557,\n    \"leavesQty\": 3598,\n    \"priceEp\": 7639,\n    \"ordType\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bff484fc-8bd9-40b5-971c-deee70849c03",
+          "name": "Modify order",
+          "request": {
+            "name": "Modify order",
+            "description": {
+              "content": "Modify an existing order by orderID or clOrdID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orders",
+                "replace"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "symbol",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "orderID",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "origClOrdID",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "clOrdID",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "priceEp",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "orderQty",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "stopPxEp",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "takeProfitEp",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "stopLossEp",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a81fdfac-080a-4055-acdd-dcfd49bcbe02",
+              "name": "Order modified",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    "replace"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "origClOrdID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "clOrdID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "priceEp",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "orderQty",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "stopPxEp",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "takeProfitEp",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "stopLossEp",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-phemex-access-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 7393,\n  \"msg\": \"string\",\n  \"data\": {\n    \"orderID\": \"string\",\n    \"clOrdID\": \"string\",\n    \"symbol\": \"string\",\n    \"side\": \"string\",\n    \"ordStatus\": \"string\",\n    \"cumQty\": 2557,\n    \"leavesQty\": 3598,\n    \"priceEp\": 7639,\n    \"ordType\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fb66e8f5-4866-47de-be89-6b90368b02b5",
+          "name": "Cancel order",
+          "request": {
+            "name": "Cancel order",
+            "description": {
+              "content": "Cancel a single order by orderID or clOrdID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orders",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "symbol",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "orderID",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "clOrdID",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d2f1c9fc-8d4b-4ea4-8bd2-4c09e0772918",
+              "name": "Order cancelled",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "clOrdID",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-phemex-access-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 7393,\n  \"msg\": \"string\",\n  \"data\": {\n    \"orderID\": \"string\",\n    \"clOrdID\": \"string\",\n    \"symbol\": \"string\",\n    \"side\": \"string\",\n    \"ordStatus\": \"string\",\n    \"cumQty\": 2557,\n    \"leavesQty\": 3598,\n    \"priceEp\": 7639,\n    \"ordType\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eeba8103-bc80-456e-956d-1fe9774452e0",
+          "name": "Cancel all orders",
+          "request": {
+            "name": "Cancel all orders",
+            "description": {
+              "content": "Cancel all orders for a symbol.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orders",
+                "all"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "symbol",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "untriggered",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "text",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ef3be5d3-56b0-4ae3-95a4-dab813dff465",
+              "name": "All orders cancelled",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    "all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "untriggered",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "text",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-phemex-access-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4656,\n  \"msg\": \"string\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "567f9ed6-b818-4876-98e2-f745fe0448f0",
+          "name": "Get active orders",
+          "request": {
+            "name": "Get active orders",
+            "description": {
+              "content": "Retrieve open orders for a symbol.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orders",
+                "activeList"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "symbol",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9ab7c498-13b1-49dc-b764-29efc17778a6",
+              "name": "Active orders list",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    "activeList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-phemex-access-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8446,\n  \"msg\": \"string\",\n  \"data\": {\n    \"total\": 8337,\n    \"rows\": [\n      {\n        \"code\": 7234,\n        \"msg\": \"string\",\n        \"data\": {\n          \"orderID\": \"string\",\n          \"clOrdID\": \"string\",\n          \"symbol\": \"string\",\n          \"side\": \"string\",\n          \"ordStatus\": \"string\",\n          \"cumQty\": 1932,\n          \"leavesQty\": 8083,\n          \"priceEp\": 6575,\n          \"ordType\": \"string\"\n        }\n      },\n      {\n        \"code\": 5805,\n        \"msg\": \"string\",\n        \"data\": {\n          \"orderID\": \"string\",\n          \"clOrdID\": \"string\",\n          \"symbol\": \"string\",\n          \"side\": \"string\",\n          \"ordStatus\": \"string\",\n          \"cumQty\": 9243,\n          \"leavesQty\": 5632,\n          \"priceEp\": 9021,\n          \"ordType\": \"string\"\n        }\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ee012c20-1c97-4187-8945-1f9168232083",
+          "name": "Get order history",
+          "request": {
+            "name": "Get order history",
+            "description": {
+              "content": "Query closed order history.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "exchange",
+                "order",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "symbol",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<integer>",
+                  "description": "Start time in milliseconds"
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<integer>",
+                  "description": "End time in milliseconds"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "ordStatus",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "withCount",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1093b36e-3933-4777-af38-f9de0f261076",
+              "name": "Order history",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "exchange",
+                    "order",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "ordStatus",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "withCount",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-phemex-access-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9812,\n  \"msg\": \"string\",\n  \"data\": {\n    \"total\": 7619,\n    \"rows\": [\n      {\n        \"code\": 3615,\n        \"msg\": \"string\",\n        \"data\": {\n          \"orderID\": \"string\",\n          \"clOrdID\": \"string\",\n          \"symbol\": \"string\",\n          \"side\": \"string\",\n          \"ordStatus\": \"string\",\n          \"cumQty\": 6633,\n          \"leavesQty\": 1083,\n          \"priceEp\": 1673,\n          \"ordType\": \"string\"\n        }\n      },\n      {\n        \"code\": 2602,\n        \"msg\": \"string\",\n        \"data\": {\n          \"orderID\": \"string\",\n          \"clOrdID\": \"string\",\n          \"symbol\": \"string\",\n          \"side\": \"string\",\n          \"ordStatus\": \"string\",\n          \"cumQty\": 3176,\n          \"leavesQty\": 4419,\n          \"priceEp\": 7372,\n          \"ordType\": \"string\"\n        }\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "212898f5-1ee6-4b9c-bde1-3760ad38c012",
+          "name": "Get order by ID",
+          "request": {
+            "name": "Get order by ID",
+            "description": {
+              "content": "Fetch orders by orderID or clOrdID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "exchange",
+                "order"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "symbol",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "orderID",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "clOrdID",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d9c25ddc-1655-4941-bebf-914b04b35ac6",
+              "name": "Order details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "exchange",
+                    "order"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "clOrdID",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-phemex-access-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 7393,\n  \"msg\": \"string\",\n  \"data\": {\n    \"orderID\": \"string\",\n    \"clOrdID\": \"string\",\n    \"symbol\": \"string\",\n    \"side\": \"string\",\n    \"ordStatus\": \"string\",\n    \"cumQty\": 2557,\n    \"leavesQty\": 3598,\n    \"priceEp\": 7639,\n    \"ordType\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "689bd9a3-ad41-46cc-8970-8b4bcf1a4a59",
+          "name": "Get futures order history",
+          "request": {
+            "name": "Get futures order history",
+            "description": {
+              "content": "Fetch order history with optional time range.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api-data",
+                "futures",
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "symbol",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0ddd20cb-cc18-4814-ab18-0bed9b846e8b",
+              "name": "Order history",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api-data",
+                    "futures",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-phemex-access-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9812,\n  \"msg\": \"string\",\n  \"data\": {\n    \"total\": 7619,\n    \"rows\": [\n      {\n        \"code\": 3615,\n        \"msg\": \"string\",\n        \"data\": {\n          \"orderID\": \"string\",\n          \"clOrdID\": \"string\",\n          \"symbol\": \"string\",\n          \"side\": \"string\",\n          \"ordStatus\": \"string\",\n          \"cumQty\": 6633,\n          \"leavesQty\": 1083,\n          \"priceEp\": 1673,\n          \"ordType\": \"string\"\n        }\n      },\n      {\n        \"code\": 2602,\n        \"msg\": \"string\",\n        \"data\": {\n          \"orderID\": \"string\",\n          \"clOrdID\": \"string\",\n          \"symbol\": \"string\",\n          \"side\": \"string\",\n          \"ordStatus\": \"string\",\n          \"cumQty\": 3176,\n          \"leavesQty\": 4419,\n          \"priceEp\": 7372,\n          \"ordType\": \"string\"\n        }\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "117bb2ff-ae6c-4ca8-b3a7-2fdb908b4e4e",
+          "name": "Get futures orders by ID",
+          "request": {
+            "name": "Get futures orders by ID",
+            "description": {
+              "content": "Retrieve orders by orderID or clOrdID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api-data",
+                "futures",
+                "orders",
+                "by-order-id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "symbol",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "orderID",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "clOrdID",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8f5df5a9-0f53-4735-ad9b-263df64175a6",
+              "name": "Order details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api-data",
+                    "futures",
+                    "orders",
+                    "by-order-id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "clOrdID",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-phemex-access-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 7393,\n  \"msg\": \"string\",\n  \"data\": {\n    \"orderID\": \"string\",\n    \"clOrdID\": \"string\",\n    \"symbol\": \"string\",\n    \"side\": \"string\",\n    \"ordStatus\": \"string\",\n    \"cumQty\": 2557,\n    \"leavesQty\": 3598,\n    \"priceEp\": 7639,\n    \"ordType\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "db9d998f-c13f-4e1f-8954-aded47556d0a",
+          "name": "Place hedged order",
+          "request": {
+            "name": "Place hedged order",
+            "description": {
+              "content": "Place order with JSON body for hedged perpetual trading.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "g-orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"symbol\": \"<string>\",\n  \"side\": \"<string>\",\n  \"posSide\": \"<string>\",\n  \"orderQtyRq\": \"<string>\",\n  \"ordType\": \"<string>\",\n  \"clOrdID\": \"<string>\",\n  \"priceRp\": \"<string>\",\n  \"timeInForce\": \"<string>\",\n  \"reduceOnly\": \"<boolean>\",\n  \"stopPxRp\": \"<string>\",\n  \"takeProfitRp\": \"<string>\",\n  \"stopLossRp\": \"<string>\",\n  \"triggerType\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0a820590-f08e-4804-b251-4534629156c4",
+              "name": "Order placed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "g-orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-phemex-access-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"symbol\": \"<string>\",\n  \"side\": \"<string>\",\n  \"posSide\": \"<string>\",\n  \"orderQtyRq\": \"<string>\",\n  \"ordType\": \"<string>\",\n  \"clOrdID\": \"<string>\",\n  \"priceRp\": \"<string>\",\n  \"timeInForce\": \"<string>\",\n  \"reduceOnly\": \"<boolean>\",\n  \"stopPxRp\": \"<string>\",\n  \"takeProfitRp\": \"<string>\",\n  \"stopLossRp\": \"<string>\",\n  \"triggerType\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 924,\n  \"msg\": \"string\",\n  \"data\": {\n    \"orderID\": \"string\",\n    \"clOrdID\": \"string\",\n    \"symbol\": \"string\",\n    \"side\": \"string\",\n    \"posSide\": \"string\",\n    \"ordStatus\": \"string\",\n    \"ordType\": \"string\",\n    \"priceRp\": \"string\",\n    \"orderQtyRq\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6bd772d5-d279-48d7-b41b-02613f8e1fd6",
+          "name": "Bulk cancel hedged orders",
+          "request": {
+            "name": "Bulk cancel hedged orders",
+            "description": {
+              "content": "Cancel multiple hedged orders at once.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "g-orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "symbol",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "orderID",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "posSide",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "89b4f38c-98ff-4830-9653-2197f822db7a",
+              "name": "Orders cancelled",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "g-orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "posSide",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-phemex-access-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4656,\n  \"msg\": \"string\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "62787300-734e-4551-a5ae-4e4aa9f9c212",
+          "name": "Place hedged order via query string",
+          "request": {
+            "name": "Place hedged order via query string",
+            "description": {
+              "content": "Place order with arguments in URL query string (preferred method).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "g-orders",
+                "create"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "clOrdID",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "symbol",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "side",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "posSide",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "orderQtyRq",
+                  "value": "<string>",
+                  "description": "(Required) Real quantity (not scaled)"
+                },
+                {
+                  "disabled": false,
+                  "key": "ordType",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "priceRp",
+                  "value": "<string>",
+                  "description": "Real price (not scaled)"
+                },
+                {
+                  "disabled": false,
+                  "key": "timeInForce",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "reduceOnly",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "closeOnTrigger",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "stopPxRp",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "takeProfitRp",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "stopLossRp",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "triggerType",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "00539375-f9f5-4e41-a4a3-044be859d633",
+              "name": "Order created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "g-orders",
+                    "create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "clOrdID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "side",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "posSide",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderQtyRq",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ordType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "priceRp",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "timeInForce",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "reduceOnly",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "closeOnTrigger",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "stopPxRp",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "takeProfitRp",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "stopLossRp",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "triggerType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-phemex-access-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 924,\n  \"msg\": \"string\",\n  \"data\": {\n    \"orderID\": \"string\",\n    \"clOrdID\": \"string\",\n    \"symbol\": \"string\",\n    \"side\": \"string\",\n    \"posSide\": \"string\",\n    \"ordStatus\": \"string\",\n    \"ordType\": \"string\",\n    \"priceRp\": \"string\",\n    \"orderQtyRq\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5a868f3a-f51a-42ea-a206-7e70ff0838b1",
+          "name": "Modify hedged order",
+          "request": {
+            "name": "Modify hedged order",
+            "description": {
+              "content": "Modify an existing hedged order by orderID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "g-orders",
+                "replace"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "symbol",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "orderID",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "origClOrdID",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "clOrdID",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "priceRp",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "orderQtyRq",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "stopPxRp",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "takeProfitRp",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "stopLossRp",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "posSide",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a054e461-8273-463a-bb63-85a8d94f7e9b",
+              "name": "Order modified",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "g-orders",
+                    "replace"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "origClOrdID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "clOrdID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "priceRp",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderQtyRq",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "stopPxRp",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "takeProfitRp",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "stopLossRp",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "posSide",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-phemex-access-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 924,\n  \"msg\": \"string\",\n  \"data\": {\n    \"orderID\": \"string\",\n    \"clOrdID\": \"string\",\n    \"symbol\": \"string\",\n    \"side\": \"string\",\n    \"posSide\": \"string\",\n    \"ordStatus\": \"string\",\n    \"ordType\": \"string\",\n    \"priceRp\": \"string\",\n    \"orderQtyRq\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f93f1980-a848-47a2-ae88-23d2fde14f5c",
+          "name": "Cancel hedged order",
+          "request": {
+            "name": "Cancel hedged order",
+            "description": {
+              "content": "Cancel a single hedged order by orderID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "g-orders",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "orderID",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "symbol",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "posSide",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1a1a79ec-7618-4594-94e4-030f0a27ba4e",
+              "name": "Order cancelled",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "g-orders",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "orderID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "posSide",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-phemex-access-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 924,\n  \"msg\": \"string\",\n  \"data\": {\n    \"orderID\": \"string\",\n    \"clOrdID\": \"string\",\n    \"symbol\": \"string\",\n    \"side\": \"string\",\n    \"posSide\": \"string\",\n    \"ordStatus\": \"string\",\n    \"ordType\": \"string\",\n    \"priceRp\": \"string\",\n    \"orderQtyRq\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2510f436-334a-45f4-9156-7f5d657d3de9",
+          "name": "Cancel all hedged orders",
+          "request": {
+            "name": "Cancel all hedged orders",
+            "description": {
+              "content": "Cancel all orders for a hedged perpetual symbol.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "g-orders",
+                "all"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "symbol",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "untriggered",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "21fea668-7883-4fc4-82c1-a2f3973b3423",
+              "name": "All orders cancelled",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "g-orders",
+                    "all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "untriggered",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-phemex-access-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4656,\n  \"msg\": \"string\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dc0a56ac-c9a0-461c-aada-a5ed786b8692",
+          "name": "Get active hedged orders",
+          "request": {
+            "name": "Get active hedged orders",
+            "description": {
+              "content": "Query open orders for a hedged perpetual symbol.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "g-orders",
+                "activeList"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "symbol",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d52f1836-9690-43ac-8dfc-7acf1f98f349",
+              "name": "Active orders",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "g-orders",
+                    "activeList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-phemex-access-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4009,\n  \"data\": {\n    \"total\": 7217,\n    \"rows\": [\n      {\n        \"code\": 3434,\n        \"msg\": \"string\",\n        \"data\": {\n          \"orderID\": \"string\",\n          \"clOrdID\": \"string\",\n          \"symbol\": \"string\",\n          \"side\": \"string\",\n          \"posSide\": \"string\",\n          \"ordStatus\": \"string\",\n          \"ordType\": \"string\",\n          \"priceRp\": \"string\",\n          \"orderQtyRq\": \"string\"\n        }\n      },\n      {\n        \"code\": 7039,\n        \"msg\": \"string\",\n        \"data\": {\n          \"orderID\": \"string\",\n          \"clOrdID\": \"string\",\n          \"symbol\": \"string\",\n          \"side\": \"string\",\n          \"posSide\": \"string\",\n          \"ordStatus\": \"string\",\n          \"ordType\": \"string\",\n          \"priceRp\": \"string\",\n          \"orderQtyRq\": \"string\"\n        }\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "70adcc64-e187-4909-9858-c16fe0c6393a",
+          "name": "Get closed orders",
+          "request": {
+            "name": "Get closed orders",
+            "description": {
+              "content": "Query closed hedged orders with filters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "exchange",
+                "order",
+                "v2",
+                "orderList"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "symbol",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "currency",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "ordStatus",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "ordType",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "withCount",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d14ccb11-b1b0-4ff9-b3dc-48bf8cedac51",
+              "name": "Closed orders",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "exchange",
+                    "order",
+                    "v2",
+                    "orderList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "currency",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ordStatus",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ordType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "withCount",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-phemex-access-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4054,\n  \"data\": {\n    \"total\": 8425,\n    \"rows\": [\n      {\n        \"code\": 8223,\n        \"msg\": \"string\",\n        \"data\": {\n          \"orderID\": \"string\",\n          \"clOrdID\": \"string\",\n          \"symbol\": \"string\",\n          \"side\": \"string\",\n          \"posSide\": \"string\",\n          \"ordStatus\": \"string\",\n          \"ordType\": \"string\",\n          \"priceRp\": \"string\",\n          \"orderQtyRq\": \"string\"\n        }\n      },\n      {\n        \"code\": 9440,\n        \"msg\": \"string\",\n        \"data\": {\n          \"orderID\": \"string\",\n          \"clOrdID\": \"string\",\n          \"symbol\": \"string\",\n          \"side\": \"string\",\n          \"posSide\": \"string\",\n          \"ordStatus\": \"string\",\n          \"ordType\": \"string\",\n          \"priceRp\": \"string\",\n          \"orderQtyRq\": \"string\"\n        }\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fedc503f-0a61-4948-8c7b-3b1f667872c7",
+          "name": "Get hedged order history",
+          "request": {
+            "name": "Get hedged order history",
+            "description": {
+              "content": "Query order history for hedged perpetuals.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api-data",
+                "g-futures",
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "symbol",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c1313900-b6e7-4837-9e82-391a63776a1e",
+              "name": "Order history",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api-data",
+                    "g-futures",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-phemex-access-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4054,\n  \"data\": {\n    \"total\": 8425,\n    \"rows\": [\n      {\n        \"code\": 8223,\n        \"msg\": \"string\",\n        \"data\": {\n          \"orderID\": \"string\",\n          \"clOrdID\": \"string\",\n          \"symbol\": \"string\",\n          \"side\": \"string\",\n          \"posSide\": \"string\",\n          \"ordStatus\": \"string\",\n          \"ordType\": \"string\",\n          \"priceRp\": \"string\",\n          \"orderQtyRq\": \"string\"\n        }\n      },\n      {\n        \"code\": 9440,\n        \"msg\": \"string\",\n        \"data\": {\n          \"orderID\": \"string\",\n          \"clOrdID\": \"string\",\n          \"symbol\": \"string\",\n          \"side\": \"string\",\n          \"posSide\": \"string\",\n          \"ordStatus\": \"string\",\n          \"ordType\": \"string\",\n          \"priceRp\": \"string\",\n          \"orderQtyRq\": \"string\"\n        }\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8add0199-773e-44ac-b999-ed316e3e1f50",
+          "name": "Get hedged orders by ID",
+          "request": {
+            "name": "Get hedged orders by ID",
+            "description": {
+              "content": "Query orders by orderID or clOrdID for hedged perpetuals.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api-data",
+                "g-futures",
+                "orders",
+                "by-order-id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "symbol",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "orderID",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "clOrdID",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f5f43cc1-0931-4fd3-aeae-0ceca30d849d",
+              "name": "Order details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api-data",
+                    "g-futures",
+                    "orders",
+                    "by-order-id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "clOrdID",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-phemex-access-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 924,\n  \"msg\": \"string\",\n  \"data\": {\n    \"orderID\": \"string\",\n    \"clOrdID\": \"string\",\n    \"symbol\": \"string\",\n    \"side\": \"string\",\n    \"posSide\": \"string\",\n    \"ordStatus\": \"string\",\n    \"ordType\": \"string\",\n    \"priceRp\": \"string\",\n    \"orderQtyRq\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f10b5e26-91bb-420b-8203-1c7ae61fc91e",
+          "name": "Place spot order",
+          "request": {
+            "name": "Place spot order",
+            "description": {
+              "content": "Place a new spot order with JSON body.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "spot",
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"symbol\": \"<string>\",\n  \"side\": \"<string>\",\n  \"qtyType\": \"<string>\",\n  \"ordType\": \"<string>\",\n  \"clOrdID\": \"<string>\",\n  \"quoteQtyEv\": \"<integer>\",\n  \"baseQtyEv\": \"<integer>\",\n  \"priceEp\": \"<integer>\",\n  \"stopPxEp\": \"<integer>\",\n  \"trigger\": \"<string>\",\n  \"timeInForce\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ec633979-6d1f-4e22-938b-f6c740515f7a",
+              "name": "Order placed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "spot",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-phemex-access-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"symbol\": \"<string>\",\n  \"side\": \"<string>\",\n  \"qtyType\": \"<string>\",\n  \"ordType\": \"<string>\",\n  \"clOrdID\": \"<string>\",\n  \"quoteQtyEv\": \"<integer>\",\n  \"baseQtyEv\": \"<integer>\",\n  \"priceEp\": \"<integer>\",\n  \"stopPxEp\": \"<integer>\",\n  \"trigger\": \"<string>\",\n  \"timeInForce\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9130,\n  \"msg\": \"string\",\n  \"data\": {\n    \"orderID\": \"string\",\n    \"clOrdID\": \"string\",\n    \"symbol\": \"string\",\n    \"side\": \"string\",\n    \"ordStatus\": \"string\",\n    \"baseQtyEv\": 3695,\n    \"priceEp\": 6223\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bf874016-663a-47c5-bea4-a411c5865e23",
+          "name": "Modify spot order",
+          "request": {
+            "name": "Modify spot order",
+            "description": {
+              "content": "Modify an existing spot order.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "spot",
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "symbol",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "orderID",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "clOrdID",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "priceEp",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "baseQtyEv",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fb2b9938-79bc-40cb-995c-26de99914b75",
+              "name": "Order modified",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "spot",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "clOrdID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "priceEp",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "baseQtyEv",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-phemex-access-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9130,\n  \"msg\": \"string\",\n  \"data\": {\n    \"orderID\": \"string\",\n    \"clOrdID\": \"string\",\n    \"symbol\": \"string\",\n    \"side\": \"string\",\n    \"ordStatus\": \"string\",\n    \"baseQtyEv\": 3695,\n    \"priceEp\": 6223\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3eb11b09-0919-4ac7-8090-c555681ddb84",
+          "name": "Cancel spot order",
+          "request": {
+            "name": "Cancel spot order",
+            "description": {
+              "content": "Cancel a specific spot order.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "spot",
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "symbol",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "orderID",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "clOrdID",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ebdc6116-4809-4aa6-9ba3-8abd60d310ee",
+              "name": "Order cancelled",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "spot",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "clOrdID",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-phemex-access-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9130,\n  \"msg\": \"string\",\n  \"data\": {\n    \"orderID\": \"string\",\n    \"clOrdID\": \"string\",\n    \"symbol\": \"string\",\n    \"side\": \"string\",\n    \"ordStatus\": \"string\",\n    \"baseQtyEv\": 3695,\n    \"priceEp\": 6223\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6636b929-4d74-44d5-8a83-5e595cf292c5",
+          "name": "List active orders",
+          "request": {
+            "name": "List active orders",
+            "description": {
+              "content": "List all open orders for a symbol.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "spot",
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "symbol",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "aa47ab4c-8a60-442b-a283-276fdd6dc9fe",
+              "name": "Active orders",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "spot",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-phemex-access-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4876,\n  \"data\": {\n    \"total\": 710,\n    \"rows\": [\n      {\n        \"code\": 7048,\n        \"msg\": \"string\",\n        \"data\": {\n          \"orderID\": \"string\",\n          \"clOrdID\": \"string\",\n          \"symbol\": \"string\",\n          \"side\": \"string\",\n          \"ordStatus\": \"string\",\n          \"baseQtyEv\": 8948,\n          \"priceEp\": 4735\n        }\n      },\n      {\n        \"code\": 6460,\n        \"msg\": \"string\",\n        \"data\": {\n          \"orderID\": \"string\",\n          \"clOrdID\": \"string\",\n          \"symbol\": \"string\",\n          \"side\": \"string\",\n          \"ordStatus\": \"string\",\n          \"baseQtyEv\": 5433,\n          \"priceEp\": 8263\n        }\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ed496a6c-4baa-4dfb-b9e0-f2a90babfdae",
+          "name": "Place spot order via query string",
+          "request": {
+            "name": "Place spot order via query string",
+            "description": {
+              "content": "Place a new spot order (preferred method) using URL query string.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "spot",
+                "orders",
+                "create"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "symbol",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "side",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "qtyType",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "baseQtyEv",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "quoteQtyEv",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "priceEp",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "ordType",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "timeInForce",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "clOrdID",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "stopPxEp",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "37e26c9f-57e6-4d7d-a546-7ac1f89787ba",
+              "name": "Order placed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "spot",
+                    "orders",
+                    "create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "side",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "qtyType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "baseQtyEv",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "quoteQtyEv",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "priceEp",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "ordType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "timeInForce",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "clOrdID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "stopPxEp",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-phemex-access-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9130,\n  \"msg\": \"string\",\n  \"data\": {\n    \"orderID\": \"string\",\n    \"clOrdID\": \"string\",\n    \"symbol\": \"string\",\n    \"side\": \"string\",\n    \"ordStatus\": \"string\",\n    \"baseQtyEv\": 3695,\n    \"priceEp\": 6223\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "22cf0d1c-de1b-4a02-aaf8-f01991906d67",
+          "name": "Cancel all spot orders",
+          "request": {
+            "name": "Cancel all spot orders",
+            "description": {
+              "content": "Cancel all orders for a spot symbol.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "spot",
+                "orders",
+                "all"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "symbol",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "untriggered",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4e175709-6dea-43b0-bcd3-121b295d19d9",
+              "name": "All orders cancelled",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "spot",
+                    "orders",
+                    "all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "untriggered",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-phemex-access-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4656,\n  \"msg\": \"string\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1d7a31e7-babc-4512-bb97-e531c18842f6",
+          "name": "Query specific active order",
+          "request": {
+            "name": "Query specific active order",
+            "description": {
+              "content": "Query open orders by clOrdID or orderID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "spot",
+                "orders",
+                "active"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "symbol",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "orderID",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "clOrdID",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "46753240-f3f0-40fa-bc6a-94ecc7147b4f",
+              "name": "Active order",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "spot",
+                    "orders",
+                    "active"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "clOrdID",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-phemex-access-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9130,\n  \"msg\": \"string\",\n  \"data\": {\n    \"orderID\": \"string\",\n    \"clOrdID\": \"string\",\n    \"symbol\": \"string\",\n    \"side\": \"string\",\n    \"ordStatus\": \"string\",\n    \"baseQtyEv\": 3695,\n    \"priceEp\": 6223\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a3f17de9-df13-4b29-b82f-a751cec0a691",
+          "name": "Query closed orders (deprecated)",
+          "request": {
+            "name": "Query closed orders (deprecated)",
+            "description": {
+              "content": "Query closed spot orders. This endpoint is deprecated.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "exchange",
+                "spot",
+                "order"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "symbol",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "ordStatus",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "ordType",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8b8e88cc-469d-4a93-824a-dff6104129ef",
+              "name": "Closed orders",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "exchange",
+                    "spot",
+                    "order"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ordStatus",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ordType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-phemex-access-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 7869,\n  \"data\": {\n    \"total\": 6928,\n    \"rows\": [\n      {\n        \"code\": 96,\n        \"msg\": \"string\",\n        \"data\": {\n          \"orderID\": \"string\",\n          \"clOrdID\": \"string\",\n          \"symbol\": \"string\",\n          \"side\": \"string\",\n          \"ordStatus\": \"string\",\n          \"baseQtyEv\": 3836,\n          \"priceEp\": 1925\n        }\n      },\n      {\n        \"code\": 3519,\n        \"msg\": \"string\",\n        \"data\": {\n          \"orderID\": \"string\",\n          \"clOrdID\": \"string\",\n          \"symbol\": \"string\",\n          \"side\": \"string\",\n          \"ordStatus\": \"string\",\n          \"baseQtyEv\": 6387,\n          \"priceEp\": 3183\n        }\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5fca81d1-8759-4575-8a2e-169c5275b473",
+          "name": "Get spot order history",
+          "request": {
+            "name": "Get spot order history",
+            "description": {
+              "content": "Query order history by symbol.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api-data",
+                "spots",
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "symbol",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8c5320db-1915-4689-90ae-5ad616a0e129",
+              "name": "Order history",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api-data",
+                    "spots",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-phemex-access-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 7869,\n  \"data\": {\n    \"total\": 6928,\n    \"rows\": [\n      {\n        \"code\": 96,\n        \"msg\": \"string\",\n        \"data\": {\n          \"orderID\": \"string\",\n          \"clOrdID\": \"string\",\n          \"symbol\": \"string\",\n          \"side\": \"string\",\n          \"ordStatus\": \"string\",\n          \"baseQtyEv\": 3836,\n          \"priceEp\": 1925\n        }\n      },\n      {\n        \"code\": 3519,\n        \"msg\": \"string\",\n        \"data\": {\n          \"orderID\": \"string\",\n          \"clOrdID\": \"string\",\n          \"symbol\": \"string\",\n          \"side\": \"string\",\n          \"ordStatus\": \"string\",\n          \"baseQtyEv\": 6387,\n          \"priceEp\": 3183\n        }\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a032050c-07ad-459f-84e2-f44e9a2e5d03",
+          "name": "Get spot orders by ID",
+          "request": {
+            "name": "Get spot orders by ID",
+            "description": {
+              "content": "Query orders by specific order IDs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api-data",
+                "spots",
+                "orders",
+                "by-order-id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "symbol",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "orderID",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "clOrdID",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d14d6371-a0dc-4149-b0dd-a69eb0d15e52",
+              "name": "Order details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api-data",
+                    "spots",
+                    "orders",
+                    "by-order-id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "symbol",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "clOrdID",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-phemex-access-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9130,\n  \"msg\": \"string\",\n  \"data\": {\n    \"orderID\": \"string\",\n    \"clOrdID\": \"string\",\n    \"symbol\": \"string\",\n    \"side\": \"string\",\n    \"ordStatus\": \"string\",\n    \"baseQtyEv\": 3695,\n    \"priceEp\": 6223\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.phemex.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-phemex-access-token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "9e8e748a-5c52-471a-9448-af2d4230ee15",
+    "name": "Phemex Contract Trading Account Orders API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for trading perpetual contracts on Phemex, including order placement, position management, account queries, and market data.\n\nContact Support:\n Name: Phemex Support",
+      "type": "text/plain"
+    }
+  }
+}
