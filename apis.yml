@@ -129,6 +129,8 @@ apis:
   humanURL: https://github.com/phemex/phemex-api-docs/blob/master/Public-Contract-API-en.md
   baseURL: https://api.phemex.com
   tags:
+  - Order
+  tags_raw:
   - Orders
   properties:
   - type: OpenAPI
