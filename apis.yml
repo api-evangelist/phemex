@@ -1,5 +1,18 @@
 name: Phemex
 description: Phemex is a cryptocurrency derivatives exchange offering REST and WebSocket APIs for spot trading, perpetual contracts, futures, hedged perpetual contracts, asset transfers, and real-time market data. The platform provides low-latency trading infrastructure with HMAC SHA256 authentication and tiered rate limiting for institutional and retail traders.
+deliveryModel:
+  model: unknown
+  open_source: unknown
+  commercial: true
+  callable_host: true
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - openapi
+  - pricing
+  - repository-unlicensed
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
@@ -318,6 +331,8 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/phemex/refs/heads/main/rate-limits/transfer.yml
 common:
+  - type: IssueTracker
+    url: https://github.com/phemex/phemex-api-docs/issues
   - type: AgenticAccess
     url: agentic-access/phemex-agentic-access.yml
   - type: DomainSecurity
