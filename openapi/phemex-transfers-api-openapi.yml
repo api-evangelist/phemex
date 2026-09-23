@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Phemex Contract Trading Account Transfers API
-  description: REST API for trading perpetual contracts on Phemex, including order placement, position management, account queries, and market data.
+  title: Phemex Asset Transfer Transfers API
+  description: REST API for transferring assets between spot and futures accounts, managing sub-account fund movements, and performing universal transfers between main and sub-accounts on Phemex.
   version: 1.0.0
   contact:
     name: Phemex Support
@@ -116,25 +116,6 @@ paths:
                 $ref: '#/components/schemas/ApiResponse'
 components:
   schemas:
-    TransferRequest:
-      type: object
-      required:
-      - amountEv
-      - currency
-      - moveOp
-      properties:
-        amountEv:
-          type: integer
-          description: Amount to transfer (scaled)
-        currency:
-          type: string
-          description: Currency code (e.g. BTC, ETH, USD)
-        moveOp:
-          type: integer
-          enum:
-          - 1
-          - 2
-          description: Direction (1=futures to spot, 2=spot to futures)
     TransferListResponse:
       type: object
       properties:
@@ -166,15 +147,6 @@ components:
                     type: integer
                   userId:
                     type: integer
-    ApiResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        msg:
-          type: string
-        data:
-          type: object
     TransferResponse:
       type: object
       properties:
@@ -195,6 +167,34 @@ components:
               type: integer
             userId:
               type: integer
+    ApiResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        msg:
+          type: string
+        data:
+          type: object
+    TransferRequest:
+      type: object
+      required:
+      - amountEv
+      - currency
+      - moveOp
+      properties:
+        amountEv:
+          type: integer
+          description: Amount to transfer (scaled)
+        currency:
+          type: string
+          description: Currency code (e.g. BTC, ETH, USD)
+        moveOp:
+          type: integer
+          enum:
+          - 1
+          - 2
+          description: Direction (1=futures to spot, 2=spot to futures)
     UniversalTransferRequest:
       type: object
       required:

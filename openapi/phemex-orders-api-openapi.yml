@@ -1,11 +1,11 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Phemex Contract Trading Account Orders API
-  description: REST API for trading perpetual contracts on Phemex, including order placement, position management, account queries, and market data.
+  title: Phemex Orders API
   version: 1.0.0
   contact:
     name: Phemex Support
     url: https://phemex.com/help-center
+  description: 'Operations tagged Orders across 3 of this provider''s published API definitions: contract.yml, hedged-perpetual.yml, spot.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.phemex.com
   description: Production
@@ -62,6 +62,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
+    servers:
+    - url: https://api.phemex.com
+      description: Production
+    - url: https://testnet-api.phemex.com
+      description: Testnet
   /orders/create:
     put:
       summary: Place order via query string
@@ -153,6 +158,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OrderResponse'
+    servers:
+    - url: https://api.phemex.com
+      description: Production
+    - url: https://testnet-api.phemex.com
+      description: Testnet
   /orders/replace:
     put:
       summary: Modify order
@@ -205,6 +215,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OrderResponse'
+    servers:
+    - url: https://api.phemex.com
+      description: Production
+    - url: https://testnet-api.phemex.com
+      description: Testnet
   /orders/cancel:
     delete:
       summary: Cancel order
@@ -233,6 +248,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OrderResponse'
+    servers:
+    - url: https://api.phemex.com
+      description: Production
+    - url: https://testnet-api.phemex.com
+      description: Testnet
   /orders/all:
     delete:
       summary: Cancel all orders
@@ -261,6 +281,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
+    servers:
+    - url: https://api.phemex.com
+      description: Production
+    - url: https://testnet-api.phemex.com
+      description: Testnet
   /orders/activeList:
     get:
       summary: Get active orders
@@ -281,6 +306,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OrderListResponse'
+    servers:
+    - url: https://api.phemex.com
+      description: Production
+    - url: https://testnet-api.phemex.com
+      description: Testnet
   /exchange/order/list:
     get:
       summary: Get order history
@@ -327,6 +357,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OrderListResponse'
+    servers:
+    - url: https://api.phemex.com
+      description: Production
+    - url: https://testnet-api.phemex.com
+      description: Testnet
   /exchange/order:
     get:
       summary: Get order by ID
@@ -355,6 +390,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OrderResponse'
+    servers:
+    - url: https://api.phemex.com
+      description: Production
+    - url: https://testnet-api.phemex.com
+      description: Testnet
   /api-data/futures/orders:
     get:
       summary: Get futures order history
@@ -391,6 +431,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OrderListResponse'
+    servers:
+    - url: https://api.phemex.com
+      description: Production
+    - url: https://testnet-api.phemex.com
+      description: Testnet
   /api-data/futures/orders/by-order-id:
     get:
       summary: Get futures orders by ID
@@ -419,6 +464,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OrderResponse'
+    servers:
+    - url: https://api.phemex.com
+      description: Production
+    - url: https://testnet-api.phemex.com
+      description: Testnet
   /g-orders:
     post:
       summary: Place hedged order
@@ -469,6 +519,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
+    servers:
+    - url: https://api.phemex.com
+      description: Production
+    - url: https://testnet-api.phemex.com
+      description: Testnet
   /g-orders/create:
     put:
       summary: Place hedged order via query string
@@ -562,6 +617,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OrderResponse_2'
+    servers:
+    - url: https://api.phemex.com
+      description: Production
+    - url: https://testnet-api.phemex.com
+      description: Testnet
   /g-orders/replace:
     put:
       summary: Modify hedged order
@@ -621,6 +681,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OrderResponse_2'
+    servers:
+    - url: https://api.phemex.com
+      description: Production
+    - url: https://testnet-api.phemex.com
+      description: Testnet
   /g-orders/cancel:
     delete:
       summary: Cancel hedged order
@@ -653,6 +718,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OrderResponse_2'
+    servers:
+    - url: https://api.phemex.com
+      description: Production
+    - url: https://testnet-api.phemex.com
+      description: Testnet
   /g-orders/all:
     delete:
       summary: Cancel all hedged orders
@@ -677,6 +747,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
+    servers:
+    - url: https://api.phemex.com
+      description: Production
+    - url: https://testnet-api.phemex.com
+      description: Testnet
   /g-orders/activeList:
     get:
       summary: Get active hedged orders
@@ -697,6 +772,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OrderListResponse_2'
+    servers:
+    - url: https://api.phemex.com
+      description: Production
+    - url: https://testnet-api.phemex.com
+      description: Testnet
   /exchange/order/v2/orderList:
     get:
       summary: Get closed orders
@@ -748,6 +828,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OrderListResponse_2'
+    servers:
+    - url: https://api.phemex.com
+      description: Production
+    - url: https://testnet-api.phemex.com
+      description: Testnet
   /api-data/g-futures/orders:
     get:
       summary: Get hedged order history
@@ -784,6 +869,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OrderListResponse_2'
+    servers:
+    - url: https://api.phemex.com
+      description: Production
+    - url: https://testnet-api.phemex.com
+      description: Testnet
   /api-data/g-futures/orders/by-order-id:
     get:
       summary: Get hedged orders by ID
@@ -812,6 +902,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OrderResponse_2'
+    servers:
+    - url: https://api.phemex.com
+      description: Production
+    - url: https://testnet-api.phemex.com
+      description: Testnet
   /spot/orders:
     post:
       summary: Place spot order
@@ -913,6 +1008,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OrderListResponse_3'
+    servers:
+    - url: https://api.phemex.com
+      description: Production
+    - url: https://testnet-api.phemex.com
+      description: Testnet
   /spot/orders/create:
     put:
       summary: Place spot order via query string
@@ -987,6 +1087,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OrderResponse_3'
+    servers:
+    - url: https://api.phemex.com
+      description: Production
+    - url: https://testnet-api.phemex.com
+      description: Testnet
   /spot/orders/all:
     delete:
       summary: Cancel all spot orders
@@ -1011,6 +1116,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
+    servers:
+    - url: https://api.phemex.com
+      description: Production
+    - url: https://testnet-api.phemex.com
+      description: Testnet
   /spot/orders/active:
     get:
       summary: Query specific active order
@@ -1039,6 +1149,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OrderResponse_3'
+    servers:
+    - url: https://api.phemex.com
+      description: Production
+    - url: https://testnet-api.phemex.com
+      description: Testnet
   /exchange/spot/order:
     get:
       summary: Query closed orders (deprecated)
@@ -1076,6 +1191,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OrderListResponse_3'
+    servers:
+    - url: https://api.phemex.com
+      description: Production
+    - url: https://testnet-api.phemex.com
+      description: Testnet
   /api-data/spots/orders:
     get:
       summary: Get spot order history
@@ -1112,6 +1232,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OrderListResponse_3'
+    servers:
+    - url: https://api.phemex.com
+      description: Production
+    - url: https://testnet-api.phemex.com
+      description: Testnet
   /api-data/spots/orders/by-order-id:
     get:
       summary: Get spot orders by ID
@@ -1140,13 +1265,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OrderResponse_3'
+    servers:
+    - url: https://api.phemex.com
+      description: Production
+    - url: https://testnet-api.phemex.com
+      description: Testnet
 components:
   schemas:
-    OrderListResponse_2:
+    OrderListResponse:
       type: object
       properties:
         code:
           type: integer
+        msg:
+          type: string
         data:
           type: object
           properties:
@@ -1155,7 +1287,7 @@ components:
             rows:
               type: array
               items:
-                $ref: '#/components/schemas/OrderResponse_2'
+                $ref: '#/components/schemas/OrderResponse'
     ApiResponse:
       type: object
       properties:
@@ -1165,66 +1297,34 @@ components:
           type: string
         data:
           type: object
-    SpotOrderRequest:
-      type: object
-      required:
-      - symbol
-      - side
-      - qtyType
-      - ordType
-      properties:
-        symbol:
-          type: string
-        clOrdID:
-          type: string
-        side:
-          type: string
-          enum:
-          - Buy
-          - Sell
-        qtyType:
-          type: string
-          enum:
-          - ByBase
-          - ByQuote
-        quoteQtyEv:
-          type: integer
-        baseQtyEv:
-          type: integer
-        priceEp:
-          type: integer
-        stopPxEp:
-          type: integer
-        trigger:
-          type: string
-        ordType:
-          type: string
-          enum:
-          - Limit
-          - Market
-          - Stop
-          - StopLimit
-        timeInForce:
-          type: string
-          enum:
-          - GoodTillCancel
-          - PostOnly
-          - ImmediateOrCancel
-          - FillOrKill
-    OrderListResponse_3:
+    OrderResponse:
       type: object
       properties:
         code:
           type: integer
+        msg:
+          type: string
         data:
           type: object
           properties:
-            total:
+            orderID:
+              type: string
+            clOrdID:
+              type: string
+            symbol:
+              type: string
+            side:
+              type: string
+            ordStatus:
+              type: string
+            cumQty:
               type: integer
-            rows:
-              type: array
-              items:
-                $ref: '#/components/schemas/OrderResponse_3'
+            leavesQty:
+              type: integer
+            priceEp:
+              type: integer
+            ordType:
+              type: string
     ContractOrderRequest:
       type: object
       required:
@@ -1271,93 +1371,11 @@ components:
           type: integer
         stopLossEp:
           type: integer
-    OrderResponse_2:
+    OrderListResponse_2:
       type: object
       properties:
         code:
           type: integer
-        msg:
-          type: string
-        data:
-          type: object
-          properties:
-            orderID:
-              type: string
-            clOrdID:
-              type: string
-            symbol:
-              type: string
-            side:
-              type: string
-            posSide:
-              type: string
-            ordStatus:
-              type: string
-            ordType:
-              type: string
-            priceRp:
-              type: string
-            orderQtyRq:
-              type: string
-    OrderResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        msg:
-          type: string
-        data:
-          type: object
-          properties:
-            orderID:
-              type: string
-            clOrdID:
-              type: string
-            symbol:
-              type: string
-            side:
-              type: string
-            ordStatus:
-              type: string
-            cumQty:
-              type: integer
-            leavesQty:
-              type: integer
-            priceEp:
-              type: integer
-            ordType:
-              type: string
-    OrderResponse_3:
-      type: object
-      properties:
-        code:
-          type: integer
-        msg:
-          type: string
-        data:
-          type: object
-          properties:
-            orderID:
-              type: string
-            clOrdID:
-              type: string
-            symbol:
-              type: string
-            side:
-              type: string
-            ordStatus:
-              type: string
-            baseQtyEv:
-              type: integer
-            priceEp:
-              type: integer
-    OrderListResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        msg:
-          type: string
         data:
           type: object
           properties:
@@ -1366,7 +1384,7 @@ components:
             rows:
               type: array
               items:
-                $ref: '#/components/schemas/OrderResponse'
+                $ref: '#/components/schemas/OrderResponse_2'
     HedgedOrderRequest:
       type: object
       required:
@@ -1420,9 +1438,125 @@ components:
           type: string
         triggerType:
           type: string
+    OrderResponse_2:
+      type: object
+      properties:
+        code:
+          type: integer
+        msg:
+          type: string
+        data:
+          type: object
+          properties:
+            orderID:
+              type: string
+            clOrdID:
+              type: string
+            symbol:
+              type: string
+            side:
+              type: string
+            posSide:
+              type: string
+            ordStatus:
+              type: string
+            ordType:
+              type: string
+            priceRp:
+              type: string
+            orderQtyRq:
+              type: string
+    OrderListResponse_3:
+      type: object
+      properties:
+        code:
+          type: integer
+        data:
+          type: object
+          properties:
+            total:
+              type: integer
+            rows:
+              type: array
+              items:
+                $ref: '#/components/schemas/OrderResponse_3'
+    SpotOrderRequest:
+      type: object
+      required:
+      - symbol
+      - side
+      - qtyType
+      - ordType
+      properties:
+        symbol:
+          type: string
+        clOrdID:
+          type: string
+        side:
+          type: string
+          enum:
+          - Buy
+          - Sell
+        qtyType:
+          type: string
+          enum:
+          - ByBase
+          - ByQuote
+        quoteQtyEv:
+          type: integer
+        baseQtyEv:
+          type: integer
+        priceEp:
+          type: integer
+        stopPxEp:
+          type: integer
+        trigger:
+          type: string
+        ordType:
+          type: string
+          enum:
+          - Limit
+          - Market
+          - Stop
+          - StopLimit
+        timeInForce:
+          type: string
+          enum:
+          - GoodTillCancel
+          - PostOnly
+          - ImmediateOrCancel
+          - FillOrKill
+    OrderResponse_3:
+      type: object
+      properties:
+        code:
+          type: integer
+        msg:
+          type: string
+        data:
+          type: object
+          properties:
+            orderID:
+              type: string
+            clOrdID:
+              type: string
+            symbol:
+              type: string
+            side:
+              type: string
+            ordStatus:
+              type: string
+            baseQtyEv:
+              type: integer
+            priceEp:
+              type: integer
   securitySchemes:
     HmacAuth:
       type: apiKey
       in: header
       name: x-phemex-access-token
       description: HMAC SHA256 signed request. Also requires x-phemex-request-expiry and x-phemex-request-signature headers.
+x-refined-from:
+- contract.yml
+- hedged-perpetual.yml
+- spot.yml

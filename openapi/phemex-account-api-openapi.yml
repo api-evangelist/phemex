@@ -1,11 +1,11 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Phemex Contract Trading Account API
-  description: REST API for trading perpetual contracts on Phemex, including order placement, position management, account queries, and market data.
+  title: Phemex Account API
   version: 1.0.0
   contact:
     name: Phemex Support
     url: https://phemex.com/help-center
+  description: 'Operations tagged Account across 3 of this provider''s published API definitions: contract.yml, hedged-perpetual.yml, spot.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.phemex.com
   description: Production
@@ -37,6 +37,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountPositionsResponse'
+    servers:
+    - url: https://api.phemex.com
+      description: Production
+    - url: https://testnet-api.phemex.com
+      description: Testnet
   /accounts/positions:
     get:
       summary: Get positions with PNL
@@ -57,6 +62,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PositionsResponse'
+    servers:
+    - url: https://api.phemex.com
+      description: Production
+    - url: https://testnet-api.phemex.com
+      description: Testnet
   /api-data/futures/funding-fees:
     get:
       summary: Get funding fee history
@@ -85,6 +95,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
+    servers:
+    - url: https://api.phemex.com
+      description: Production
+    - url: https://testnet-api.phemex.com
+      description: Testnet
   /api-data/futures/trading-fees:
     get:
       summary: Get trading fee history
@@ -113,6 +128,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
+    servers:
+    - url: https://api.phemex.com
+      description: Production
+    - url: https://testnet-api.phemex.com
+      description: Testnet
   /g-accounts/accountPositions:
     get:
       summary: Get hedged account positions
@@ -137,6 +157,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountPositionsResponse_2'
+    servers:
+    - url: https://api.phemex.com
+      description: Production
+    - url: https://testnet-api.phemex.com
+      description: Testnet
   /g-accounts/positions:
     get:
       summary: Get hedged positions with PNL
@@ -157,6 +182,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
+    servers:
+    - url: https://api.phemex.com
+      description: Production
+    - url: https://testnet-api.phemex.com
+      description: Testnet
   /api-data/g-futures/funding-fees:
     get:
       summary: Get funding fee history
@@ -185,6 +215,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
+    servers:
+    - url: https://api.phemex.com
+      description: Production
+    - url: https://testnet-api.phemex.com
+      description: Testnet
   /api-data/g-futures/trading-fees:
     get:
       summary: Get trading fee history
@@ -213,6 +248,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
+    servers:
+    - url: https://api.phemex.com
+      description: Production
+    - url: https://testnet-api.phemex.com
+      description: Testnet
   /api-data/spots/funds:
     get:
       summary: Get funds history
@@ -249,6 +289,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
+    servers:
+    - url: https://api.phemex.com
+      description: Production
+    - url: https://testnet-api.phemex.com
+      description: Testnet
   /api-data/spots/pnls:
     get:
       summary: Get profit and loss records
@@ -272,8 +317,22 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
+    servers:
+    - url: https://api.phemex.com
+      description: Production
+    - url: https://testnet-api.phemex.com
+      description: Testnet
 components:
   schemas:
+    ApiResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        msg:
+          type: string
+        data:
+          type: object
     PositionsResponse:
       type: object
       properties:
@@ -297,47 +356,6 @@ components:
                     type: integer
                   markPriceEp:
                     type: integer
-    AccountPositionsResponse_2:
-      type: object
-      properties:
-        code:
-          type: integer
-        data:
-          type: object
-          properties:
-            account:
-              type: object
-              properties:
-                accountBalanceRv:
-                  type: string
-                totalUsedBalanceRv:
-                  type: string
-            positions:
-              type: array
-              items:
-                type: object
-                properties:
-                  symbol:
-                    type: string
-                  posSide:
-                    type: string
-                  size:
-                    type: string
-                  avgEntryPriceRp:
-                    type: string
-                  leverageRr:
-                    type: string
-                  unRealisedPnlRv:
-                    type: string
-    ApiResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        msg:
-          type: string
-        data:
-          type: object
     AccountPositionsResponse:
       type: object
       properties:
@@ -374,9 +392,45 @@ components:
                     type: integer
                   liquidationPriceEp:
                     type: integer
+    AccountPositionsResponse_2:
+      type: object
+      properties:
+        code:
+          type: integer
+        data:
+          type: object
+          properties:
+            account:
+              type: object
+              properties:
+                accountBalanceRv:
+                  type: string
+                totalUsedBalanceRv:
+                  type: string
+            positions:
+              type: array
+              items:
+                type: object
+                properties:
+                  symbol:
+                    type: string
+                  posSide:
+                    type: string
+                  size:
+                    type: string
+                  avgEntryPriceRp:
+                    type: string
+                  leverageRr:
+                    type: string
+                  unRealisedPnlRv:
+                    type: string
   securitySchemes:
     HmacAuth:
       type: apiKey
       in: header
       name: x-phemex-access-token
       description: HMAC SHA256 signed request. Also requires x-phemex-request-expiry and x-phemex-request-signature headers.
+x-refined-from:
+- contract.yml
+- hedged-perpetual.yml
+- spot.yml

@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Phemex Contract Trading Account Sub-Account Transfers API
-  description: REST API for trading perpetual contracts on Phemex, including order placement, position management, account queries, and market data.
+  title: Phemex Asset Transfer Sub-Account Transfers API
+  description: REST API for transferring assets between spot and futures accounts, managing sub-account fund movements, and performing universal transfers between main and sub-accounts on Phemex.
   version: 1.0.0
   contact:
     name: Phemex Support
@@ -128,6 +128,15 @@ paths:
                 $ref: '#/components/schemas/ApiResponse'
 components:
   schemas:
+    ApiResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        msg:
+          type: string
+        data:
+          type: object
     SubAccountTransferResponse:
       type: object
       properties:
@@ -161,15 +170,6 @@ components:
         requestKey:
           type: string
           description: Optional unique request identifier
-    ApiResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        msg:
-          type: string
-        data:
-          type: object
   securitySchemes:
     HmacAuth:
       type: apiKey

@@ -1,11 +1,11 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Phemex Contract Trading Account Trades API
-  description: REST API for trading perpetual contracts on Phemex, including order placement, position management, account queries, and market data.
+  title: Phemex Trades API
   version: 1.0.0
   contact:
     name: Phemex Support
     url: https://phemex.com/help-center
+  description: 'Operations tagged Trades across 3 of this provider''s published API definitions: contract.yml, hedged-perpetual.yml, spot.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.phemex.com
   description: Production
@@ -60,6 +60,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TradeListResponse'
+    servers:
+    - url: https://api.phemex.com
+      description: Production
+    - url: https://testnet-api.phemex.com
+      description: Testnet
   /api-data/futures/trades:
     get:
       summary: Get futures trade history
@@ -96,6 +101,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TradeListResponse'
+    servers:
+    - url: https://api.phemex.com
+      description: Production
+    - url: https://testnet-api.phemex.com
+      description: Testnet
   /exchange/order/v2/tradingList:
     get:
       summary: Get user trades
@@ -135,6 +145,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
+    servers:
+    - url: https://api.phemex.com
+      description: Production
+    - url: https://testnet-api.phemex.com
+      description: Testnet
   /api-data/g-futures/trades:
     get:
       summary: Get hedged trade history
@@ -171,6 +186,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
+    servers:
+    - url: https://api.phemex.com
+      description: Production
+    - url: https://testnet-api.phemex.com
+      description: Testnet
   /exchange/spot/order/trades:
     get:
       summary: Query trade history (deprecated)
@@ -200,6 +220,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
+    servers:
+    - url: https://api.phemex.com
+      description: Production
+    - url: https://testnet-api.phemex.com
+      description: Testnet
   /api-data/spots/trades:
     get:
       summary: Get spot trade history
@@ -236,6 +261,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
+    servers:
+    - url: https://api.phemex.com
+      description: Production
+    - url: https://testnet-api.phemex.com
+      description: Testnet
   /api-data/spots/trades/by-order-id:
     get:
       summary: Get spot trades by order ID
@@ -264,6 +294,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
+    servers:
+    - url: https://api.phemex.com
+      description: Production
+    - url: https://testnet-api.phemex.com
+      description: Testnet
 components:
   schemas:
     TradeListResponse:
@@ -306,3 +341,7 @@ components:
       in: header
       name: x-phemex-access-token
       description: HMAC SHA256 signed request. Also requires x-phemex-request-expiry and x-phemex-request-signature headers.
+x-refined-from:
+- contract.yml
+- hedged-perpetual.yml
+- spot.yml

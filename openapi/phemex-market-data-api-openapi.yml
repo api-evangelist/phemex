@@ -1,11 +1,11 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Phemex Contract Trading Account Market Data API
-  description: REST API for trading perpetual contracts on Phemex, including order placement, position management, account queries, and market data.
+  title: Phemex Market Data API
   version: 1.0.0
   contact:
     name: Phemex Support
     url: https://phemex.com/help-center
+  description: 'Operations tagged Market Data across 3 of this provider''s published API definitions: contract.yml, hedged-perpetual.yml, spot.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.phemex.com
   description: Production
@@ -31,6 +31,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProductsResponse'
+    servers:
+    - url: https://api.phemex.com
+      description: Production
+    - url: https://testnet-api.phemex.com
+      description: Testnet
   /md/orderbook:
     get:
       summary: Get order book
@@ -52,6 +57,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OrderBookResponse'
+    servers:
+    - url: https://api.phemex.com
+      description: Production
+    - url: https://testnet-api.phemex.com
+      description: Testnet
   /md/trade:
     get:
       summary: Get recent trades
@@ -73,6 +83,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TradeListResponse'
+    servers:
+    - url: https://api.phemex.com
+      description: Production
+    - url: https://testnet-api.phemex.com
+      description: Testnet
   /exchange/public/md/v2/kline:
     get:
       summary: Get kline data
@@ -104,6 +119,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/KlineResponse'
+    servers:
+    - url: https://api.phemex.com
+      description: Production
+    - url: https://testnet-api.phemex.com
+      description: Testnet
   /v1/md/ticker/24hr:
     get:
       summary: Get 24hr ticker
@@ -125,6 +145,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TickerResponse'
+    servers:
+    - url: https://api.phemex.com
+      description: Production
+    - url: https://testnet-api.phemex.com
+      description: Testnet
   /md/v2/orderbook:
     get:
       summary: Get hedged order book
@@ -146,6 +171,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OrderBookResponse_2'
+    servers:
+    - url: https://api.phemex.com
+      description: Production
+    - url: https://testnet-api.phemex.com
+      description: Testnet
   /md/v2/trade:
     get:
       summary: Get recent hedged trades
@@ -167,6 +197,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
+    servers:
+    - url: https://api.phemex.com
+      description: Production
+    - url: https://testnet-api.phemex.com
+      description: Testnet
   /md/v2/ticker/24hr:
     get:
       summary: Get 24hr hedged ticker
@@ -188,6 +223,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TickerResponse_2'
+    servers:
+    - url: https://api.phemex.com
+      description: Production
+    - url: https://testnet-api.phemex.com
+      description: Testnet
   /exchange/public/md/v2/kline/last:
     get:
       summary: Get latest klines
@@ -218,6 +258,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
+    servers:
+    - url: https://api.phemex.com
+      description: Production
+    - url: https://testnet-api.phemex.com
+      description: Testnet
   /exchange/public/md/v2/kline/list:
     get:
       summary: Get klines by time range
@@ -254,6 +299,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
+    servers:
+    - url: https://api.phemex.com
+      description: Production
+    - url: https://testnet-api.phemex.com
+      description: Testnet
   /md/spot/ticker/24hr:
     get:
       summary: Get 24hr ticker
@@ -275,6 +325,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SpotTickerResponse'
+    servers:
+    - url: https://api.phemex.com
+      description: Production
+    - url: https://testnet-api.phemex.com
+      description: Testnet
   /v1/md/orderbook:
     get:
       summary: Get order book (v1)
@@ -296,9 +351,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OrderBookResponse'
+    servers:
+    - url: https://api.phemex.com
+      description: Production
+    - url: https://testnet-api.phemex.com
+      description: Testnet
 components:
   schemas:
-    OrderBookResponse_2:
+    KlineResponse:
       type: object
       properties:
         code:
@@ -306,24 +366,90 @@ components:
         data:
           type: object
           properties:
-            asks:
+            rows:
               type: array
               items:
                 type: array
                 items:
-                  type: string
-            bids:
-              type: array
-              items:
-                type: array
-                items:
-                  type: string
-            symbol:
-              type: string
-            timestamp:
-              type: integer
+                  type: number
+    OrderBookResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        data:
+          type: object
+          properties:
+            book:
+              type: object
+              properties:
+                asks:
+                  type: array
+                  items:
+                    type: array
+                    items:
+                      type: integer
+                bids:
+                  type: array
+                  items:
+                    type: array
+                    items:
+                      type: integer
             sequence:
               type: integer
+            timestamp:
+              type: integer
+            symbol:
+              type: string
+    ProductsResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        data:
+          type: object
+          properties:
+            products:
+              type: array
+              items:
+                type: object
+                properties:
+                  symbol:
+                    type: string
+                  priceScale:
+                    type: integer
+                  ratioScale:
+                    type: integer
+                  valueScale:
+                    type: integer
+                  settleCurrency:
+                    type: string
+    TickerResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        data:
+          type: object
+          properties:
+            openEp:
+              type: integer
+            highEp:
+              type: integer
+            lowEp:
+              type: integer
+            closeEp:
+              type: integer
+            volumeEv:
+              type: integer
+            fundingRateEr:
+              type: integer
+            markEp:
+              type: integer
+            indexEp:
+              type: integer
+            symbol:
+              type: string
     TradeListResponse:
       type: object
       properties:
@@ -358,7 +484,7 @@ components:
           type: string
         data:
           type: object
-    KlineResponse:
+    OrderBookResponse_2:
       type: object
       properties:
         code:
@@ -366,64 +492,24 @@ components:
         data:
           type: object
           properties:
-            rows:
+            asks:
               type: array
               items:
                 type: array
                 items:
-                  type: number
-    ProductsResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        data:
-          type: object
-          properties:
-            products:
+                  type: string
+            bids:
               type: array
               items:
-                type: object
-                properties:
-                  symbol:
-                    type: string
-                  priceScale:
-                    type: integer
-                  ratioScale:
-                    type: integer
-                  valueScale:
-                    type: integer
-                  settleCurrency:
-                    type: string
-    OrderBookResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        data:
-          type: object
-          properties:
-            book:
-              type: object
-              properties:
-                asks:
-                  type: array
-                  items:
-                    type: array
-                    items:
-                      type: integer
-                bids:
-                  type: array
-                  items:
-                    type: array
-                    items:
-                      type: integer
-            sequence:
-              type: integer
-            timestamp:
-              type: integer
+                type: array
+                items:
+                  type: string
             symbol:
               type: string
+            timestamp:
+              type: integer
+            sequence:
+              type: integer
     TickerResponse_2:
       type: object
       properties:
@@ -449,32 +535,6 @@ components:
             indexPriceRp:
               type: string
             fundingRateRr:
-              type: string
-    TickerResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        data:
-          type: object
-          properties:
-            openEp:
-              type: integer
-            highEp:
-              type: integer
-            lowEp:
-              type: integer
-            closeEp:
-              type: integer
-            volumeEv:
-              type: integer
-            fundingRateEr:
-              type: integer
-            markEp:
-              type: integer
-            indexEp:
-              type: integer
-            symbol:
               type: string
     SpotTickerResponse:
       type: object
@@ -510,3 +570,7 @@ components:
       in: header
       name: x-phemex-access-token
       description: HMAC SHA256 signed request. Also requires x-phemex-request-expiry and x-phemex-request-signature headers.
+x-refined-from:
+- contract.yml
+- hedged-perpetual.yml
+- spot.yml

@@ -1,11 +1,11 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Phemex Contract Trading Account Wallets API
-  description: REST API for trading perpetual contracts on Phemex, including order placement, position management, account queries, and market data.
+  title: Phemex Wallets API
   version: 1.0.0
   contact:
     name: Phemex Support
     url: https://phemex.com/help-center
+  description: 'Operations tagged Wallets across 2 of this provider''s published API definitions: contract.yml, spot.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.phemex.com
   description: Production
@@ -43,6 +43,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
+    servers:
+    - url: https://api.phemex.com
+      description: Production
+    - url: https://testnet-api.phemex.com
+      description: Testnet
   /exchange/wallets/transferIn:
     post:
       summary: Transfer from sub-client
@@ -70,6 +75,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
+    servers:
+    - url: https://api.phemex.com
+      description: Production
+    - url: https://testnet-api.phemex.com
+      description: Testnet
   /exchange/wallets/createWithdraw:
     post:
       summary: Create withdrawal
@@ -107,6 +117,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
+    servers:
+    - url: https://api.phemex.com
+      description: Production
+    - url: https://testnet-api.phemex.com
+      description: Testnet
   /exchange/wallets/cancelWithdraw:
     post:
       summary: Cancel withdrawal
@@ -132,6 +147,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
+    servers:
+    - url: https://api.phemex.com
+      description: Production
+    - url: https://testnet-api.phemex.com
+      description: Testnet
   /exchange/wallets/withdrawList:
     get:
       summary: Get withdrawal history
@@ -164,6 +184,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
+    servers:
+    - url: https://api.phemex.com
+      description: Production
+    - url: https://testnet-api.phemex.com
+      description: Testnet
   /spot/wallets:
     get:
       summary: Get spot wallet balances
@@ -183,6 +208,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/WalletResponse'
+    servers:
+    - url: https://api.phemex.com
+      description: Production
+    - url: https://testnet-api.phemex.com
+      description: Testnet
   /exchange/wallets/v2/depositAddress:
     get:
       summary: Get deposit address
@@ -208,6 +238,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
+    servers:
+    - url: https://api.phemex.com
+      description: Production
+    - url: https://testnet-api.phemex.com
+      description: Testnet
   /exchange/wallets/depositList:
     get:
       summary: Get deposit history
@@ -236,8 +271,22 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
+    servers:
+    - url: https://api.phemex.com
+      description: Production
+    - url: https://testnet-api.phemex.com
+      description: Testnet
 components:
   schemas:
+    ApiResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        msg:
+          type: string
+        data:
+          type: object
     WalletResponse:
       type: object
       properties:
@@ -258,18 +307,12 @@ components:
                 type: integer
               lastUpdateTimeNs:
                 type: integer
-    ApiResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        msg:
-          type: string
-        data:
-          type: object
   securitySchemes:
     HmacAuth:
       type: apiKey
       in: header
       name: x-phemex-access-token
       description: HMAC SHA256 signed request. Also requires x-phemex-request-expiry and x-phemex-request-signature headers.
+x-refined-from:
+- contract.yml
+- spot.yml
