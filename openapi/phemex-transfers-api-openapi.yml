@@ -116,66 +116,6 @@ paths:
                 $ref: '#/components/schemas/ApiResponse'
 components:
   schemas:
-    TransferListResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        data:
-          type: object
-          properties:
-            total:
-              type: integer
-            rows:
-              type: array
-              items:
-                type: object
-                properties:
-                  amountEv:
-                    type: integer
-                  bizType:
-                    type: integer
-                  createTime:
-                    type: integer
-                  currency:
-                    type: string
-                  linkKey:
-                    type: string
-                  side:
-                    type: integer
-                  status:
-                    type: integer
-                  userId:
-                    type: integer
-    TransferResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        data:
-          type: object
-          properties:
-            amountEv:
-              type: integer
-            currency:
-              type: string
-            linkKey:
-              type: string
-            side:
-              type: integer
-            status:
-              type: integer
-            userId:
-              type: integer
-    ApiResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        msg:
-          type: string
-        data:
-          type: object
     TransferRequest:
       type: object
       required:
@@ -225,6 +165,66 @@ components:
         requestKey:
           type: string
           description: Optional unique request identifier
+    TransferListResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        data:
+          type: object
+          properties:
+            total:
+              type: integer
+            rows:
+              type: array
+              items:
+                type: object
+                properties:
+                  amountEv:
+                    type: integer
+                  bizType:
+                    type: integer
+                  createTime:
+                    type: integer
+                  currency:
+                    type: string
+                  linkKey:
+                    type: string
+                  side:
+                    type: integer
+                  status:
+                    type: integer
+                  userId:
+                    type: integer
+    ApiResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        msg:
+          type: string
+        data:
+          type: object
+    TransferResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        data:
+          type: object
+          properties:
+            amountEv:
+              type: integer
+            currency:
+              type: string
+            linkKey:
+              type: string
+            side:
+              type: integer
+            status:
+              type: integer
+            userId:
+              type: integer
   securitySchemes:
     HmacAuth:
       type: apiKey

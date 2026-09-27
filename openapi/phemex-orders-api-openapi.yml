@@ -1272,31 +1272,6 @@ paths:
       description: Testnet
 components:
   schemas:
-    OrderListResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        msg:
-          type: string
-        data:
-          type: object
-          properties:
-            total:
-              type: integer
-            rows:
-              type: array
-              items:
-                $ref: '#/components/schemas/OrderResponse'
-    ApiResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        msg:
-          type: string
-        data:
-          type: object
     OrderResponse:
       type: object
       properties:
@@ -1325,6 +1300,31 @@ components:
               type: integer
             ordType:
               type: string
+    OrderListResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        msg:
+          type: string
+        data:
+          type: object
+          properties:
+            total:
+              type: integer
+            rows:
+              type: array
+              items:
+                $ref: '#/components/schemas/OrderResponse'
+    ApiResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        msg:
+          type: string
+        data:
+          type: object
     ContractOrderRequest:
       type: object
       required:
@@ -1371,6 +1371,34 @@ components:
           type: integer
         stopLossEp:
           type: integer
+    OrderResponse_2:
+      type: object
+      properties:
+        code:
+          type: integer
+        msg:
+          type: string
+        data:
+          type: object
+          properties:
+            orderID:
+              type: string
+            clOrdID:
+              type: string
+            symbol:
+              type: string
+            side:
+              type: string
+            posSide:
+              type: string
+            ordStatus:
+              type: string
+            ordType:
+              type: string
+            priceRp:
+              type: string
+            orderQtyRq:
+              type: string
     OrderListResponse_2:
       type: object
       properties:
@@ -1438,7 +1466,7 @@ components:
           type: string
         triggerType:
           type: string
-    OrderResponse_2:
+    OrderResponse_3:
       type: object
       properties:
         code:
@@ -1456,16 +1484,12 @@ components:
               type: string
             side:
               type: string
-            posSide:
-              type: string
             ordStatus:
               type: string
-            ordType:
-              type: string
-            priceRp:
-              type: string
-            orderQtyRq:
-              type: string
+            baseQtyEv:
+              type: integer
+            priceEp:
+              type: integer
     OrderListResponse_3:
       type: object
       properties:
@@ -1526,30 +1550,6 @@ components:
           - PostOnly
           - ImmediateOrCancel
           - FillOrKill
-    OrderResponse_3:
-      type: object
-      properties:
-        code:
-          type: integer
-        msg:
-          type: string
-        data:
-          type: object
-          properties:
-            orderID:
-              type: string
-            clOrdID:
-              type: string
-            symbol:
-              type: string
-            side:
-              type: string
-            ordStatus:
-              type: string
-            baseQtyEv:
-              type: integer
-            priceEp:
-              type: integer
   securitySchemes:
     HmacAuth:
       type: apiKey

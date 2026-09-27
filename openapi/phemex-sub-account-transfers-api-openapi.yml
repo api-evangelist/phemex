@@ -128,15 +128,21 @@ paths:
                 $ref: '#/components/schemas/ApiResponse'
 components:
   schemas:
-    ApiResponse:
+    SubAccountTransferRequest:
       type: object
+      required:
+      - amountEv
+      - currency
       properties:
-        code:
+        amountEv:
           type: integer
-        msg:
+          description: Amount to transfer (scaled)
+        currency:
           type: string
-        data:
-          type: object
+          description: Currency code
+        requestKey:
+          type: string
+          description: Optional unique request identifier
     SubAccountTransferResponse:
       type: object
       properties:
@@ -155,21 +161,15 @@ components:
               type: string
             toUserId:
               type: integer
-    SubAccountTransferRequest:
+    ApiResponse:
       type: object
-      required:
-      - amountEv
-      - currency
       properties:
-        amountEv:
+        code:
           type: integer
-          description: Amount to transfer (scaled)
-        currency:
+        msg:
           type: string
-          description: Currency code
-        requestKey:
-          type: string
-          description: Optional unique request identifier
+        data:
+          type: object
   securitySchemes:
     HmacAuth:
       type: apiKey

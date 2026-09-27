@@ -129,15 +129,25 @@ components:
               type: integer
             toCurrency:
               type: string
-    ApiResponse:
+    ConvertRequest:
       type: object
+      required:
+      - toCurrency
+      - fromCurrency
+      - code
       properties:
-        code:
-          type: integer
-        msg:
+        toCurrency:
           type: string
-        data:
-          type: object
+          description: Target currency
+        fromCurrency:
+          type: string
+          description: Source currency
+        fromAmountEv:
+          type: integer
+          description: Amount to convert (scaled, optional)
+        code:
+          type: string
+          description: Encrypted conversion parameters from quote
     QuoteResponse:
       type: object
       properties:
@@ -161,25 +171,15 @@ components:
                   type: integer
                 ttlMs:
                   type: integer
-    ConvertRequest:
+    ApiResponse:
       type: object
-      required:
-      - toCurrency
-      - fromCurrency
-      - code
       properties:
-        toCurrency:
-          type: string
-          description: Target currency
-        fromCurrency:
-          type: string
-          description: Source currency
-        fromAmountEv:
-          type: integer
-          description: Amount to convert (scaled, optional)
         code:
+          type: integer
+        msg:
           type: string
-          description: Encrypted conversion parameters from quote
+        data:
+          type: object
   securitySchemes:
     HmacAuth:
       type: apiKey

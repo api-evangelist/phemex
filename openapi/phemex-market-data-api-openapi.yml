@@ -372,6 +372,80 @@ components:
                 type: array
                 items:
                   type: number
+    TradeListResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        data:
+          type: object
+          properties:
+            total:
+              type: integer
+            rows:
+              type: array
+              items:
+                type: object
+                properties:
+                  execID:
+                    type: string
+                  execQty:
+                    type: integer
+                  execPriceEp:
+                    type: integer
+                  tradeType:
+                    type: string
+                  execFeeEv:
+                    type: integer
+    TickerResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        data:
+          type: object
+          properties:
+            openEp:
+              type: integer
+            highEp:
+              type: integer
+            lowEp:
+              type: integer
+            closeEp:
+              type: integer
+            volumeEv:
+              type: integer
+            fundingRateEr:
+              type: integer
+            markEp:
+              type: integer
+            indexEp:
+              type: integer
+            symbol:
+              type: string
+    ProductsResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        data:
+          type: object
+          properties:
+            products:
+              type: array
+              items:
+                type: object
+                properties:
+                  symbol:
+                    type: string
+                  priceScale:
+                    type: integer
+                  ratioScale:
+                    type: integer
+                  valueScale:
+                    type: integer
+                  settleCurrency:
+                    type: string
     OrderBookResponse:
       type: object
       properties:
@@ -401,89 +475,6 @@ components:
               type: integer
             symbol:
               type: string
-    ProductsResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        data:
-          type: object
-          properties:
-            products:
-              type: array
-              items:
-                type: object
-                properties:
-                  symbol:
-                    type: string
-                  priceScale:
-                    type: integer
-                  ratioScale:
-                    type: integer
-                  valueScale:
-                    type: integer
-                  settleCurrency:
-                    type: string
-    TickerResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        data:
-          type: object
-          properties:
-            openEp:
-              type: integer
-            highEp:
-              type: integer
-            lowEp:
-              type: integer
-            closeEp:
-              type: integer
-            volumeEv:
-              type: integer
-            fundingRateEr:
-              type: integer
-            markEp:
-              type: integer
-            indexEp:
-              type: integer
-            symbol:
-              type: string
-    TradeListResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        data:
-          type: object
-          properties:
-            total:
-              type: integer
-            rows:
-              type: array
-              items:
-                type: object
-                properties:
-                  execID:
-                    type: string
-                  execQty:
-                    type: integer
-                  execPriceEp:
-                    type: integer
-                  tradeType:
-                    type: string
-                  execFeeEv:
-                    type: integer
-    ApiResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        msg:
-          type: string
-        data:
-          type: object
     OrderBookResponse_2:
       type: object
       properties:
@@ -536,6 +527,15 @@ components:
               type: string
             fundingRateRr:
               type: string
+    ApiResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        msg:
+          type: string
+        data:
+          type: object
     SpotTickerResponse:
       type: object
       properties:
