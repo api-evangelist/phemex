@@ -116,25 +116,6 @@ paths:
                 $ref: '#/components/schemas/ApiResponse'
 components:
   schemas:
-    TransferRequest:
-      type: object
-      required:
-      - amountEv
-      - currency
-      - moveOp
-      properties:
-        amountEv:
-          type: integer
-          description: Amount to transfer (scaled)
-        currency:
-          type: string
-          description: Currency code (e.g. BTC, ETH, USD)
-        moveOp:
-          type: integer
-          enum:
-          - 1
-          - 2
-          description: Direction (1=futures to spot, 2=spot to futures)
     UniversalTransferRequest:
       type: object
       required:
@@ -165,6 +146,45 @@ components:
         requestKey:
           type: string
           description: Optional unique request identifier
+    TransferResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        data:
+          type: object
+          properties:
+            amountEv:
+              type: integer
+            currency:
+              type: string
+            linkKey:
+              type: string
+            side:
+              type: integer
+            status:
+              type: integer
+            userId:
+              type: integer
+    TransferRequest:
+      type: object
+      required:
+      - amountEv
+      - currency
+      - moveOp
+      properties:
+        amountEv:
+          type: integer
+          description: Amount to transfer (scaled)
+        currency:
+          type: string
+          description: Currency code (e.g. BTC, ETH, USD)
+        moveOp:
+          type: integer
+          enum:
+          - 1
+          - 2
+          description: Direction (1=futures to spot, 2=spot to futures)
     TransferListResponse:
       type: object
       properties:
@@ -205,26 +225,6 @@ components:
           type: string
         data:
           type: object
-    TransferResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        data:
-          type: object
-          properties:
-            amountEv:
-              type: integer
-            currency:
-              type: string
-            linkKey:
-              type: string
-            side:
-              type: integer
-            status:
-              type: integer
-            userId:
-              type: integer
   securitySchemes:
     HmacAuth:
       type: apiKey

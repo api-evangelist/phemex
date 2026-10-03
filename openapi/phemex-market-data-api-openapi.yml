@@ -358,94 +358,6 @@ paths:
       description: Testnet
 components:
   schemas:
-    KlineResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        data:
-          type: object
-          properties:
-            rows:
-              type: array
-              items:
-                type: array
-                items:
-                  type: number
-    TradeListResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        data:
-          type: object
-          properties:
-            total:
-              type: integer
-            rows:
-              type: array
-              items:
-                type: object
-                properties:
-                  execID:
-                    type: string
-                  execQty:
-                    type: integer
-                  execPriceEp:
-                    type: integer
-                  tradeType:
-                    type: string
-                  execFeeEv:
-                    type: integer
-    TickerResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        data:
-          type: object
-          properties:
-            openEp:
-              type: integer
-            highEp:
-              type: integer
-            lowEp:
-              type: integer
-            closeEp:
-              type: integer
-            volumeEv:
-              type: integer
-            fundingRateEr:
-              type: integer
-            markEp:
-              type: integer
-            indexEp:
-              type: integer
-            symbol:
-              type: string
-    ProductsResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        data:
-          type: object
-          properties:
-            products:
-              type: array
-              items:
-                type: object
-                properties:
-                  symbol:
-                    type: string
-                  priceScale:
-                    type: integer
-                  ratioScale:
-                    type: integer
-                  valueScale:
-                    type: integer
-                  settleCurrency:
-                    type: string
     OrderBookResponse:
       type: object
       properties:
@@ -475,7 +387,7 @@ components:
               type: integer
             symbol:
               type: string
-    OrderBookResponse_2:
+    TickerResponse:
       type: object
       properties:
         code:
@@ -483,24 +395,86 @@ components:
         data:
           type: object
           properties:
-            asks:
-              type: array
-              items:
-                type: array
-                items:
-                  type: string
-            bids:
-              type: array
-              items:
-                type: array
-                items:
-                  type: string
+            openEp:
+              type: integer
+            highEp:
+              type: integer
+            lowEp:
+              type: integer
+            closeEp:
+              type: integer
+            volumeEv:
+              type: integer
+            fundingRateEr:
+              type: integer
+            markEp:
+              type: integer
+            indexEp:
+              type: integer
             symbol:
               type: string
-            timestamp:
+    TradeListResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        data:
+          type: object
+          properties:
+            total:
               type: integer
-            sequence:
-              type: integer
+            rows:
+              type: array
+              items:
+                type: object
+                properties:
+                  execID:
+                    type: string
+                  execQty:
+                    type: integer
+                  execPriceEp:
+                    type: integer
+                  tradeType:
+                    type: string
+                  execFeeEv:
+                    type: integer
+    ProductsResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        data:
+          type: object
+          properties:
+            products:
+              type: array
+              items:
+                type: object
+                properties:
+                  symbol:
+                    type: string
+                  priceScale:
+                    type: integer
+                  ratioScale:
+                    type: integer
+                  valueScale:
+                    type: integer
+                  settleCurrency:
+                    type: string
+    KlineResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        data:
+          type: object
+          properties:
+            rows:
+              type: array
+              items:
+                type: array
+                items:
+                  type: number
     TickerResponse_2:
       type: object
       properties:
@@ -527,6 +501,32 @@ components:
               type: string
             fundingRateRr:
               type: string
+    OrderBookResponse_2:
+      type: object
+      properties:
+        code:
+          type: integer
+        data:
+          type: object
+          properties:
+            asks:
+              type: array
+              items:
+                type: array
+                items:
+                  type: string
+            bids:
+              type: array
+              items:
+                type: array
+                items:
+                  type: string
+            symbol:
+              type: string
+            timestamp:
+              type: integer
+            sequence:
+              type: integer
     ApiResponse:
       type: object
       properties:

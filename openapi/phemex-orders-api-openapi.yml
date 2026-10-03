@@ -1272,6 +1272,22 @@ paths:
       description: Testnet
 components:
   schemas:
+    OrderListResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        msg:
+          type: string
+        data:
+          type: object
+          properties:
+            total:
+              type: integer
+            rows:
+              type: array
+              items:
+                $ref: '#/components/schemas/OrderResponse'
     OrderResponse:
       type: object
       properties:
@@ -1300,22 +1316,6 @@ components:
               type: integer
             ordType:
               type: string
-    OrderListResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        msg:
-          type: string
-        data:
-          type: object
-          properties:
-            total:
-              type: integer
-            rows:
-              type: array
-              items:
-                $ref: '#/components/schemas/OrderResponse'
     ApiResponse:
       type: object
       properties:
@@ -1371,6 +1371,20 @@ components:
           type: integer
         stopLossEp:
           type: integer
+    OrderListResponse_2:
+      type: object
+      properties:
+        code:
+          type: integer
+        data:
+          type: object
+          properties:
+            total:
+              type: integer
+            rows:
+              type: array
+              items:
+                $ref: '#/components/schemas/OrderResponse_2'
     OrderResponse_2:
       type: object
       properties:
@@ -1399,20 +1413,6 @@ components:
               type: string
             orderQtyRq:
               type: string
-    OrderListResponse_2:
-      type: object
-      properties:
-        code:
-          type: integer
-        data:
-          type: object
-          properties:
-            total:
-              type: integer
-            rows:
-              type: array
-              items:
-                $ref: '#/components/schemas/OrderResponse_2'
     HedgedOrderRequest:
       type: object
       required:
@@ -1466,6 +1466,20 @@ components:
           type: string
         triggerType:
           type: string
+    OrderListResponse_3:
+      type: object
+      properties:
+        code:
+          type: integer
+        data:
+          type: object
+          properties:
+            total:
+              type: integer
+            rows:
+              type: array
+              items:
+                $ref: '#/components/schemas/OrderResponse_3'
     OrderResponse_3:
       type: object
       properties:
@@ -1490,20 +1504,6 @@ components:
               type: integer
             priceEp:
               type: integer
-    OrderListResponse_3:
-      type: object
-      properties:
-        code:
-          type: integer
-        data:
-          type: object
-          properties:
-            total:
-              type: integer
-            rows:
-              type: array
-              items:
-                $ref: '#/components/schemas/OrderResponse_3'
     SpotOrderRequest:
       type: object
       required:
