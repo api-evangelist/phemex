@@ -116,36 +116,6 @@ paths:
                 $ref: '#/components/schemas/ApiResponse'
 components:
   schemas:
-    UniversalTransferRequest:
-      type: object
-      required:
-      - fromUserId
-      - toUserId
-      - amountEv
-      - bizType
-      - currency
-      properties:
-        fromUserId:
-          type: integer
-          description: Source user ID
-        toUserId:
-          type: integer
-          description: Destination user ID
-        amountEv:
-          type: integer
-          description: Amount to transfer (scaled)
-        bizType:
-          type: string
-          enum:
-          - SPOT
-          - PERPETUAL
-          description: Business type indicating account type
-        currency:
-          type: string
-          description: Currency code
-        requestKey:
-          type: string
-          description: Optional unique request identifier
     TransferResponse:
       type: object
       properties:
@@ -185,6 +155,15 @@ components:
           - 1
           - 2
           description: Direction (1=futures to spot, 2=spot to futures)
+    ApiResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        msg:
+          type: string
+        data:
+          type: object
     TransferListResponse:
       type: object
       properties:
@@ -216,15 +195,36 @@ components:
                     type: integer
                   userId:
                     type: integer
-    ApiResponse:
+    UniversalTransferRequest:
       type: object
+      required:
+      - fromUserId
+      - toUserId
+      - amountEv
+      - bizType
+      - currency
       properties:
-        code:
+        fromUserId:
           type: integer
-        msg:
+          description: Source user ID
+        toUserId:
+          type: integer
+          description: Destination user ID
+        amountEv:
+          type: integer
+          description: Amount to transfer (scaled)
+        bizType:
           type: string
-        data:
-          type: object
+          enum:
+          - SPOT
+          - PERPETUAL
+          description: Business type indicating account type
+        currency:
+          type: string
+          description: Currency code
+        requestKey:
+          type: string
+          description: Optional unique request identifier
   securitySchemes:
     HmacAuth:
       type: apiKey

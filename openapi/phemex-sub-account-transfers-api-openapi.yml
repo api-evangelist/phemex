@@ -128,21 +128,6 @@ paths:
                 $ref: '#/components/schemas/ApiResponse'
 components:
   schemas:
-    SubAccountTransferRequest:
-      type: object
-      required:
-      - amountEv
-      - currency
-      properties:
-        amountEv:
-          type: integer
-          description: Amount to transfer (scaled)
-        currency:
-          type: string
-          description: Currency code
-        requestKey:
-          type: string
-          description: Optional unique request identifier
     SubAccountTransferResponse:
       type: object
       properties:
@@ -161,6 +146,21 @@ components:
               type: string
             toUserId:
               type: integer
+    SubAccountTransferRequest:
+      type: object
+      required:
+      - amountEv
+      - currency
+      properties:
+        amountEv:
+          type: integer
+          description: Amount to transfer (scaled)
+        currency:
+          type: string
+          description: Currency code
+        requestKey:
+          type: string
+          description: Optional unique request identifier
     ApiResponse:
       type: object
       properties:

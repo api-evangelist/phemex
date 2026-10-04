@@ -358,6 +358,57 @@ paths:
       description: Testnet
 components:
   schemas:
+    TradeListResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        data:
+          type: object
+          properties:
+            total:
+              type: integer
+            rows:
+              type: array
+              items:
+                type: object
+                properties:
+                  execID:
+                    type: string
+                  execQty:
+                    type: integer
+                  execPriceEp:
+                    type: integer
+                  tradeType:
+                    type: string
+                  execFeeEv:
+                    type: integer
+    TickerResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        data:
+          type: object
+          properties:
+            openEp:
+              type: integer
+            highEp:
+              type: integer
+            lowEp:
+              type: integer
+            closeEp:
+              type: integer
+            volumeEv:
+              type: integer
+            fundingRateEr:
+              type: integer
+            markEp:
+              type: integer
+            indexEp:
+              type: integer
+            symbol:
+              type: string
     OrderBookResponse:
       type: object
       properties:
@@ -387,57 +438,6 @@ components:
               type: integer
             symbol:
               type: string
-    TickerResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        data:
-          type: object
-          properties:
-            openEp:
-              type: integer
-            highEp:
-              type: integer
-            lowEp:
-              type: integer
-            closeEp:
-              type: integer
-            volumeEv:
-              type: integer
-            fundingRateEr:
-              type: integer
-            markEp:
-              type: integer
-            indexEp:
-              type: integer
-            symbol:
-              type: string
-    TradeListResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        data:
-          type: object
-          properties:
-            total:
-              type: integer
-            rows:
-              type: array
-              items:
-                type: object
-                properties:
-                  execID:
-                    type: string
-                  execQty:
-                    type: integer
-                  execPriceEp:
-                    type: integer
-                  tradeType:
-                    type: string
-                  execFeeEv:
-                    type: integer
     ProductsResponse:
       type: object
       properties:
@@ -475,32 +475,6 @@ components:
                 type: array
                 items:
                   type: number
-    TickerResponse_2:
-      type: object
-      properties:
-        code:
-          type: integer
-        data:
-          type: object
-          properties:
-            symbol:
-              type: string
-            openRp:
-              type: string
-            highRp:
-              type: string
-            lowRp:
-              type: string
-            closeRp:
-              type: string
-            volumeRq:
-              type: string
-            markPriceRp:
-              type: string
-            indexPriceRp:
-              type: string
-            fundingRateRr:
-              type: string
     OrderBookResponse_2:
       type: object
       properties:
@@ -536,6 +510,32 @@ components:
           type: string
         data:
           type: object
+    TickerResponse_2:
+      type: object
+      properties:
+        code:
+          type: integer
+        data:
+          type: object
+          properties:
+            symbol:
+              type: string
+            openRp:
+              type: string
+            highRp:
+              type: string
+            lowRp:
+              type: string
+            closeRp:
+              type: string
+            volumeRq:
+              type: string
+            markPriceRp:
+              type: string
+            indexPriceRp:
+              type: string
+            fundingRateRr:
+              type: string
     SpotTickerResponse:
       type: object
       properties:

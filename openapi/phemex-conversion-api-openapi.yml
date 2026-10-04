@@ -109,45 +109,6 @@ paths:
                 $ref: '#/components/schemas/ApiResponse'
 components:
   schemas:
-    ConvertResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        data:
-          type: object
-          properties:
-            fromAmountEv:
-              type: integer
-            fromCurrency:
-              type: string
-            linkKey:
-              type: string
-            status:
-              type: integer
-            toAmountEv:
-              type: integer
-            toCurrency:
-              type: string
-    ConvertRequest:
-      type: object
-      required:
-      - toCurrency
-      - fromCurrency
-      - code
-      properties:
-        toCurrency:
-          type: string
-          description: Target currency
-        fromCurrency:
-          type: string
-          description: Source currency
-        fromAmountEv:
-          type: integer
-          description: Amount to convert (scaled, optional)
-        code:
-          type: string
-          description: Encrypted conversion parameters from quote
     QuoteResponse:
       type: object
       properties:
@@ -171,6 +132,25 @@ components:
                   type: integer
                 ttlMs:
                   type: integer
+    ConvertRequest:
+      type: object
+      required:
+      - toCurrency
+      - fromCurrency
+      - code
+      properties:
+        toCurrency:
+          type: string
+          description: Target currency
+        fromCurrency:
+          type: string
+          description: Source currency
+        fromAmountEv:
+          type: integer
+          description: Amount to convert (scaled, optional)
+        code:
+          type: string
+          description: Encrypted conversion parameters from quote
     ApiResponse:
       type: object
       properties:
@@ -180,6 +160,26 @@ components:
           type: string
         data:
           type: object
+    ConvertResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        data:
+          type: object
+          properties:
+            fromAmountEv:
+              type: integer
+            fromCurrency:
+              type: string
+            linkKey:
+              type: string
+            status:
+              type: integer
+            toAmountEv:
+              type: integer
+            toCurrency:
+              type: string
   securitySchemes:
     HmacAuth:
       type: apiKey
