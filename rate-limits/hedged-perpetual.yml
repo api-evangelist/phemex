@@ -1,3 +1,8 @@
+# Provenance stamped 2026-10-07 (roadmap#943): written by an API Evangelist sweep (dated 2026-06-13 by the file itself), not
+# harvested from the provider. `method: generated` so the economics campaign may replace it with a
+# dated, verbatim transcription; every figure below is unverified until it does.
+method: generated
+generated: '2026-06-13'
 name: Phemex Hedged Perpetual API Rate Limits
 description: Rate limits for Phemex hedged perpetual contract endpoints. These endpoints fall under the Contract group, sharing the 500 requests/minute standard limit and 5000 requests/minute VIP limit.
 created: '2026-06-13'

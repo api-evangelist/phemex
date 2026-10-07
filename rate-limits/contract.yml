@@ -1,3 +1,8 @@
+# Provenance stamped 2026-10-07 (roadmap#943): written by an API Evangelist sweep (dated 2026-06-13 by the file itself), not
+# harvested from the provider. `method: generated` so the economics campaign may replace it with a
+# dated, verbatim transcription; every figure below is unverified until it does.
+method: generated
+generated: '2026-06-13'
 name: Phemex Contract Trading API Rate Limits
 description: Rate limits specific to Phemex contract (perpetual) trading endpoints. Standard users get 500 requests/minute; VIP/VAPI users get 5000 requests/minute with additional per-symbol granularity.
 created: '2026-06-13'

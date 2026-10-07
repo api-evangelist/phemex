@@ -1,3 +1,8 @@
+# Provenance stamped 2026-10-07 (roadmap#943): written by an API Evangelist sweep (dated 2026-06-13 by the file itself), not
+# harvested from the provider. `method: generated` so the economics campaign may replace it with a
+# dated, verbatim transcription; every figure below is unverified until it does.
+method: generated
+generated: '2026-06-13'
 name: Phemex API Plans
 description: Phemex provides tiered API access through standard and VIP/VAPI tiers. Standard access is available to all registered users. VIP and VAPI tiers unlock higher rate limits, particularly for contract trading, based on 30-day trading volume and average asset balances.
 created: '2026-06-13'
