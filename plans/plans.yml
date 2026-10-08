@@ -89,3 +89,22 @@ plans:
     pricing:
       model: volume-based
       notes: VIP tier is earned through trading activity and asset holdings, not a subscription fee. Fee discounts include up to 20% on spot and 10% on futures trading fees.
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - free
+  units: []
+  plans:
+  - name: Standard
+    access: other
+    model: free
+    model_how: derived
+    units: []
+    periods: []
+  - name: VIP / VAPI
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods: []
