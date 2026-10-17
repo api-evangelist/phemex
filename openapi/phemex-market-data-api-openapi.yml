@@ -383,6 +383,20 @@ components:
                     type: string
                   execFeeEv:
                     type: integer
+    KlineResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        data:
+          type: object
+          properties:
+            rows:
+              type: array
+              items:
+                type: array
+                items:
+                  type: number
     TickerResponse:
       type: object
       properties:
@@ -461,7 +475,7 @@ components:
                     type: integer
                   settleCurrency:
                     type: string
-    KlineResponse:
+    TickerResponse_2:
       type: object
       properties:
         code:
@@ -469,12 +483,24 @@ components:
         data:
           type: object
           properties:
-            rows:
-              type: array
-              items:
-                type: array
-                items:
-                  type: number
+            symbol:
+              type: string
+            openRp:
+              type: string
+            highRp:
+              type: string
+            lowRp:
+              type: string
+            closeRp:
+              type: string
+            volumeRq:
+              type: string
+            markPriceRp:
+              type: string
+            indexPriceRp:
+              type: string
+            fundingRateRr:
+              type: string
     OrderBookResponse_2:
       type: object
       properties:
@@ -510,32 +536,6 @@ components:
           type: string
         data:
           type: object
-    TickerResponse_2:
-      type: object
-      properties:
-        code:
-          type: integer
-        data:
-          type: object
-          properties:
-            symbol:
-              type: string
-            openRp:
-              type: string
-            highRp:
-              type: string
-            lowRp:
-              type: string
-            closeRp:
-              type: string
-            volumeRq:
-              type: string
-            markPriceRp:
-              type: string
-            indexPriceRp:
-              type: string
-            fundingRateRr:
-              type: string
     SpotTickerResponse:
       type: object
       properties:

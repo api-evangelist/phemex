@@ -109,6 +109,25 @@ paths:
                 $ref: '#/components/schemas/ApiResponse'
 components:
   schemas:
+    ConvertRequest:
+      type: object
+      required:
+      - toCurrency
+      - fromCurrency
+      - code
+      properties:
+        toCurrency:
+          type: string
+          description: Target currency
+        fromCurrency:
+          type: string
+          description: Source currency
+        fromAmountEv:
+          type: integer
+          description: Amount to convert (scaled, optional)
+        code:
+          type: string
+          description: Encrypted conversion parameters from quote
     QuoteResponse:
       type: object
       properties:
@@ -132,34 +151,6 @@ components:
                   type: integer
                 ttlMs:
                   type: integer
-    ConvertRequest:
-      type: object
-      required:
-      - toCurrency
-      - fromCurrency
-      - code
-      properties:
-        toCurrency:
-          type: string
-          description: Target currency
-        fromCurrency:
-          type: string
-          description: Source currency
-        fromAmountEv:
-          type: integer
-          description: Amount to convert (scaled, optional)
-        code:
-          type: string
-          description: Encrypted conversion parameters from quote
-    ApiResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        msg:
-          type: string
-        data:
-          type: object
     ConvertResponse:
       type: object
       properties:
@@ -180,6 +171,15 @@ components:
               type: integer
             toCurrency:
               type: string
+    ApiResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        msg:
+          type: string
+        data:
+          type: object
   securitySchemes:
     HmacAuth:
       type: apiKey

@@ -116,26 +116,6 @@ paths:
                 $ref: '#/components/schemas/ApiResponse'
 components:
   schemas:
-    TransferResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        data:
-          type: object
-          properties:
-            amountEv:
-              type: integer
-            currency:
-              type: string
-            linkKey:
-              type: string
-            side:
-              type: integer
-            status:
-              type: integer
-            userId:
-              type: integer
     TransferRequest:
       type: object
       required:
@@ -164,6 +144,36 @@ components:
           type: string
         data:
           type: object
+    UniversalTransferRequest:
+      type: object
+      required:
+      - fromUserId
+      - toUserId
+      - amountEv
+      - bizType
+      - currency
+      properties:
+        fromUserId:
+          type: integer
+          description: Source user ID
+        toUserId:
+          type: integer
+          description: Destination user ID
+        amountEv:
+          type: integer
+          description: Amount to transfer (scaled)
+        bizType:
+          type: string
+          enum:
+          - SPOT
+          - PERPETUAL
+          description: Business type indicating account type
+        currency:
+          type: string
+          description: Currency code
+        requestKey:
+          type: string
+          description: Optional unique request identifier
     TransferListResponse:
       type: object
       properties:
@@ -195,36 +205,26 @@ components:
                     type: integer
                   userId:
                     type: integer
-    UniversalTransferRequest:
+    TransferResponse:
       type: object
-      required:
-      - fromUserId
-      - toUserId
-      - amountEv
-      - bizType
-      - currency
       properties:
-        fromUserId:
+        code:
           type: integer
-          description: Source user ID
-        toUserId:
-          type: integer
-          description: Destination user ID
-        amountEv:
-          type: integer
-          description: Amount to transfer (scaled)
-        bizType:
-          type: string
-          enum:
-          - SPOT
-          - PERPETUAL
-          description: Business type indicating account type
-        currency:
-          type: string
-          description: Currency code
-        requestKey:
-          type: string
-          description: Optional unique request identifier
+        data:
+          type: object
+          properties:
+            amountEv:
+              type: integer
+            currency:
+              type: string
+            linkKey:
+              type: string
+            side:
+              type: integer
+            status:
+              type: integer
+            userId:
+              type: integer
   securitySchemes:
     HmacAuth:
       type: apiKey

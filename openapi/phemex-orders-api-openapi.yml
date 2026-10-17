@@ -1288,6 +1288,34 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/OrderResponse'
+    OrderResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        msg:
+          type: string
+        data:
+          type: object
+          properties:
+            orderID:
+              type: string
+            clOrdID:
+              type: string
+            symbol:
+              type: string
+            side:
+              type: string
+            ordStatus:
+              type: string
+            cumQty:
+              type: integer
+            leavesQty:
+              type: integer
+            priceEp:
+              type: integer
+            ordType:
+              type: string
     ApiResponse:
       type: object
       properties:
@@ -1343,76 +1371,6 @@ components:
           type: integer
         stopLossEp:
           type: integer
-    OrderResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        msg:
-          type: string
-        data:
-          type: object
-          properties:
-            orderID:
-              type: string
-            clOrdID:
-              type: string
-            symbol:
-              type: string
-            side:
-              type: string
-            ordStatus:
-              type: string
-            cumQty:
-              type: integer
-            leavesQty:
-              type: integer
-            priceEp:
-              type: integer
-            ordType:
-              type: string
-    OrderResponse_2:
-      type: object
-      properties:
-        code:
-          type: integer
-        msg:
-          type: string
-        data:
-          type: object
-          properties:
-            orderID:
-              type: string
-            clOrdID:
-              type: string
-            symbol:
-              type: string
-            side:
-              type: string
-            posSide:
-              type: string
-            ordStatus:
-              type: string
-            ordType:
-              type: string
-            priceRp:
-              type: string
-            orderQtyRq:
-              type: string
-    OrderListResponse_2:
-      type: object
-      properties:
-        code:
-          type: integer
-        data:
-          type: object
-          properties:
-            total:
-              type: integer
-            rows:
-              type: array
-              items:
-                $ref: '#/components/schemas/OrderResponse_2'
     HedgedOrderRequest:
       type: object
       required:
@@ -1466,7 +1424,7 @@ components:
           type: string
         triggerType:
           type: string
-    OrderListResponse_3:
+    OrderListResponse_2:
       type: object
       properties:
         code:
@@ -1479,8 +1437,8 @@ components:
             rows:
               type: array
               items:
-                $ref: '#/components/schemas/OrderResponse_3'
-    OrderResponse_3:
+                $ref: '#/components/schemas/OrderResponse_2'
+    OrderResponse_2:
       type: object
       properties:
         code:
@@ -1498,12 +1456,30 @@ components:
               type: string
             side:
               type: string
+            posSide:
+              type: string
             ordStatus:
               type: string
-            baseQtyEv:
+            ordType:
+              type: string
+            priceRp:
+              type: string
+            orderQtyRq:
+              type: string
+    OrderListResponse_3:
+      type: object
+      properties:
+        code:
+          type: integer
+        data:
+          type: object
+          properties:
+            total:
               type: integer
-            priceEp:
-              type: integer
+            rows:
+              type: array
+              items:
+                $ref: '#/components/schemas/OrderResponse_3'
     SpotOrderRequest:
       type: object
       required:
@@ -1550,6 +1526,30 @@ components:
           - PostOnly
           - ImmediateOrCancel
           - FillOrKill
+    OrderResponse_3:
+      type: object
+      properties:
+        code:
+          type: integer
+        msg:
+          type: string
+        data:
+          type: object
+          properties:
+            orderID:
+              type: string
+            clOrdID:
+              type: string
+            symbol:
+              type: string
+            side:
+              type: string
+            ordStatus:
+              type: string
+            baseQtyEv:
+              type: integer
+            priceEp:
+              type: integer
   securitySchemes:
     HmacAuth:
       type: apiKey

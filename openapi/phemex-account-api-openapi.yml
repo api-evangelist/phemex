@@ -324,15 +324,6 @@ paths:
       description: Testnet
 components:
   schemas:
-    ApiResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        msg:
-          type: string
-        data:
-          type: object
     PositionsResponse:
       type: object
       properties:
@@ -392,6 +383,15 @@ components:
                     type: integer
                   liquidationPriceEp:
                     type: integer
+    ApiResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        msg:
+          type: string
+        data:
+          type: object
     AccountPositionsResponse_2:
       type: object
       properties:
