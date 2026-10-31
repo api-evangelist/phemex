@@ -64,49 +64,169 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Phemex is a cryptocurrency derivatives exchange offering REST and WebSocket APIs for spot trading, perpetual contracts, hedged perpetual contracts, futures, asset transfers, and real-time market data.
+Phemex is a cryptocurrency derivatives exchange offering REST and WebSocket APIs for spot trading, perpetual contracts, futures, hedged perpetual contracts, asset transfers, and real-time market data. The platform provides low-latency trading infrastructure with HMAC SHA256 authentication and tiered rate limiting for institutional and retail traders.
 
-## APIs
+**Areas:** Cryptocurrency · Derivatives · Spot Trading · Perpetual Contracts · Futures · WebSocket · Market Data
 
-| API | Description | Documentation |
-|-----|-------------|---------------|
-| Contract Trading API | Perpetual contract trading, position management, and market data | [Docs](https://github.com/phemex/phemex-api-docs/blob/master/Public-Contract-API-en.md) |
-| Spot Trading API | Spot order management, wallet queries, and market data | [Docs](https://github.com/phemex/phemex-api-docs/blob/master/Public-Spot-API-en.md) |
-| Hedged Perpetual API | Simultaneous long/short positions with independent leverage | [Docs](https://github.com/phemex/phemex-api-docs/blob/master/Public-Hedged-Perpetual-API.md) |
-| Asset Transfer API | Transfers between spot/futures accounts and sub-accounts | [Docs](https://github.com/phemex/phemex-api-docs/blob/master/Public-Transfer-API-en.md) |
+## Phemex on APIs.io
 
-## Base URLs
+Everything profiled for Phemex is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/phemex/](https://apis.io/providers/phemex/)** — or go straight to one of the APIs or properties below.
 
-| Environment | REST | WebSocket |
-|-------------|------|-----------|
-| Production | `https://api.phemex.com` | `wss://phemex.com/ws` |
-| VIP/High Rate | `https://vapi.phemex.com` | `wss://vapi.phemex.com/ws` |
-| Testnet | `https://testnet-api.phemex.com` | `wss://testnet.phemex.com/ws` |
+### APIs (9)
 
-## Authentication
+- [Phemex Account API](https://apis.io/apis/phemex/phemex-account-api/) — The Account API from Phemex — 10 operation(s) for account.
+- [Phemex Conversion API](https://apis.io/apis/phemex/phemex-conversion-api/) — The Conversion API from Phemex — 2 operation(s) for conversion.
+- [Phemex Market Data API](https://apis.io/apis/phemex/phemex-market-data-api/) — The Market Data API from Phemex — 12 operation(s) for market data.
+- [Phemex Orders API](https://apis.io/apis/phemex/phemex-orders-api/) — The Orders API from Phemex — 26 operation(s) for orders.
+- [Phemex Positions API](https://apis.io/apis/phemex/phemex-positions-api/) — The Positions API from Phemex — 6 operation(s) for positions.
+- [Phemex Sub-Account Transfers API](https://apis.io/apis/phemex/phemex-sub-account-transfers-api/) — The Sub-Account Transfers API from Phemex — 2 operation(s) for sub-account transfers.
+- [Phemex Trades API](https://apis.io/apis/phemex/phemex-trades-api/) — The Trades API from Phemex — 7 operation(s) for trades.
+- [Phemex Transfers API](https://apis.io/apis/phemex/phemex-transfers-api/) — The Transfers API from Phemex — 2 operation(s) for transfers.
+- [Phemex Wallets API](https://apis.io/apis/phemex/phemex-wallets-api/) — The Wallets API from Phemex — 8 operation(s) for wallets.
 
-All private REST endpoints require three headers:
-- `x-phemex-access-token` — API key
-- `x-phemex-request-expiry` — Unix epoch seconds (now + 60 seconds)
-- `x-phemex-request-signature` — `HMacSha256(URL Path + QueryString + Expiry + body)` signed with API secret
+### Published properties
 
-WebSocket private data access requires sending `user.auth` with token, signature, and expiry.
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## Rate Limits
+#### Agentic access (1)
 
-| Tier | Contract | SpotOrder | Others | IP Limit |
-|------|----------|-----------|--------|----------|
-| Standard | 500/min | 500/min | 100/min | 5000/5min |
-| VIP/VAPI | 5000/min | 500/min | 100/min | 5000/5min |
+Which operations an agent can call, which act, and which need a human in the loop.
 
-WebSocket: max 5 concurrent connections, 20 subscriptions per connection, 20 requests/second.
+- [Phemex Agentic Access](https://apis.io/agentic-access/phemex/phemex-agentic-access/)
 
-## Resources
+#### JSON Schema (2)
 
-- [API Documentation Repository](https://github.com/phemex/phemex-api-docs)
-- [CCXT SDK](https://github.com/ccxt/ccxt)
-- [Java Client](https://github.com/phemex/java-client)
-- [Error Codes](https://github.com/phemex/phemex-api-docs/blob/master/TradingErrorCode.md)
-- [Help Center](https://phemex.com/help-center)
-- [Fees & Conditions](https://phemex.com/fees-conditions)
-- [Testnet](https://testnet.phemex.com)
+The data models the API reads and writes.
+
+- [Phemex Order](https://apis.io/schemas/phemex/order/)
+- [Phemex Position](https://apis.io/schemas/phemex/position/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Phemex Context](https://apis.io/jsonld/phemex/phemex/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Phemex API Vocabulary](https://apis.io/vocabularies/phemex/phemex-vocabulary/)
+
+#### Examples (2)
+
+Example requests and responses.
+
+- [Place Contract Order](https://apis.io/examples/phemex/place-contract-order/)
+- [Place Spot Order](https://apis.io/examples/phemex/place-spot-order/)
+
+#### Collections (9)
+
+Postman and Open Collection request collections.
+
+- [Phemex Contract Trading Account API](https://apis.io/collections/phemex/open-phemex-account-api/)
+- [Phemex Contract Trading Account Conversion API](https://apis.io/collections/phemex/open-phemex-conversion-api/)
+- [Phemex Contract Trading Account Market Data API](https://apis.io/collections/phemex/open-phemex-market-data-api/)
+- [Phemex Contract Trading Account Orders API](https://apis.io/collections/phemex/open-phemex-orders-api/)
+- [Phemex Contract Trading Account Positions API](https://apis.io/collections/phemex/open-phemex-positions-api/)
+- [Phemex Contract Trading Account Sub-Account Transfers API](https://apis.io/collections/phemex/open-phemex-sub-account-transfers-api/)
+- [Phemex Contract Trading Account Trades API](https://apis.io/collections/phemex/open-phemex-trades-api/)
+- [Phemex Contract Trading Account Transfers API](https://apis.io/collections/phemex/open-phemex-transfers-api/)
+- [Phemex Contract Trading Account Wallets API](https://apis.io/collections/phemex/open-phemex-wallets-api/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [Phemex — jsonschema rules](https://apis.io/rules/phemex/phemex-jsonschema-spectral-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Phemex Authentication](https://apis.io/security/phemex/phemex-authentication/)
+- [Phemex Domain Security](https://apis.io/security/phemex/phemex-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Plans](https://apis.io/plans/phemex/plans/)
+
+#### Rate limits (5)
+
+Published request limits.
+
+- [Contract](https://apis.io/rate-limits/phemex/contract/)
+- [Hedged Perpetual](https://apis.io/rate-limits/phemex/hedged-perpetual/)
+- [Overview](https://apis.io/rate-limits/phemex/overview/)
+- [Spot](https://apis.io/rate-limits/phemex/spot/)
+- [Transfer](https://apis.io/rate-limits/phemex/transfer/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Finops](https://apis.io/finops/phemex/finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://phemex.com)
+- [Documentation](https://github.com/phemex/phemex-api-docs)
+- [Blog](https://phemex.com/news)
+- [Status](https://status.phemex.com)
+
+## API Evangelist rating
+
+**Kin Score 32.4** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 71.4 |
+| Contract quality | 52.5 |
+| Contract governance | 23.5 |
+| Operational transparency | 13.2 |
+| Developer ergonomics | 35.7 |
+| Access clarity | 5.3 |
+
+**Agent readiness 24.4** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 21.3** — Securities & Market Data
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/phemex/](https://apis.io/providers/phemex/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Phemex: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/phemex/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
